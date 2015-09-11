@@ -26,7 +26,6 @@
 		95CCD8CC3489307961DCA2C2 /* ofxEditorSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99718C66FC5D91F08D6CBA7A /* ofxEditorSettings.cpp */; };
 		9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 832BDC407620CDBA568B713D /* tinyxmlerror.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
-		CDD598C9697851AA007CA28D /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F597EFB0355956659DE703FB /* button.cpp */; };
 		D1395DD979998DCFFA40ACAC /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0949C9F18BE455D5E6CD10 /* ofxMSAInteractiveObject.cpp */; };
 		E05BD419075B22F051492868 /* nodeVideoInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E933920DB31F8057B0B4ECBC /* nodeVideoInterface.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -162,7 +161,6 @@
 		E7E077E715D3B6510020DFD4 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		E7F985F515E0DE99003869B5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
 		E933920DB31F8057B0B4ECBC /* nodeVideoInterface.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = nodeVideoInterface.cpp; path = src/nodeVideoInterface.cpp; sourceTree = SOURCE_ROOT; };
-		F597EFB0355956659DE703FB /* button.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = button.cpp; path = src/button.cpp; sourceTree = SOURCE_ROOT; };
 		F926258ADAA6C769F0288FB6 /* glfontstash.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = glfontstash.h; path = ../../../addons/ofxGLEditor/libs/fontstash/include/glfontstash.h; sourceTree = SOURCE_ROOT; };
 		FC5DA1C87211D4F6377DA719 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlparser.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -448,7 +446,6 @@
 			isa = PBXGroup;
 			children = (
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
-				F597EFB0355956659DE703FB /* button.cpp */,
 				BB952F76FBAAD8E47899AEBE /* button.h */,
 				E933920DB31F8057B0B4ECBC /* nodeVideoInterface.cpp */,
 				D849DAA4EC04E80000DED62D /* nodeVideoInterface.h */,
@@ -563,7 +560,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
-				CDD598C9697851AA007CA28D /* button.cpp in Sources */,
 				E05BD419075B22F051492868 /* nodeVideoInterface.cpp in Sources */,
 				29D734F0DDECC8C5978185D7 /* testApp.cpp in Sources */,
 				7258CB1E822D71E434E52AA4 /* ofxBasePatch.cpp in Sources */,

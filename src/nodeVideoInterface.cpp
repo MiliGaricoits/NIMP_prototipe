@@ -14,12 +14,24 @@ nodeVideoInterface::nodeVideoInterface( ofRectangle* wBox, int* _windowsId ){
     windowsId = _windowsId;
     height = 25;
     offSetWidth = 5;
+    
+    addButton("assets/prev.png", "prev");
+    addButton("assets/play.png", "play");
+    addButton("assets/stop.png", "stop");
+    addButton("assets/next.png", "next");
 };
 
 void nodeVideoInterface::addButton( string src, string action){
     
-    button newButton( src, 15, 15, action);
+    ofPushMatrix();
+    
+    int pos_x = windowsBox->getHeight() + offSetWidth + buttons.size()*20;
+    int pos_y = 5;
+    
+    button newButton = * new button( src, 15, 15, pos_x, pos_y, windowsBox, action);
     buttons.push_back( newButton );
+    
+    ofPopMatrix();
 }
 
 void nodeVideoInterface::draw(){
@@ -34,7 +46,8 @@ void nodeVideoInterface::draw(){
     
     for (int i = 0; i < buttons.size(); i++){
         ofSetColor(100);
-        buttons[i].draw(windowsBox->x + offSetWidth + i*20, windowsBox->y + windowsBox->height + 5);
+        buttons[i].setPosition(windowsBox->x + offSetWidth + i*20, windowsBox->y + windowsBox->height + 5);
+        buttons[i].draw();
     }
     ofPopStyle();
 };
