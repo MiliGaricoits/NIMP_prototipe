@@ -73,22 +73,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/nodeVideoInterface.cpp"
-            timestampString = "463627116.039897"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "nodeVideoInterface::addButton( string src, string action)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../../../addons/ofxMSAInteractiveObject/src/ofxMSAInteractiveObject.cpp"
             timestampString = "463594418.982758"
             startingColumnNumber = "9223372036854775807"
@@ -105,77 +89,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/nodeVideoInterface.cpp"
-            timestampString = "463627116.039897"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "nodeVideoInterface::draw()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "src/nodeVideoInterface.cpp"
-            timestampString = "463627116.039897"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "nodeVideoInterface::addButton( string src, string action)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "src/button.h"
-            timestampString = "463632412.166278"
+            timestampString = "463783687.43882"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "draw()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "src/button.h"
-            timestampString = "463632412.166278"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "draw()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "src/nodeVideoInterface.cpp"
-            timestampString = "463627158.048474"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "nodeVideoInterface::addButton( string src, string action)"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "onPress(int x, int y, int button)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../addons/ofxComposer/src/ofxPatch.cpp"
-            timestampString = "463627579.20295"
+            timestampString = "463784798.435688"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "ofxPatch::ofxPatch()"
+            startingLineNumber = "925"
+            endingLineNumber = "925"
+            landmarkName = "ofxPatch::_stopVideo(int &amp;_nId)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,14 +121,152 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/button.h"
-            timestampString = "463632412.166278"
+            filePath = "src/nodeVideoInterface.cpp"
+            timestampString = "463781906.236296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "hitTest(int tx, int ty)"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "nodeVideoInterface::stopVideo(int &amp;args)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../libs/poco/include/Poco/AbstractEvent.h"
+            timestampString = "463780114.100915"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "notify(const void* pSender, TArgs&amp; args)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poco::AbstractEvent&lt;int, Poco::PriorityStrategy&lt;int, Poco::AbstractPriorityDelegate&lt;int&gt; &gt;, Poco::AbstractPriorityDelegate&lt;int&gt;, Poco::FastMutex&gt;::notify(void const*, int&amp;)"
+                  moduleName = "ofxComposerTestDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/miligaricoits/Development/of_v0.8.4_osx_release/apps/myApps/ofxComposerTest/../../../libs/poco/include/Poco/AbstractEvent.h"
+                  timestampString = "463781468.822189"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "239"
+                  endingLineNumber = "239"
+                  offsetFromSymbolStart = "79">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poco::AbstractEvent&lt;ofEntryEventArgs, Poco::PriorityStrategy&lt;ofEntryEventArgs, Poco::AbstractPriorityDelegate&lt;ofEntryEventArgs&gt; &gt;, Poco::AbstractPriorityDelegate&lt;ofEntryEventArgs&gt;, Poco::FastMutex&gt;::notify(void const*, ofEntryEventArgs&amp;)"
+                  moduleName = "ofxComposerTestDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/miligaricoits/Development/of_v0.8.4_osx_release/libs/openFrameworksCompiled/project/osx/../../../../libs/poco/include/Poco/AbstractEvent.h"
+                  timestampString = "463781468.822376"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poco::AbstractEvent&lt;ofDragInfo, Poco::PriorityStrategy&lt;ofDragInfo, Poco::AbstractPriorityDelegate&lt;ofDragInfo&gt; &gt;, Poco::AbstractPriorityDelegate&lt;ofDragInfo&gt;, Poco::FastMutex&gt;::notify(void const*, ofDragInfo&amp;)"
+                  moduleName = "ofxComposerTestDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/miligaricoits/Development/of_v0.8.4_osx_release/libs/openFrameworksCompiled/project/osx/../../../../libs/poco/include/Poco/AbstractEvent.h"
+                  timestampString = "463781468.822544"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poco::AbstractEvent&lt;ofResizeEventArgs, Poco::PriorityStrategy&lt;ofResizeEventArgs, Poco::AbstractPriorityDelegate&lt;ofResizeEventArgs&gt; &gt;, Poco::AbstractPriorityDelegate&lt;ofResizeEventArgs&gt;, Poco::FastMutex&gt;::notify(void const*, ofResizeEventArgs&amp;)"
+                  moduleName = "ofxComposerTestDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/miligaricoits/Development/of_v0.8.4_osx_release/libs/openFrameworksCompiled/project/osx/../../../../libs/poco/include/Poco/AbstractEvent.h"
+                  timestampString = "463781468.822713"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poco::AbstractEvent&lt;ofMouseEventArgs, Poco::PriorityStrategy&lt;ofMouseEventArgs, Poco::AbstractPriorityDelegate&lt;ofMouseEventArgs&gt; &gt;, Poco::AbstractPriorityDelegate&lt;ofMouseEventArgs&gt;, Poco::FastMutex&gt;::notify(void const*, ofMouseEventArgs&amp;)"
+                  moduleName = "ofxComposerTestDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/miligaricoits/Development/of_v0.8.4_osx_release/libs/openFrameworksCompiled/project/osx/../../../../libs/poco/include/Poco/AbstractEvent.h"
+                  timestampString = "463781468.823272"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poco::AbstractEvent&lt;ofKeyEventArgs, Poco::PriorityStrategy&lt;ofKeyEventArgs, Poco::AbstractPriorityDelegate&lt;ofKeyEventArgs&gt; &gt;, Poco::AbstractPriorityDelegate&lt;ofKeyEventArgs&gt;, Poco::FastMutex&gt;::notify(void const*, ofKeyEventArgs&amp;)"
+                  moduleName = "ofxComposerTestDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/miligaricoits/Development/of_v0.8.4_osx_release/libs/openFrameworksCompiled/project/osx/../../../../libs/poco/include/Poco/AbstractEvent.h"
+                  timestampString = "463781468.823445"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poco::AbstractEvent&lt;ofEventArgs, Poco::PriorityStrategy&lt;ofEventArgs, Poco::AbstractPriorityDelegate&lt;ofEventArgs&gt; &gt;, Poco::AbstractPriorityDelegate&lt;ofEventArgs&gt;, Poco::FastMutex&gt;::notify(void const*, ofEventArgs&amp;)"
+                  moduleName = "ofxComposerTestDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/miligaricoits/Development/of_v0.8.4_osx_release/libs/openFrameworksCompiled/project/osx/../../../../libs/poco/include/Poco/AbstractEvent.h"
+                  timestampString = "463781468.823605"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "171">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poco::AbstractEvent&lt;ofVideoSavedEventArgs, Poco::PriorityStrategy&lt;ofVideoSavedEventArgs, Poco::AbstractPriorityDelegate&lt;ofVideoSavedEventArgs&gt; &gt;, Poco::AbstractPriorityDelegate&lt;ofVideoSavedEventArgs&gt;, Poco::FastMutex&gt;::notify(void const*, ofVideoSavedEventArgs&amp;)"
+                  moduleName = "ofxComposerTestDebug"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/miligaricoits/Development/of_v0.8.4_osx_release/libs/openFrameworksCompiled/project/osx/../../../../libs/poco/include/Poco/AbstractEvent.h"
+                  timestampString = "463781468.823798"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "195">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

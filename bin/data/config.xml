@@ -56,20 +56,20 @@
     <visible>1</visible>
     <texture>
         <point>
-            <x>370.479705811</x>
-            <y>331.359985352</y>
+            <x>697.479736328</x>
+            <y>317.359985352</y>
         </point>
         <point>
-            <x>556.504028320</x>
-            <y>331.359985352</y>
+            <x>883.504028320</x>
+            <y>317.359985352</y>
         </point>
         <point>
-            <x>556.504028320</x>
-            <y>470.877990723</y>
+            <x>883.504028320</x>
+            <y>456.877990723</y>
         </point>
         <point>
-            <x>370.479919434</x>
-            <y>470.877990723</y>
+            <x>697.479919434</x>
+            <y>456.877990723</y>
         </point>
     </texture>
     <mask>
@@ -118,6 +118,51 @@
         <point>
             <x>629.546020508</x>
             <y>229.692016602</y>
+        </point>
+    </texture>
+    <mask>
+        <point>
+            <x>0.000000000</x>
+            <y>0.000000000</y>
+        </point>
+        <point>
+            <x>1.000000000</x>
+            <y>0.000000000</y>
+        </point>
+        <point>
+            <x>1.000000000</x>
+            <y>1.000000000</y>
+        </point>
+        <point>
+            <x>0.000000000</x>
+            <y>1.000000000</y>
+        </point>
+    </mask>
+    <out>
+        <active>1</active>
+    </out>
+</surface>
+<surface>
+    <id>3</id>
+    <type>ofVideoPlayer</type>
+    <path>/Users/miligaricoits/Development/of_v0.8.4_osx_release/apps/myApps/ofxComposerTest/bin/data/duck.mp4</path>
+    <visible>1</visible>
+    <texture>
+        <point>
+            <x>246.500000000</x>
+            <y>343.500000000</y>
+        </point>
+        <point>
+            <x>502.500000000</x>
+            <y>343.500000000</y>
+        </point>
+        <point>
+            <x>502.500030518</x>
+            <y>487.500000000</y>
+        </point>
+        <point>
+            <x>246.500000000</x>
+            <y>487.500000000</y>
         </point>
     </texture>
     <mask>

@@ -15,16 +15,19 @@
 class nodeVideoInterface {
 public:
     
-    nodeVideoInterface ( ofRectangle* wBox, int* _windowsId );
+    nodeVideoInterface ( ofRectangle* wBox, int* _windowsId);
     
     void addButton( string src, string action );
     void draw();
+    void stopVideo(int & args);
+    
+    ofEvent<int> _stop;
     
 private:
     
     ofRectangle    tittleBox;
     ofRectangle    *windowsBox;
-    vector<button> buttons;
+    vector<button*> buttons;
     int *windowsId, offSetWidth, height;
 };
 

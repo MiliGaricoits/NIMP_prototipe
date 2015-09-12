@@ -3,19 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ofxMSAInteractiveObject::hitTest(int, int):ofxMSAInteractiveObject.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "button::update():button.h">
-      </ContextState>
-      <ContextState
-         contextName = "button::onRollOver(int, int):button.h">
-      </ContextState>
-      <ContextState
          contextName = "button::hitTest(int, int):button.h">
          <PersistentStrings>
             <PersistentString
-               value = "(tx &gt; x + container-&gt;x)">
+               value = "width">
             </PersistentString>
             <PersistentString
                value = "(tx &lt; x + width + container-&gt;x)">
@@ -24,10 +15,10 @@
                value = "x">
             </PersistentString>
             <PersistentString
-               value = "container-&gt;x">
+               value = "(tx &gt; x + container-&gt;x)">
             </PersistentString>
             <PersistentString
-               value = "width">
+               value = "container-&gt;x">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -38,6 +29,29 @@
                value = "x">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "void ofNotifyEvent&lt;ofEvent&lt;int&gt;, int, button&gt;(ofEvent&lt;int&gt;&amp;, int&amp;, button*):ofEventUtils.h">
+      </ContextState>
+      <ContextState
+         contextName = "button::onRollOver(int, int):button.h">
+      </ContextState>
+      <ContextState
+         contextName = "button::update():button.h">
+      </ContextState>
+      <ContextState
+         contextName = "Poco::AbstractEvent&lt;int, Poco::PriorityStrategy&lt;int, Poco::AbstractPriorityDelegate&lt;int&gt; &gt;, Poco::AbstractPriorityDelegate&lt;int&gt;, Poco::FastMutex&gt;::notify(void const*, int&amp;):AbstractEvent.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "_enabled">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ofxMSAInteractiveObject::hitTest(int, int):ofxMSAInteractiveObject.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Poco::ScopedLockWithUnlock&lt;Poco::FastMutex&gt;::ScopedLockWithUnlock(Poco::FastMutex&amp;):ScopedLock.h">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

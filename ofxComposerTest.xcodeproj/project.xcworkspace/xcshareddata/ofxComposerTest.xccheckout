@@ -28,13 +28,13 @@
 		<key>2E3E9FA068F75BB30891F025B9047DD85AE4CCE8</key>
 		<string>../..</string>
 		<key>D513395B3B2672F06879738DB1BEEA65E2B146B1</key>
-		<string>../../../../../addons/ofxComposer</string>
+		<string>../../../addons/ofxComposer</string>
 		<key>DA298CE2AB975BA2CF43E11863DF98F71A466522</key>
-		<string>../../../../../addons/ofxGLEditor</string>
+		<string>../../../addons/ofxGLEditor</string>
 		<key>E57FBE9611406DF2667239BE7FA21B32E179F886</key>
-		<string>../../../../../addons/ofxPulseSensor</string>
+		<string>../../../addons/ofxPulseSensor</string>
 		<key>FA40DAC4B9E2565DD7F5B5FB7CA55524249F04EB</key>
-		<string>../../../../../addons/ofxMSAInteractiveObject</string>
+		<string>../../../addons/ofxMSAInteractiveObject</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:MiliGaricoits/NIMP_prototipe.git</string>
