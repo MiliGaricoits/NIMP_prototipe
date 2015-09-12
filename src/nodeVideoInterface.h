@@ -21,6 +21,7 @@ public:
     
     /* setters / getters */
     void setVideoState( videoState s );
+    videoState getVideoState();
     
     void addButton( string src, string action );
     void draw();

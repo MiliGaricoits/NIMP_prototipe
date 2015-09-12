@@ -30,7 +30,11 @@ void nodeVideoInterface::setVideoState( videoState s ) {
     if (s == VIDEO_PLAY)
         buttons[1]->setSrc("assets/pause.png");
     else buttons[1]->setSrc("assets/play.png");
-}
+};
+
+videoState nodeVideoInterface::getVideoState() {
+    return this->state;
+};
 
 void nodeVideoInterface::addButton( string src, string action){
     
