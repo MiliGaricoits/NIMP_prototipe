@@ -8,20 +8,29 @@
 
 #include "nodeVideoInterface.h"
 
+/* constructors */
 nodeVideoInterface::nodeVideoInterface( ofRectangle* wBox, int* _windowsId){
     
     windowsBox = wBox;
     windowsId = _windowsId;
     height = 25;
     offSetWidth = 5;
+    state = VIDEO_PLAY;
     
     addButton("assets/prev.png", "prev");
-    addButton("assets/play.png", "play");
+    addButton("assets/pause.png", "play");
     addButton("assets/stop.png", "stop");
     addButton("assets/next.png", "next");
-    
-    ofAddListener( buttons[2]->stop , this, &nodeVideoInterface::stopVideo);
 };
+
+/* setters / getters */
+void nodeVideoInterface::setVideoState( videoState s ) {
+    this->state = s;
+    
+    if (s == VIDEO_PLAY)
+        buttons[1]->setSrc("assets/pause.png");
+    else buttons[1]->setSrc("assets/play.png");
+}
 
 void nodeVideoInterface::addButton( string src, string action){
     
@@ -32,6 +41,11 @@ void nodeVideoInterface::addButton( string src, string action){
     
     button *newButton = new button( src, 15, 15, pos_x, pos_y, windowsBox, action, windowsId);
     buttons.push_back( newButton );
+    
+    if (action == "stop")
+        ofAddListener( newButton->stop , this, &nodeVideoInterface::stopVideo);
+    else if (action == "play")
+        ofAddListener( newButton->play , this, &nodeVideoInterface::playVideo);
     
     ofPopMatrix();
 }
@@ -56,5 +70,8 @@ void nodeVideoInterface::draw(){
 
 void nodeVideoInterface::stopVideo(int &args){
     ofNotifyEvent(_stop, args, this);
+}
+void nodeVideoInterface::playVideo(int &args){
+    ofNotifyEvent(_play, args, this);
 }
 

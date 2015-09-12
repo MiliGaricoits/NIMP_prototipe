@@ -20,6 +20,7 @@ class button : public ofxMSAInteractiveObject {
 public:
     
     /* Constructors */
+    
     button(){};
     
     button(string src, int width, int height, int x, int y, ofRectangle* container, string action, int* windowsId) {
@@ -39,7 +40,15 @@ public:
         //disableAppEvents();
     };
     
+    
+    /* Setters / Getters */
+    
+    void setSrc(string s) {
+        this->btnImg.loadImage(s);
+    }
+    
     ofEvent<int> stop;
+    ofEvent<int> play;
     
     void setup() {};
     void update() {};
@@ -68,6 +77,8 @@ public:
     virtual void onPress(int x, int y, int button) {
         if (action.compare("stop") == 0) {
             ofNotifyEvent(stop, *windowsId, this);
+        } else if (action.compare("play") == 0) {
+            ofNotifyEvent(play, *windowsId, this);
         }
     };
     virtual void onRelease(int x, int y, int button) {};

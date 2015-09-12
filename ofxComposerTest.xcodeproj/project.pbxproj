@@ -84,6 +84,7 @@
 		00A1BFCBB38848AD0E0C8539 /* testApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = testApp.cpp; path = src/testApp.cpp; sourceTree = SOURCE_ROOT; };
 		01DCC0911400F9ACF5B65578 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		042992FEFA801395B6A232F7 /* ofxTitleBar.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTitleBar.cpp; path = ../../../addons/ofxComposer/src/ofxTitleBar.cpp; sourceTree = SOURCE_ROOT; };
+		0AABA7E41BA4D0C900B235ED /* enumVideoState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enumVideoState.h; sourceTree = "<group>"; };
 		1024DAA55739D62F9BF80FF5 /* ofxComposer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxComposer.h; path = ../../../addons/ofxComposer/src/ofxComposer.h; sourceTree = SOURCE_ROOT; };
 		16440F42B6E23F2F6793334F /* ofxGLEditor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGLEditor.h; path = ../../../addons/ofxGLEditor/src/ofxGLEditor.h; sourceTree = SOURCE_ROOT; };
 		19455BEE3D1397DF89D1B168 /* ofxPulseSensor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPulseSensor.cpp; path = ../../../addons/ofxPulseSensor/src/ofxPulseSensor.cpp; sourceTree = SOURCE_ROOT; };
@@ -451,6 +452,7 @@
 				D849DAA4EC04E80000DED62D /* nodeVideoInterface.h */,
 				00A1BFCBB38848AD0E0C8539 /* testApp.cpp */,
 				2D129AB0F7D46B8DFCEADEDB /* testApp.h */,
+				0AABA7E41BA4D0C900B235ED /* enumVideoState.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
