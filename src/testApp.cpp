@@ -7,6 +7,8 @@ void testApp::setup(){
     ofSetVerticalSync(false);
     
     composer.load("config.xml");
+    // nico ScrollBar setup
+    composer.setup();
 }
 
 //-------------------------------------------------------------- LOOP
