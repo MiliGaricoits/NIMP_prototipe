@@ -12,12 +12,16 @@
 	<dict>
 		<key>2E3E9FA068F75BB30891F025B9047DD85AE4CCE8</key>
 		<string>github.com:MiliGaricoits/NIMP_prototipe.git</string>
+		<key>7E804D925461714118DB355C65BC964B41D94376</key>
+		<string>https://github.com/rezaali/ofxUI.git</string>
 		<key>D513395B3B2672F06879738DB1BEEA65E2B146B1</key>
 		<string>https://github.com/patriciogonzalezvivo/ofxComposer.git</string>
 		<key>DA298CE2AB975BA2CF43E11863DF98F71A466522</key>
 		<string>https://github.com/Akira-Hayasaka/ofxGLEditor</string>
 		<key>E57FBE9611406DF2667239BE7FA21B32E179F886</key>
 		<string>https://github.com/patriciogonzalezvivo/ofxPulseSensor</string>
+		<key>E71E5D7A16B01AB780ADC5C4D1DF114B82BFDD6D</key>
+		<string>https://github.com/elliotwoods/ofxGrabCam.git</string>
 		<key>FA40DAC4B9E2565DD7F5B5FB7CA55524249F04EB</key>
 		<string>https://github.com/cwright/ofxMSAInteractiveObject.git</string>
 	</dict>
@@ -27,12 +31,16 @@
 	<dict>
 		<key>2E3E9FA068F75BB30891F025B9047DD85AE4CCE8</key>
 		<string>../..</string>
+		<key>7E804D925461714118DB355C65BC964B41D94376</key>
+		<string>../../../../../addons/ofxUI</string>
 		<key>D513395B3B2672F06879738DB1BEEA65E2B146B1</key>
 		<string>../../../addons/ofxComposer</string>
 		<key>DA298CE2AB975BA2CF43E11863DF98F71A466522</key>
 		<string>../../../addons/ofxGLEditor</string>
 		<key>E57FBE9611406DF2667239BE7FA21B32E179F886</key>
 		<string>../../../addons/ofxPulseSensor</string>
+		<key>E71E5D7A16B01AB780ADC5C4D1DF114B82BFDD6D</key>
+		<string>../../../../../addons/ofxGrabCam</string>
 		<key>FA40DAC4B9E2565DD7F5B5FB7CA55524249F04EB</key>
 		<string>../../../addons/ofxMSAInteractiveObject</string>
 	</dict>
@@ -72,6 +80,14 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E71E5D7A16B01AB780ADC5C4D1DF114B82BFDD6D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxGrabCam</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>FA40DAC4B9E2565DD7F5B5FB7CA55524249F04EB</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ofxMSAInteractiveObject</string>
@@ -83,6 +99,14 @@
 			<string>E57FBE9611406DF2667239BE7FA21B32E179F886</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ofxPulseSensor</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7E804D925461714118DB355C65BC964B41D94376</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxUI</string>
 		</dict>
 	</array>
 </dict>

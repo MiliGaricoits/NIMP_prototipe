@@ -3,3 +3,4 @@ ofxGLEditor
 ofxPulseSensor
 ofxXmlSettings
 ofxMSAInteractiveObject
+ofxUI

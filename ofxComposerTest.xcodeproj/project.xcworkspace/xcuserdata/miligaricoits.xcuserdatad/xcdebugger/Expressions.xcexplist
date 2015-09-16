@@ -6,10 +6,13 @@
          contextName = "button::hitTest(int, int):button.h">
          <PersistentStrings>
             <PersistentString
-               value = "width">
+               value = "container-&gt;x">
             </PersistentString>
             <PersistentString
                value = "(tx &lt; x + width + container-&gt;x)">
+            </PersistentString>
+            <PersistentString
+               value = "width">
             </PersistentString>
             <PersistentString
                value = "x">
@@ -17,10 +20,10 @@
             <PersistentString
                value = "(tx &gt; x + container-&gt;x)">
             </PersistentString>
-            <PersistentString
-               value = "container-&gt;x">
-            </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "void ofNotifyEvent&lt;ofEvent&lt;int&gt;, int, button&gt;(ofEvent&lt;int&gt;&amp;, int&amp;, button*):ofEventUtils.h">
       </ContextState>
       <ContextState
          contextName = "button::draw():button.h">
@@ -29,9 +32,6 @@
                value = "x">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "void ofNotifyEvent&lt;ofEvent&lt;int&gt;, int, button&gt;(ofEvent&lt;int&gt;&amp;, int&amp;, button*):ofEventUtils.h">
       </ContextState>
       <ContextState
          contextName = "button::onRollOver(int, int):button.h">
@@ -49,6 +49,14 @@
       </ContextState>
       <ContextState
          contextName = "ofxMSAInteractiveObject::hitTest(int, int):ofxMSAInteractiveObject.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "ofxPatch::_stopVideo(int&amp;):ofxPatch.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "videoPlayer-&gt;getPosition()">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Poco::ScopedLockWithUnlock&lt;Poco::FastMutex&gt;::ScopedLockWithUnlock(Poco::FastMutex&amp;):ScopedLock.h">
