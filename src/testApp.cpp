@@ -7,8 +7,12 @@ void testApp::setup(){
     ofSetVerticalSync(false);
     
     composer.load("config.xml");
+    gui = new ofxUISuperCanvas("mili", 0, 0, ofGetWidth(), ofGetHeight());
+    gui->setColorBack(ofxUIColor(255,255,255,0));
+    gui->setDraggable(false);
+    
     // nico ScrollBar setup
-    composer.setup();
+    //composer.setup();
 }
 
 //-------------------------------------------------------------- LOOP
@@ -29,6 +33,13 @@ void testApp::draw(){
 
 //-------------------------------------------------------------- EVENTS
 void testApp::keyPressed(int key){
+    
+    if (key == 'n'){
+        ofxUITextInput *node = new ofxUITextInput("My node", "", 150, 20, ofGetMouseX(), ofGetMouseY());
+        
+        gui->addWidget(node);
+        node->setColorBack(ofxUIColor (255,255,255,100));
+    }
 }
 
 void testApp::keyReleased(int key){

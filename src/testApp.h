@@ -3,6 +3,7 @@
 #include "ofMain.h"
 
 #include "ofxComposer.h"
+#include "ofxUISuperCanvas.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -21,4 +22,5 @@ public:
 	void gotMessage(ofMessage msg);
     
     ofxComposer composer;
+    ofxUISuperCanvas *gui;
 };

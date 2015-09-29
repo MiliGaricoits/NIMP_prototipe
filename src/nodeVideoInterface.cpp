@@ -72,8 +72,6 @@ void nodeVideoInterface::draw(){
     ofPushStyle();
     
     // Draw controls
-    //
-    //gui->setWidth(windowsBox->width);
     gui->setPosition(windowsBox->x + windowsBox->width - gui->getRect()->width , windowsBox->y + windowsBox->height - 16);
     ofFill();
     ofSetColor(0,250, 130);
