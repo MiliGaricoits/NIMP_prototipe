@@ -1,6 +1,6 @@
-ofxComposer
-ofxGLEditor
-ofxPulseSensor
 ofxXmlSettings
-ofxMSAInteractiveObject
-ofxUI
+ofxComposer_nimp
+ofxGLEditor
+ofxMSAInteractiveObject_nimp
+ofxPulseSensor
+ofxUI_nimp
