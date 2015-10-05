@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "ofxUITextInput.h"
 #include "ofxUIDropDownList.h"
+#include "ofxUIEventArgs.h"
 
 class textInput : public ofxUITextInput
 {
@@ -20,7 +21,9 @@ public:
     
     textInput(string _name, string _textstring, float w, float h = 0, float x = 0, float y = 0, int _size = OFX_UI_FONT_SMALL);
     void setDropdownList(ofxUIDropDownList &dl);
+    
     void keyPressed(int key);
+    void guiEvent(ofxUIEventArgs &e);
 
 protected:
     

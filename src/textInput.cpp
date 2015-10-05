@@ -18,6 +18,9 @@ void textInput::setDropdownList(ofxUIDropDownList &dl) {
     this->dropdownList = &dl;
     this->dropdownList->open();
     this->dropdownList->setVisible(false);
+    this->dropdownList->setAutoClose(true);
+    
+    ofAddListener(((ofxUISuperCanvas*) this->dropdownList->getCanvasParent())->newGUIEvent,this,&textInput::guiEvent);
 }
 
 void textInput::keyPressed(int key) {
@@ -28,6 +31,14 @@ void textInput::keyPressed(int key) {
         if (this->getTextString().length() > 2)
         {
             this->dropdownList->addToggle(ofGetTimestampString());
+            if (not this->dropdownList->isOpen()) this->dropdownList->open();
         }
+    }
+}
+
+void textInput::guiEvent(ofxUIEventArgs &e)
+{
+    if(e.widget == this->dropdownList){
+        this->setTextString(this->dropdownList->getSelected()[0]->getName());
     }
 }

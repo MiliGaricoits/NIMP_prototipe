@@ -37,7 +37,7 @@ void testApp::keyPressed(int key){
     if (key == 'n'){
         textInput *node = new textInput("My node", "", 150, 20, ofGetMouseX(), ofGetMouseY());
         vector<string> nodes;
-        ofxUIDropDownList *dlist = new ofxUIDropDownList("", nodes, 150, ofGetMouseX(), ofGetMouseY() + 20);
+        ofxUIDropDownList *dlist = new ofxUIDropDownList("", nodes, 150, ofGetMouseX(), ofGetMouseY());
         
         gui->addWidget(dlist);
         gui->addWidget(node);
