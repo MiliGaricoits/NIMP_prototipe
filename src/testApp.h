@@ -4,6 +4,7 @@
 
 #include "ofxComposer.h"
 #include "ofxUISuperCanvas.h"
+#include "textInput.h"
 
 class testApp : public ofBaseApp{
 public:

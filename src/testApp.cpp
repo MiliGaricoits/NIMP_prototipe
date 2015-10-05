@@ -7,7 +7,7 @@ void testApp::setup(){
     ofSetVerticalSync(false);
     
     composer.load("config.xml");
-    gui = new ofxUISuperCanvas("mili", 0, 0, ofGetWidth(), ofGetHeight());
+    gui = new ofxUISuperCanvas("", 0, 0, ofGetWidth(), ofGetHeight());
     gui->setColorBack(ofxUIColor(255,255,255,0));
     gui->setDraggable(false);
     
@@ -35,10 +35,16 @@ void testApp::draw(){
 void testApp::keyPressed(int key){
     
     if (key == 'n'){
-        ofxUITextInput *node = new ofxUITextInput("My node", "", 150, 20, ofGetMouseX(), ofGetMouseY());
+        textInput *node = new textInput("My node", "", 150, 20, ofGetMouseX(), ofGetMouseY());
+        vector<string> nodes;
+        ofxUIDropDownList *dlist = new ofxUIDropDownList("", nodes, 150, ofGetMouseX(), ofGetMouseY() + 20);
         
+        gui->addWidget(dlist);
         gui->addWidget(node);
+        
+        dlist->setColorBack(ofxUIColor (255,255,255,0));
         node->setColorBack(ofxUIColor (255,255,255,100));
+        node->setDropdownList(*dlist);
     }
 }
 

@@ -11,20 +11,20 @@
     <visible>1</visible>
     <texture>
         <point>
-            <x>44.227783203</x>
-            <y>52.921813965</y>
+            <x>25.227783203</x>
+            <y>24.921813965</y>
         </point>
         <point>
-            <x>307.038360596</x>
-            <y>52.920776367</y>
+            <x>288.038360596</x>
+            <y>24.920776367</y>
         </point>
         <point>
-            <x>307.038970947</x>
-            <y>250.028930664</y>
+            <x>288.038970947</x>
+            <y>222.028930664</y>
         </point>
         <point>
-            <x>44.228424072</x>
-            <y>250.029022217</y>
+            <x>25.228424072</x>
+            <y>222.029022217</y>
         </point>
     </texture>
     <mask>
@@ -59,20 +59,20 @@
     <passes>1</passes>
     <texture>
         <point>
-            <x>48.175628662</x>
-            <y>477.049499512</y>
+            <x>26.175628662</x>
+            <y>461.049499512</y>
         </point>
         <point>
-            <x>308.247192383</x>
-            <y>477.044982910</y>
+            <x>286.247192383</x>
+            <y>461.044982910</y>
         </point>
         <point>
-            <x>308.248474121</x>
-            <y>672.100402832</y>
+            <x>286.248474121</x>
+            <y>656.100402832</y>
         </point>
         <point>
-            <x>48.177215576</x>
-            <y>672.101745605</y>
+            <x>26.177215576</x>
+            <y>656.101745605</y>
         </point>
     </texture>
     <mask>
@@ -98,26 +98,26 @@
     </out>
 </surface>
 <surface>
-    <id>3</id>
+    <id>0</id>
     <type>ofVideoPlayer</type>
-    <path>/Users/miligaricoits/Development/of_v0.8.4_osx_release/apps/myApps/ofxComposerTest/bin/data/duck.mp4</path>
+    <path>/Users/miligaricoits/Development/of_v0.8.4_osx_release/apps/myApps/NIMP_prototipe/bin/data/duck.mp4</path>
     <visible>1</visible>
     <texture>
         <point>
-            <x>33.015151978</x>
-            <y>268.785980225</y>
+            <x>23.069702148</x>
+            <y>255.039550781</y>
         </point>
         <point>
-            <x>322.149536133</x>
-            <y>268.783020020</y>
+            <x>290.304199219</x>
+            <y>255.039215088</y>
         </point>
         <point>
-            <x>322.150604248</x>
-            <y>431.420410156</y>
+            <x>290.304077148</x>
+            <y>405.358581543</y>
         </point>
         <point>
-            <x>33.017044067</x>
-            <y>431.421691895</y>
+            <x>23.069900513</x>
+            <y>405.358612061</y>
         </point>
     </texture>
     <mask>

@@ -10,6 +10,7 @@
 		00062604515C1A5AD107D190 /* ofxUI2DGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D68246533CF747B2D940A6 /* ofxUI2DGraph.cpp */; };
 		0A6CF4391BBDF1830018021D /* nodeVideoInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CF4351BBDF1830018021D /* nodeVideoInterface.cpp */; };
 		0A6CF43A1BBDF1830018021D /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CF4371BBDF1830018021D /* testApp.cpp */; };
+		0AEB9C5C1BC04542009BA6DC /* textInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB9C5A1BC04542009BA6DC /* textInput.cpp */; };
 		0C9644725B45F9D34DA2879C /* ofxUINumberDialer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 671DE69B6BC7801503C7666E /* ofxUINumberDialer.cpp */; };
 		0E16681A943DAF914FD70069 /* ofxFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4679707807EF2CBCAAEF8BF7 /* ofxFileDialog.cpp */; };
 		13A75DA9331CEC8420E06225 /* ofxUIWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E52DC6BE3B1B5ED76C13CE4 /* ofxUIWidget.cpp */; };
@@ -135,6 +136,8 @@
 		0A6CF4361BBDF1830018021D /* nodeVideoInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nodeVideoInterface.h; sourceTree = "<group>"; };
 		0A6CF4371BBDF1830018021D /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		0A6CF4381BBDF1830018021D /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
+		0AEB9C5A1BC04542009BA6DC /* textInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textInput.cpp; sourceTree = "<group>"; };
+		0AEB9C5B1BC04542009BA6DC /* textInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textInput.h; sourceTree = "<group>"; };
 		0BFE1741172F932DD4B6CDB9 /* ofxUIValuePlotter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIValuePlotter.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUIValuePlotter.cpp; sourceTree = SOURCE_ROOT; };
 		0C23DF1AD7789B449666ED3A /* ofxUICanvas.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUICanvas.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUICanvas.cpp; sourceTree = SOURCE_ROOT; };
 		0CACFC0306316B817127AD82 /* ofxUILabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUILabel.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUILabel.cpp; sourceTree = SOURCE_ROOT; };
@@ -683,6 +686,8 @@
 				0A6CF4371BBDF1830018021D /* testApp.cpp */,
 				0A6CF4381BBDF1830018021D /* testApp.h */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
+				0AEB9C5A1BC04542009BA6DC /* textInput.cpp */,
+				0AEB9C5B1BC04542009BA6DC /* textInput.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -832,6 +837,7 @@
 				392EF6DAB480749CDC4F0C3A /* AnalogIn.cpp in Sources */,
 				6870C57FA5036DC9BB6299B9 /* ofxPulseSensor.cpp in Sources */,
 				00062604515C1A5AD107D190 /* ofxUI2DGraph.cpp in Sources */,
+				0AEB9C5C1BC04542009BA6DC /* textInput.cpp in Sources */,
 				160904AAFB3BA386697F6E4D /* ofxUI2DPad.cpp in Sources */,
 				5577457A7F3AEEB433F75E69 /* ofxUIBaseDraws.cpp in Sources */,
 				3AF29A0F6155DB6F7398C211 /* ofxUIBiLabelSlider.cpp in Sources */,
