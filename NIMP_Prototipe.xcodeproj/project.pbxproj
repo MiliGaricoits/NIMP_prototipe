@@ -138,6 +138,7 @@
 		0A6CF4381BBDF1830018021D /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		0AEB9C5A1BC04542009BA6DC /* textInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textInput.cpp; sourceTree = "<group>"; };
 		0AEB9C5B1BC04542009BA6DC /* textInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textInput.h; sourceTree = "<group>"; };
+		0AEB9C6B1BC33F4B009BA6DC /* nimpDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nimpDefines.h; sourceTree = "<group>"; };
 		0BFE1741172F932DD4B6CDB9 /* ofxUIValuePlotter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIValuePlotter.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUIValuePlotter.cpp; sourceTree = SOURCE_ROOT; };
 		0C23DF1AD7789B449666ED3A /* ofxUICanvas.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUICanvas.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUICanvas.cpp; sourceTree = SOURCE_ROOT; };
 		0CACFC0306316B817127AD82 /* ofxUILabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUILabel.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUILabel.cpp; sourceTree = SOURCE_ROOT; };
@@ -688,6 +689,7 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				0AEB9C5A1BC04542009BA6DC /* textInput.cpp */,
 				0AEB9C5B1BC04542009BA6DC /* textInput.h */,
+				0AEB9C6B1BC33F4B009BA6DC /* nimpDefines.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

@@ -8,10 +8,17 @@
 
 #include "textInput.h"
 #include "ofxUISuperCanvas.h"
+#include <algorithm>
 
 textInput::textInput(string _name, string _textstring, float w, float h, float x, float y, int _size) : ofxUITextInput()
 {
     init(_name, _textstring, w, h, x, y, _size);
+    
+    nodes.push_back("gif");
+    nodes.push_back("image");
+    nodes.push_back("music");
+    nodes.push_back("shader");
+    nodes.push_back("video");
 }
 
 void textInput::setDropdownList(ofxUIDropDownList &dl) {
@@ -30,7 +37,13 @@ void textInput::keyPressed(int key) {
     {
         if (this->getTextString().length() > 2)
         {
-            this->dropdownList->addToggle(ofGetTimestampString());
+            string input = this->getTextString();
+            this->dropdownList->clearToggles();i
+            for(auto n : nodes) {
+                if (n.find(input) != -1)
+                    this->dropdownList->addToggle(n);
+            }
+
             if (not this->dropdownList->isOpen()) this->dropdownList->open();
         }
     }
