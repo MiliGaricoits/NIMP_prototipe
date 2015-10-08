@@ -38,7 +38,7 @@ void textInput::keyPressed(int key) {
         if (this->getTextString().length() > 2)
         {
             string input = this->getTextString();
-            this->dropdownList->clearToggles();i
+            this->dropdownList->clearToggles();
             for(auto n : nodes) {
                 if (n.find(input) != -1)
                     this->dropdownList->addToggle(n);
@@ -46,6 +46,16 @@ void textInput::keyPressed(int key) {
 
             if (not this->dropdownList->isOpen()) this->dropdownList->open();
         }
+    }
+}
+
+void textInput::mouseDragged(int x, int y, int button) {
+    
+    ofxUITextInput::mouseDragged(x, y, button);
+    
+    if ((this->draggable) and (this->hit)) {
+        this->dropdownList->getRect()->setX(x - hitPoint.x);
+        this->dropdownList->getRect()->setY(y - hitPoint.y);
     }
 }
 

@@ -23,6 +23,7 @@ public:
     void setDropdownList(ofxUIDropDownList &dl);
     
     void keyPressed(int key);
+    void mouseDragged(int x, int y, int button);
     void guiEvent(ofxUIEventArgs &e);
 
 protected:
