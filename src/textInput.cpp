@@ -7,6 +7,8 @@
 //
 
 #include "textInput.h"
+#include "textInputEvent.h"
+#include "ofxComposer.h"
 #include "ofxUISuperCanvas.h"
 #include <algorithm>
 
@@ -19,6 +21,7 @@ textInput::textInput(string _name, string _textstring, float w, float h, float x
     nodes.push_back("music");
     nodes.push_back("shader");
     nodes.push_back("video");
+    nodes.push_back("camera");
 }
 
 void textInput::setDropdownList(ofxUIDropDownList &dl) {
@@ -59,9 +62,21 @@ void textInput::mouseDragged(int x, int y, int button) {
     }
 }
 
-void textInput::guiEvent(ofxUIEventArgs &e)
-{
+void textInput::guiEvent(ofxUIEventArgs &e){
+    
     if(e.widget == this->dropdownList){
         this->setTextString(this->dropdownList->getSelected()[0]->getName());
+        
+        textInputEvent e;
+        e.point.set(this->getRect()->getX(), this->getRect()->getY());
+        e.widget = this;
+        
+        if (this->dropdownList->getSelected()[0]->getName() == "camera") {
+            
+            e.type = "ofVideoGrabber";
+        }
+        
+        ofNotifyEvent(createNode, e , this);
+        this->dropdownList->~ofxUIDropDownList();
     }
 }

@@ -45,6 +45,8 @@ void testApp::keyPressed(int key){
         dlist->setColorBack(ofxUIColor (255,255,255,0));
         node->setColorBack(ofxUIColor (255,255,255,100));
         node->setDropdownList(*dlist);
+        
+        ofAddListener( node->createNode , this, &testApp::createNode);
     }
 }
 
@@ -79,4 +81,9 @@ void testApp::dragEvent(ofDragInfo dragInfo){
             composer.addPatchFromFile( dragInfo.files[i], dragInfo.position );
 		}
 	}
+}
+
+void testApp::createNode(textInputEvent &args){
+    composer.addPatchWithOutFile(args.type, args.point);
+    gui->removeWidget(args.widget);
 }

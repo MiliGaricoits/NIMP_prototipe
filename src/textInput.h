@@ -13,6 +13,7 @@
 #include "ofxUITextInput.h"
 #include "ofxUIDropDownList.h"
 #include "ofxUIEventArgs.h"
+#include "textInputEvent.h"
 
 class textInput : public ofxUITextInput
 {
@@ -25,6 +26,8 @@ public:
     void keyPressed(int key);
     void mouseDragged(int x, int y, int button);
     void guiEvent(ofxUIEventArgs &e);
+    
+    ofEvent<textInputEvent> createNode;
 
 protected:
     

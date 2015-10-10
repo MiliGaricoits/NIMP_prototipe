@@ -5,6 +5,7 @@
 #include "ofxComposer.h"
 #include "ofxUISuperCanvas.h"
 #include "textInput.h"
+#include "textInputEvent.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -21,6 +22,8 @@ public:
 	void windowResized(int w, int h);
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
+    
+    void createNode(textInputEvent &args);
     
     ofxComposer composer;
     ofxUISuperCanvas *gui;
