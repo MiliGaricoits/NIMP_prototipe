@@ -680,7 +680,6 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				0AEB9C6E1BC9DC13009BA6DC /* textInputEvent.h */,
 				0A6CF4331BBDF1830018021D /* button.h */,
 				0A6CF4341BBDF1830018021D /* enumVideoState.h */,
 				0A6CF4351BBDF1830018021D /* nodeVideoInterface.cpp */,
@@ -690,6 +689,7 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				0AEB9C5A1BC04542009BA6DC /* textInput.cpp */,
 				0AEB9C5B1BC04542009BA6DC /* textInput.h */,
+				0AEB9C6E1BC9DC13009BA6DC /* textInputEvent.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

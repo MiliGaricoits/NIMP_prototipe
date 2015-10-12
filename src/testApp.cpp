@@ -84,6 +84,13 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 }
 
 void testApp::createNode(textInputEvent &args){
-    composer.addPatchWithOutFile(args.type, args.point);
+    
+    if (args.type == "image" || args.type == "video") {
+        composer.addPatchFromFile(args.path, args.point);
+    }
+    else {
+        composer.addPatchWithOutFile(args.type, args.point);
+    }
+    
     gui->removeWidget(args.widget);
 }

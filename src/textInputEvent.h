@@ -16,6 +16,7 @@ class textInputEvent : ofEventArgs {
 public:
     string type;
     ofPoint point;
+    string path;
     ofxUIWidget* widget;
 };
 

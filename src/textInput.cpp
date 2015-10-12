@@ -70,10 +70,35 @@ void textInput::guiEvent(ofxUIEventArgs &e){
         textInputEvent e;
         e.point.set(this->getRect()->getX(), this->getRect()->getY());
         e.widget = this;
+        e.type = this->dropdownList->getSelected()[0]->getName();
         
-        if (this->dropdownList->getSelected()[0]->getName() == "camera") {
+        if (e.type == "camera") {
             
             e.type = "ofVideoGrabber";
+        }
+        if (e.type == "image"){
+            ofFileDialogResult openFileResult = ofSystemLoadDialog("Select a jpg or png");
+            
+            //Check if the user opened a file
+            if (openFileResult.bSuccess){
+                
+                ofLogVerbose("User selected a file");
+                ofFile file (openFileResult.getPath());
+                
+                if (file.exists()){
+                    
+                    ofLogVerbose("The file exists - now checking the type via file extension");
+                    string fileExtension = ofToUpper(file.getExtension());
+                    
+                    //We only want images
+                    if (fileExtension == "JPG" || fileExtension == "PNG") {
+                        e.path = openFileResult.getPath();
+                    }
+                }
+            }else {
+                ofLogVerbose("User hit cancel");
+                return;
+            }
         }
         
         ofNotifyEvent(createNode, e , this);
