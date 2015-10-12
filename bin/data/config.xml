@@ -11,20 +11,20 @@
     <visible>1</visible>
     <texture>
         <point>
-            <x>25.227783203</x>
-            <y>24.921813965</y>
+            <x>606.861694336</x>
+            <y>334.650756836</y>
         </point>
         <point>
-            <x>288.038360596</x>
-            <y>24.920776367</y>
+            <x>878.401611328</x>
+            <y>334.646728516</y>
         </point>
         <point>
-            <x>288.038970947</x>
-            <y>222.028930664</y>
+            <x>878.403076172</x>
+            <y>538.301574707</y>
         </point>
         <point>
-            <x>25.228424072</x>
-            <y>222.029022217</y>
+            <x>606.864196777</x>
+            <y>538.301940918</y>
         </point>
     </texture>
     <mask>
@@ -59,65 +59,20 @@
     <passes>1</passes>
     <texture>
         <point>
-            <x>26.175628662</x>
-            <y>461.049499512</y>
+            <x>92.855392456</x>
+            <y>211.812850952</y>
         </point>
         <point>
-            <x>286.247192383</x>
-            <y>461.044982910</y>
+            <x>361.565124512</x>
+            <y>211.805465698</y>
         </point>
         <point>
-            <x>286.248474121</x>
-            <y>656.100402832</y>
+            <x>361.567199707</x>
+            <y>413.339263916</y>
         </point>
         <point>
-            <x>26.177215576</x>
-            <y>656.101745605</y>
-        </point>
-    </texture>
-    <mask>
-        <point>
-            <x>0.000000000</x>
-            <y>0.000000000</y>
-        </point>
-        <point>
-            <x>1.000000000</x>
-            <y>0.000000000</y>
-        </point>
-        <point>
-            <x>1.000000000</x>
-            <y>1.000000000</y>
-        </point>
-        <point>
-            <x>0.000000000</x>
-            <y>1.000000000</y>
-        </point>
-    </mask>
-    <out>
-        <active>1</active>
-    </out>
-</surface>
-<surface>
-    <id>0</id>
-    <type>ofVideoPlayer</type>
-    <path>/Users/miligaricoits/Development/of_v0.8.4_osx_release/apps/myApps/NIMP_prototipe/bin/data/duck.mp4</path>
-    <visible>1</visible>
-    <texture>
-        <point>
-            <x>23.083053589</x>
-            <y>255.047103882</y>
-        </point>
-        <point>
-            <x>290.290802002</x>
-            <y>255.046722412</y>
-        </point>
-        <point>
-            <x>290.290710449</x>
-            <y>405.351074219</y>
-        </point>
-        <point>
-            <x>23.083251953</x>
-            <y>405.351104736</y>
+            <x>92.858520508</x>
+            <y>413.340576172</y>
         </point>
     </texture>
     <mask>
