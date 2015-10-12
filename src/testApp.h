@@ -7,17 +7,7 @@
 #include "textInput.h"
 #include "textInputEvent.h"
 
-class testApp : public ofBaseApp{
-    
-private:
-    static const float ZOOM_UNIT = 0.05f;
-    static const float ZOOM_OUT_SCALE = 1.f - ZOOM_UNIT;
-    static const float ZOOM_IN_SCALE = 1.f + ZOOM_UNIT;
-    float translateX;
-    float translateY;
-    
-    ofx2DCam cam;
-    
+class testApp : public ofBaseApp{    
 public:
 	void setup();
 	void update();
