@@ -34,8 +34,21 @@ void testApp::draw(){
 //-------------------------------------------------------------- EVENTS
 void testApp::keyPressed(int key){
     
-    if (key == 'n'){
-        textInput *node = new textInput("My node", "", 150, 20, ofGetMouseX(), ofGetMouseY());
+    if (key == 'n' || key == 'N'){
+        
+        vector<ofxUIWidget*> new_nodes = gui->getWidgetsOfType(OFX_UI_WIDGET_TEXTINPUT);
+        
+        if (new_nodes.size() > 0) {
+            int i = 0;
+            while (i < new_nodes.size()) {
+                
+                if (((ofxUITextInput*) new_nodes[i])->isClicked())
+                    return;
+                i++;
+            }
+        }
+        
+        textInput *node = new textInput("new node", "", 150, 20, ofGetMouseX(), ofGetMouseY());
         vector<string> nodes;
         ofxUIDropDownList *dlist = new ofxUIDropDownList("", nodes, 150, ofGetMouseX(), ofGetMouseY());
         
@@ -47,6 +60,9 @@ void testApp::keyPressed(int key){
         node->setDropdownList(*dlist);
         
         ofAddListener( node->createNode , this, &testApp::createNode);
+    }
+    if (key == OF_KEY_BACKSPACE) {
+        cout << key;
     }
 }
 
