@@ -24,6 +24,12 @@ textInput::textInput(string _name, string _textstring, float w, float h, float x
     nodes.push_back("camera");
 }
 
+textInput::~textInput(){
+    nodes.clear();
+    vector<string>().swap(nodes);
+    this->getParent()->removeWidget(this->dropdownList);
+}
+
 void textInput::setDropdownList(ofxUIDropDownList &dl) {
     this->dropdownList = &dl;
     this->dropdownList->open();
@@ -77,7 +83,7 @@ void textInput::guiEvent(ofxUIEventArgs &e){
             e.type = "ofVideoGrabber";
         }
         if (e.type == "image"){
-            ofFileDialogResult openFileResult = ofSystemLoadDialog("Select a jpg or png");
+            ofFileDialogResult openFileResult = ofSystemLoadDialog("Select an image or gif");
             
             //Check if the user opened a file
             if (openFileResult.bSuccess){
@@ -91,9 +97,14 @@ void textInput::guiEvent(ofxUIEventArgs &e){
                     string fileExtension = ofToUpper(file.getExtension());
                     
                     //We only want images
-                    if (fileExtension == "JPG" || fileExtension == "PNG") {
+                    if (fileExtension == "JPG"  ||
+                        fileExtension == "PNG"  ||
+                        fileExtension == "JPEG" ||
+                        fileExtension == "GIF"  ||
+                        fileExtension == "BMP"  ) {
                         e.path = openFileResult.getPath();
                     }
+                    else return;
                 }
             }else {
                 ofLogVerbose("User hit cancel");
@@ -102,6 +113,5 @@ void textInput::guiEvent(ofxUIEventArgs &e){
         }
         
         ofNotifyEvent(createNode, e , this);
-        this->dropdownList->~ofxUIDropDownList();
     }
 }
