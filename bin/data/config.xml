@@ -5,7 +5,7 @@
     <height>480</height>
 </general>
 <surface>
-    <id>1</id>
+    <id>0</id>
     <type>ofVideoGrabber</type>
     <path>0</path>
     <visible>1</visible>
@@ -50,7 +50,7 @@
     </out>
 </surface>
 <surface>
-    <id>2</id>
+    <id>1</id>
     <type>ofShader</type>
     <path>/Users/Patricio/Dropbox/Public/GPU-toolbox/pattern1.fs</path>
     <visible>1</visible>
