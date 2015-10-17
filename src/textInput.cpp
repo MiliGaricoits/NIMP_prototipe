@@ -10,7 +10,6 @@
 #include "textInputEvent.h"
 #include "ofxComposer.h"
 #include "ofxUISuperCanvas.h"
-#include <algorithm>
 
 textInput::textInput(string _name, string _textstring, float w, float h, float x, float y, int _size) : ofxUITextInput()
 {
@@ -24,19 +23,23 @@ textInput::textInput(string _name, string _textstring, float w, float h, float x
     nodes.push_back("camera");
 }
 
-textInput::~textInput(){
-    nodes.clear();
-    vector<string>().swap(nodes);
-    this->getParent()->removeWidget(this->dropdownList);
+void textInput::setDropdownList(ofxUIDropDownList* dl) {
+    
+    dl->open();
+    dl->setVisible(false);
+    dl->setAutoClose(true);
+    
+    dl->addToggles(nodes);
+    dl->setToggleVisibility(false);
+    
+    this->addEmbeddedWidget(dl);
+    this->dropdownList = dl;
+    
+    ofAddListener(((ofxUISuperCanvas*) dl->getCanvasParent())->newGUIEvent,this,&textInput::guiEvent);
 }
 
-void textInput::setDropdownList(ofxUIDropDownList &dl) {
-    this->dropdownList = &dl;
-    this->dropdownList->open();
-    this->dropdownList->setVisible(false);
-    this->dropdownList->setAutoClose(true);
-    
-    ofAddListener(((ofxUISuperCanvas*) this->dropdownList->getCanvasParent())->newGUIEvent,this,&textInput::guiEvent);
+ofxUIDropDownList* textInput::getDropdownList() {
+    return this->dropdownList;
 }
 
 void textInput::keyPressed(int key) {
@@ -44,17 +47,14 @@ void textInput::keyPressed(int key) {
     ofxUITextInput::keyPressed(key);
     if(clicked)
     {
-        if (this->getTextString().length() > 2)
-        {
-            string input = this->getTextString();
-            this->dropdownList->clearToggles();
-            for(auto n : nodes) {
-                if (n.find(input) != -1)
-                    this->dropdownList->addToggle(n);
-            }
-
-            if (not this->dropdownList->isOpen()) this->dropdownList->open();
+        string input = this->getTextString();
+        for(auto n : this->dropdownList->getToggles()) {
+            if (n->getName().find(input) != -1)
+                n->setVisible(true);
+            else n->setVisible(false);
         }
+
+        if (not this->dropdownList->isOpen()) this->dropdownList->open();
     }
 }
 
@@ -78,22 +78,21 @@ void textInput::guiEvent(ofxUIEventArgs &e){
         e.widget = this;
         e.type = this->dropdownList->getSelected()[0]->getName();
         
+        ofFileDialogResult openFileResult;
+        
         if (e.type == "camera") {
             
             e.type = "ofVideoGrabber";
         }
-        if (e.type == "image"){
-            ofFileDialogResult openFileResult = ofSystemLoadDialog("Select an image or gif");
+        else if (e.type == "image"){
+            openFileResult = ofSystemLoadDialog("Select an image or gif");
             
-            //Check if the user opened a file
             if (openFileResult.bSuccess){
                 
-                ofLogVerbose("User selected a file");
                 ofFile file (openFileResult.getPath());
                 
                 if (file.exists()){
                     
-                    ofLogVerbose("The file exists - now checking the type via file extension");
                     string fileExtension = ofToUpper(file.getExtension());
                     
                     //We only want images
@@ -106,12 +105,37 @@ void textInput::guiEvent(ofxUIEventArgs &e){
                     }
                     else return;
                 }
-            }else {
-                ofLogVerbose("User hit cancel");
-                return;
+                file.close();
             }
+            else return;
+        }
+        else if (e.type == "video") {
+            openFileResult = ofSystemLoadDialog("Select a video");
+            
+            if (openFileResult.bSuccess){
+                
+                ofFile file (openFileResult.getPath());
+                
+                if (file.exists()){
+                    
+                    string fileExtension = ofToUpper(file.getExtension());
+                    
+                    //We only want videos
+                    if (fileExtension == "MOV" ||
+                        fileExtension == "MPG" ||
+                        fileExtension == "MP4" ||
+                        fileExtension == "M4V" ) {
+                        e.path = openFileResult.getPath();
+                    }
+                    else return;
+                }
+                file.close();
+            }
+            else return;
+
         }
         
         ofNotifyEvent(createNode, e , this);
+        
     }
 }

@@ -27,4 +27,7 @@ public:
     
     ofxComposer composer;
     ofxUISuperCanvas *gui;
+    
+protected:
+    vector<ofxUIWidget*> widgetsToDelete;
 };

@@ -20,6 +20,13 @@ void testApp::setup(){
 void testApp::update(){
     composer.update();
     ofSetWindowTitle( ofToString( ofGetFrameRate()));
+    
+    if (widgetsToDelete.size() > 0) {
+        for(auto widget : widgetsToDelete) {
+            gui->removeWidget(widget);
+        }
+        widgetsToDelete.clear();
+    }
 }
 
 
@@ -37,7 +44,6 @@ void testApp::keyPressed(int key){
     vector<ofxUIWidget*> all_nodes;
     
     if (key == OF_KEY_DEL) {
-        cout << key;
         
         all_nodes = gui->getWidgetsOfType(OFX_UI_WIDGET_TEXTINPUT);
         for (int i = 0; i < all_nodes.size(); i++) {
@@ -66,7 +72,7 @@ void testApp::keyPressed(int key){
         
         dlist->setColorBack(ofxUIColor (255,255,255,0));
         node->setColorBack(ofxUIColor (255,255,255,100));
-        node->setDropdownList(*dlist);
+        node->setDropdownList(dlist);
         
         ofAddListener( node->createNode , this, &testApp::createNode);
     }
@@ -117,5 +123,7 @@ void testApp::createNode(textInputEvent &args){
         composer.addPatchWithOutFile(args.type, args.point);
     }
     
-    gui->removeWidget(args.widget);
+    ofRemoveListener(((textInput*)args.widget)->createNode , this, &testApp::createNode);
+    
+    widgetsToDelete.push_back(args.widget);
 }
