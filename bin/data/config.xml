@@ -8,7 +8,7 @@
     <id>0</id>
     <type>ofVideoGrabber</type>
     <path>0</path>
-    <visible>1</visible>
+    <visible>0</visible>
     <texture>
         <point>
             <x>53.520416260</x>

@@ -1,5 +1,6 @@
 #include "testApp.h"
 
+
 //-------------------------------------------------------------- SETING
 void testApp::setup(){
     ofEnableAlphaBlending();
@@ -10,6 +11,33 @@ void testApp::setup(){
     gui = new ofxUISuperCanvas("", 0, 0, ofGetWidth(), ofGetHeight());
     gui->setColorBack(ofxUIColor(255,255,255,0));
     gui->setDraggable(false);
+    
+    // nico scrollBar setup
+    minVerticalSlider = 0.f;
+    maxVerticalSlider = 10.f;
+    lowVerticalSlider = 2.f;
+    highVerticalSlider = 4.f;
+    float widthVerticalSlider = 15.f;
+    float heightVerticalSlider = ofGetHeight() - 40.f;
+    float widthHorizontalSlider = ofGetWidth() - 40.f;
+    float heightHorizontalSlider = 15.f;
+    
+//    scrollRangeSlider* verticalSlider = new scrollRangeSlider("VERTICAL_RANGE_SLIDER", minVerticalSlider, maxVerticalSlider, lowVerticalSlider, highVerticalSlider, 300.f, 400.f);
+//    gui->addWidget(verticalSlider);
+//    ofxUIRangeSlider()
+    gui->addWidget(new ofxUIRangeSlider("Original", minVerticalSlider, maxVerticalSlider, lowVerticalSlider, highVerticalSlider, widthVerticalSlider, heightVerticalSlider, 100.f, 80.f));
+    
+    
+    scrollRangeSlider* verticalSlider = new scrollRangeSlider("", minVerticalSlider, maxVerticalSlider, lowVerticalSlider, highVerticalSlider, widthVerticalSlider, heightVerticalSlider, ofGetWidth() - 30.f, 10.f);
+    scrollRangeSlider* horizontalSlider = new scrollRangeSlider("", minVerticalSlider, maxVerticalSlider, lowVerticalSlider, highVerticalSlider, widthHorizontalSlider, heightHorizontalSlider, 10.f, ofGetHeight() - 30.f);
+    
+    verticalSlider->setDrawOutline(true);
+    horizontalSlider->setDrawOutline(true);
+    cout << "height pantalla: " << ofGetHeight() << endl;
+    cout << "width pantalla: " << ofGetWidth() << endl;
+    
+    gui->addWidget(verticalSlider);
+    gui->addWidget(horizontalSlider);
     
     // nico ScrollBar setup
     //composer.setup();
@@ -94,6 +122,8 @@ void testApp::mouseDragged(int x, int y, int button){
 }
 
 void testApp::mousePressed(int x, int y, int button){
+    cout << "x: " << x << endl;
+    cout << "y: " << y << endl;
 }
 
 void testApp::mouseReleased(int x, int y, int button){
@@ -126,4 +156,10 @@ void testApp::createNode(textInputEvent &args){
     ofRemoveListener(((textInput*)args.widget)->createNode , this, &testApp::createNode);
     
     widgetsToDelete.push_back(args.widget);
+}
+
+
+// nico scroll slider
+void testApp::updateVerticalSliderValues(){
+    
 }

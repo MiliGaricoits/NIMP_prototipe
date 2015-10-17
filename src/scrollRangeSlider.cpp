@@ -1,73 +1,51 @@
-/**********************************************************************************
- 
- Copyright (C) 2012 Syed Reza Ali (www.syedrezaali.com)
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy of
- this software and associated documentation files (the "Software"), to deal in
- the Software without restriction, including without limitation the rights to
- use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
- of the Software, and to permit persons to whom the Software is furnished to do
- so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in all
- copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- SOFTWARE.
- 
- **********************************************************************************/
 
-#include "ofxUIRangeSlider.h"
+
+#include "scrollRangeSlider.h"
 #include "ofxUI.h"
 
-ofxUIRangeSlider::ofxUIRangeSlider(string _name, float _min, float _max, float _valuelow, float _valuehigh, float w, float h,
-                 float x, float y, int _size) : ofxUIWidgetWithLabel()
+scrollRangeSlider::scrollRangeSlider(string _name, float _min, float _max, float _valuelow, float _valuehigh, float w, float h,
+                 float x, float y, int _size) : ofxUIRangeSlider()
 {
     useReference = false;
     init(_name, _min, _max, &_valuelow, &_valuehigh, w, h, x, y, _size);
 }
 
-ofxUIRangeSlider::ofxUIRangeSlider(string _name, float _min, float _max, float *_valuelow, float *_valuehigh, float w, float h,
-                 float x, float y, int _size) : ofxUIWidgetWithLabel()
+scrollRangeSlider::scrollRangeSlider(string _name, float _min, float _max, float *_valuelow, float *_valuehigh, float w, float h,
+                 float x, float y, int _size) : ofxUIRangeSlider()
 {
     useReference = true;
     init(_name, _min, _max, _valuelow, _valuehigh, w, h, x, y, _size);
 }
 
-ofxUIRangeSlider::ofxUIRangeSlider(float x, float y, float w, float h, float _min, float _max, float _valuelow, float _valuehigh, string _name, int _size) : ofxUIWidgetWithLabel()
+scrollRangeSlider::scrollRangeSlider(float x, float y, float w, float h, float _min, float _max, float _valuelow, float _valuehigh, string _name, int _size) : ofxUIRangeSlider()
 {
     useReference = false;
     init(_name, _min, _max, &_valuelow, &_valuehigh, w, h, x, y, _size);
-    //        ofLogWarning("OFXUIRANGESLIDER: DON'T USE THIS CONSTRUCTOR. THIS WILL BE REMOVED ON FUTURE RELEASES.");
+    //        ofLogWarning("scrollRangeSlider: DON'T USE THIS CONSTRUCTOR. THIS WILL BE REMOVED ON FUTURE RELEASES.");
 }
 
-ofxUIRangeSlider::ofxUIRangeSlider(float w, float h, float _min, float _max, float _valuelow, float _valuehigh, string _name, int _size) : ofxUIWidgetWithLabel()
+scrollRangeSlider::scrollRangeSlider(float w, float h, float _min, float _max, float _valuelow, float _valuehigh, string _name, int _size) : ofxUIRangeSlider()
 {
     useReference = false;
     init(_name, _min, _max, &_valuelow, &_valuehigh, w, h, 0, 0, _size);
-    //        ofLogWarning("OFXUIRANGESLIDER: DON'T USE THIS CONSTRUCTOR. THIS WILL BE REMOVED ON FUTURE RELEASES.");
+    //        ofLogWarning("scrollRangeSlider: DON'T USE THIS CONSTRUCTOR. THIS WILL BE REMOVED ON FUTURE RELEASES.");
 }
 
-ofxUIRangeSlider::ofxUIRangeSlider(float x, float y, float w, float h, float _min, float _max, float *_valuelow, float *_valuehigh, string _name, int _size) : ofxUIWidgetWithLabel()
+scrollRangeSlider::scrollRangeSlider(float x, float y, float w, float h, float _min, float _max, float *_valuelow, float *_valuehigh, string _name, int _size) : ofxUIRangeSlider()
 {
     useReference = true;
     init(_name, _min, _max, _valuelow, _valuehigh, w, h, x, y, _size);
-    //        ofLogWarning("OFXUIRANGESLIDER: DON'T USE THIS CONSTRUCTOR. THIS WILL BE REMOVED ON FUTURE RELEASES.");
+    //        ofLogWarning("scrollRangeSlider: DON'T USE THIS CONSTRUCTOR. THIS WILL BE REMOVED ON FUTURE RELEASES.");
 }
 
-ofxUIRangeSlider::ofxUIRangeSlider(float w, float h, float _min, float _max, float *_valuelow, float *_valuehigh, string _name, int _size) : ofxUIWidgetWithLabel()
+scrollRangeSlider::scrollRangeSlider(float w, float h, float _min, float _max, float *_valuelow, float *_valuehigh, string _name, int _size) : ofxUIRangeSlider()
 {
     useReference = true;
     init(_name, _min, _max, _valuelow, _valuehigh, w, h, 0, 0, _size);
-    //        ofLogWarning("OFXUIRANGESLIDER: DON'T USE THIS CONSTRUCTOR. THIS WILL BE REMOVED ON FUTURE RELEASES.");
+    //        ofLogWarning("scrollRangeSlider: DON'T USE THIS CONSTRUCTOR. THIS WILL BE REMOVED ON FUTURE RELEASES.");
 }
 
-ofxUIRangeSlider::~ofxUIRangeSlider()
+scrollRangeSlider::~scrollRangeSlider()
 {
     if(!useReference)
     {
@@ -76,7 +54,7 @@ ofxUIRangeSlider::~ofxUIRangeSlider()
     }
 }
 
-void ofxUIRangeSlider::init(string _name, float _min, float _max, float *_valuelow, float *_valuehigh, float w, float h,
+void scrollRangeSlider::init(string _name, float _min, float _max, float *_valuelow, float *_valuehigh, float w, float h,
           float x, float y, int _size)
 {
     initRect(x,y,w,h);
@@ -152,7 +130,7 @@ void ofxUIRangeSlider::init(string _name, float _min, float _max, float *_valuel
     increment = fabs(max - min) / 10.0;
 }
 
-void ofxUIRangeSlider::update()
+void scrollRangeSlider::update()
 {
     if(useReference)
     {
@@ -161,19 +139,19 @@ void ofxUIRangeSlider::update()
     }
 }
 
-void ofxUIRangeSlider::setDrawPadding(bool _draw_padded_rect)
+void scrollRangeSlider::setDrawPadding(bool _draw_padded_rect)
 {
     draw_padded_rect = _draw_padded_rect;
     label->setDrawPadding(false);
 }
 
-void ofxUIRangeSlider::setDrawPaddingOutline(bool _draw_padded_rect_outline)
+void scrollRangeSlider::setDrawPaddingOutline(bool _draw_padded_rect_outline)
 {
     draw_padded_rect_outline = _draw_padded_rect_outline;
     label->setDrawPaddingOutline(false);
 }
 
-void ofxUIRangeSlider::drawFill()
+void scrollRangeSlider::drawFill()
 {
     if(draw_fill)
     {
@@ -190,7 +168,7 @@ void ofxUIRangeSlider::drawFill()
     }
 }
 
-void ofxUIRangeSlider::drawFillHighlight()
+void scrollRangeSlider::drawFillHighlight()
 {
     if(draw_fill_highlight)
     {
@@ -212,7 +190,7 @@ void ofxUIRangeSlider::drawFillHighlight()
     }
 }
 
-void ofxUIRangeSlider::mouseMoved(int x, int y )
+void scrollRangeSlider::mouseMoved(int x, int y )
 {
     if(rect->inside(x, y))
     {
@@ -225,7 +203,7 @@ void ofxUIRangeSlider::mouseMoved(int x, int y )
     stateChange();
 }
 
-void ofxUIRangeSlider::mouseDragged(int x, int y, int button)
+void scrollRangeSlider::mouseDragged(int x, int y, int button)
 {
     if(hit)
     {
@@ -245,7 +223,7 @@ void ofxUIRangeSlider::mouseDragged(int x, int y, int button)
     stateChange();
 }
 
-void ofxUIRangeSlider::mousePressed(int x, int y, int button)
+void scrollRangeSlider::mousePressed(int x, int y, int button)
 {
     if(rect->inside(x, y))
     {
@@ -266,7 +244,7 @@ void ofxUIRangeSlider::mousePressed(int x, int y, int button)
     stateChange();
 }
 
-void ofxUIRangeSlider::mouseReleased(int x, int y, int button)
+void scrollRangeSlider::mouseReleased(int x, int y, int button)
 {
     if(hit)
     {
@@ -292,7 +270,7 @@ void ofxUIRangeSlider::mouseReleased(int x, int y, int button)
     hitCenter = false;
 }
 
-void ofxUIRangeSlider::keyPressed(int key)
+void scrollRangeSlider::keyPressed(int key)
 {
     if(state == OFX_UI_STATE_OVER)
     {
@@ -330,22 +308,22 @@ void ofxUIRangeSlider::keyPressed(int key)
     }
 }
 
-void ofxUIRangeSlider::keyReleased(int key)
+void scrollRangeSlider::keyReleased(int key)
 {
     
 }
 
-void ofxUIRangeSlider::windowResized(int w, int h)
+void scrollRangeSlider::windowResized(int w, int h)
 {
     
 }
 
-void ofxUIRangeSlider::setIncrement(float _increment)
+void scrollRangeSlider::setIncrement(float _increment)
 {
     increment = _increment;
 }
 
-void ofxUIRangeSlider::input(float x, float y)
+void scrollRangeSlider::input(float x, float y)
 {
     float v = 0;
     
@@ -412,13 +390,13 @@ void ofxUIRangeSlider::input(float x, float y)
     updateLabel();
 }
 
-void ofxUIRangeSlider::updateValueRef()
+void scrollRangeSlider::updateValueRef()
 {
     (*valuelowRef) = getScaledValueLow();
     (*valuehighRef) = getScaledValueHigh();
 }
 
-void ofxUIRangeSlider::updateLabel()
+void scrollRangeSlider::updateLabel()
 {
     valuelowString = ofxUIToString(getValueLow(),labelPrecision);
     valuehighString = ofxUIToString(getValueHigh(),labelPrecision);
@@ -429,7 +407,7 @@ void ofxUIRangeSlider::updateLabel()
     }
 }
 
-void ofxUIRangeSlider::stateChange()
+void scrollRangeSlider::stateChange()
 {
     if(valuehigh > 0)
     {
@@ -475,84 +453,84 @@ void ofxUIRangeSlider::stateChange()
     }
 }
 
-void ofxUIRangeSlider::setValueLow(float _value)
+void scrollRangeSlider::setValueLow(float _value)
 {
     valuelow = ofxUIMap(_value, min, max, 0.0, 1.0, true);
     updateValueRef();
     updateLabel();
 }
 
-void ofxUIRangeSlider::setValueHigh(float _value)
+void scrollRangeSlider::setValueHigh(float _value)
 {
     valuehigh = ofxUIMap(_value, min, max, 0.0, 1.0, true);
     updateValueRef();
     updateLabel();
 }
 
-float ofxUIRangeSlider::getValueLow()
+float scrollRangeSlider::getValueLow()
 {
     return (*valuelowRef);
 }
 
-float ofxUIRangeSlider::getValueHigh()
+float scrollRangeSlider::getValueHigh()
 {
     return (*valuehighRef);
 }
 
-float ofxUIRangeSlider::getNormalizedValueLow()
+float scrollRangeSlider::getNormalizedValueLow()
 {
     return valuelow;
 }
 
-float ofxUIRangeSlider::getNormalizedValueHigh()
+float scrollRangeSlider::getNormalizedValueHigh()
 {
     return valuehigh;
 }
 
-float ofxUIRangeSlider::getPercentValueLow()
+float scrollRangeSlider::getPercentValueLow()
 {
     return valuelow;
 }
 
-float ofxUIRangeSlider::getPercentValueHigh()
+float scrollRangeSlider::getPercentValueHigh()
 {
     return valuehigh;
 }
 
-float ofxUIRangeSlider::getScaledValueLow()
+float scrollRangeSlider::getScaledValueLow()
 {
     return ofxUIMap(valuelow, 0.0, 1.0, min, max, true);
 }
 
-float ofxUIRangeSlider::getScaledValueHigh()
+float scrollRangeSlider::getScaledValueHigh()
 {
     return ofxUIMap(valuehigh, 0.0, 1.0, min, max, true);
 }
 
-void ofxUIRangeSlider::setLabelPrecision(int _precision)
+void scrollRangeSlider::setLabelPrecision(int _precision)
 {
     labelPrecision = _precision;
     updateValueRef();
     updateLabel();
 }
 
-void ofxUIRangeSlider::setParent(ofxUIWidget *_parent)
+void scrollRangeSlider::setParent(ofxUIWidget *_parent)
 {
     parent = _parent;
     calculatePaddingRect(); 
 }
 
-void ofxUIRangeSlider::setMax(float _max)
+void scrollRangeSlider::setMax(float _max)
 {
     setMaxAndMin(_max, min);
 }
 
-void ofxUIRangeSlider::setMin(float _min)
+void scrollRangeSlider::setMin(float _min)
 {
     setMaxAndMin(max, _min);
 }
 
-void ofxUIRangeSlider::setMaxAndMin(float _max, float _min)
+void scrollRangeSlider::setMaxAndMin(float _max, float _min)
 {
     max = _max;
     min = _min;
@@ -566,21 +544,21 @@ void ofxUIRangeSlider::setMaxAndMin(float _max, float _min)
     updateLabel();
 }
 
-bool ofxUIRangeSlider::isDraggable()
+bool scrollRangeSlider::isDraggable()
 {
     return true;
 }
 
 #ifndef OFX_UI_NO_XML
 
-void ofxUIRangeSlider::saveState(ofxXmlSettings *XML)
+void scrollRangeSlider::saveState(ofxXmlSettings *XML)
 {
     XML->setValue("HighValue", getValueHigh(), 0);
     XML->setValue("LowValue", getValueLow(), 0);
 
 }
 
-void ofxUIRangeSlider::loadState(ofxXmlSettings *XML)
+void scrollRangeSlider::loadState(ofxXmlSettings *XML)
 {
     setValueHigh(XML->getValue("HighValue", getValueHigh(), 0));
     setValueLow(XML->getValue("LowValue", getValueLow(), 0));
