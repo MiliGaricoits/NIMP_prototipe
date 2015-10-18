@@ -17,8 +17,8 @@ textInput::textInput(string _name, string _textstring, float w, float h, float x
     
     nodes.push_back("gif");
     nodes.push_back("image");
-    nodes.push_back("music");
     nodes.push_back("shader");
+    nodes.push_back("texture");
     nodes.push_back("video");
     nodes.push_back("camera");
 }
@@ -88,7 +88,7 @@ void textInput::guiEvent(ofxUIEventArgs &e){
             
             e.type = "ofImage";
             
-            openFileResult = ofSystemLoadDialog("Select an image or gif");
+            openFileResult = ofSystemLoadDialog("Select an image (.jpg, .jpeg, .png, .bmp or .gif)");
             
             if (openFileResult.bSuccess){
                 
@@ -116,7 +116,7 @@ void textInput::guiEvent(ofxUIEventArgs &e){
             
             e.type = "ofVideoPlayer";
             
-            openFileResult = ofSystemLoadDialog("Select a video");
+            openFileResult = ofSystemLoadDialog("Select a video (.mov, .mpg, .mp4 or .m4v)");
             
             if (openFileResult.bSuccess){
                 
@@ -143,7 +143,7 @@ void textInput::guiEvent(ofxUIEventArgs &e){
             
             e.type = "ofShader";
             
-            openFileResult = ofSystemLoadDialog("Select a shader");
+            openFileResult = ofSystemLoadDialog("Select a shader (.fs or .frag)");
             
             if (openFileResult.bSuccess){
                 
@@ -156,6 +156,31 @@ void textInput::guiEvent(ofxUIEventArgs &e){
                     //We only want videos
                     if (fileExtension == "FRAG" ||
                         fileExtension == "FS"   ) {
+                        e.path = openFileResult.getPath();
+                    }
+                    else return;
+                }
+                file.close();
+            }
+            else return;
+        }
+        else if (e.type == "texture") {
+            
+            e.type = "ofTexture";
+            
+            openFileResult = ofSystemLoadDialog("Select a texture (.lut or .cube)");
+            
+            if (openFileResult.bSuccess){
+                
+                ofFile file (openFileResult.getPath());
+                
+                if (file.exists()){
+                    
+                    string fileExtension = ofToUpper(file.getExtension());
+                    
+                    //We only want videos
+                    if (fileExtension == "LUT"  ||
+                        fileExtension == "CUBE" ) {
                         e.path = openFileResult.getPath();
                     }
                     else return;
