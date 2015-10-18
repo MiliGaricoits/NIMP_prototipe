@@ -116,7 +116,7 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 
 void testApp::createNode(textInputEvent &args){
     
-    if (args.type == "image" || args.type == "video") {
+    if (args.type == "ofImage" || args.type == "ofVideoPlayer" || args.type == "ofShader") {
         composer.addPatchFromFile(args.path, args.point);
     }
     else {

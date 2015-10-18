@@ -85,6 +85,9 @@ void textInput::guiEvent(ofxUIEventArgs &e){
             e.type = "ofVideoGrabber";
         }
         else if (e.type == "image"){
+            
+            e.type = "ofImage";
+            
             openFileResult = ofSystemLoadDialog("Select an image or gif");
             
             if (openFileResult.bSuccess){
@@ -110,6 +113,9 @@ void textInput::guiEvent(ofxUIEventArgs &e){
             else return;
         }
         else if (e.type == "video") {
+            
+            e.type = "ofVideoPlayer";
+            
             openFileResult = ofSystemLoadDialog("Select a video");
             
             if (openFileResult.bSuccess){
@@ -132,7 +138,31 @@ void textInput::guiEvent(ofxUIEventArgs &e){
                 file.close();
             }
             else return;
-
+        }
+        else if (e.type == "shader") {
+            
+            e.type = "ofShader";
+            
+            openFileResult = ofSystemLoadDialog("Select a shader");
+            
+            if (openFileResult.bSuccess){
+                
+                ofFile file (openFileResult.getPath());
+                
+                if (file.exists()){
+                    
+                    string fileExtension = ofToUpper(file.getExtension());
+                    
+                    //We only want videos
+                    if (fileExtension == "FRAG" ||
+                        fileExtension == "FS"   ) {
+                        e.path = openFileResult.getPath();
+                    }
+                    else return;
+                }
+                file.close();
+            }
+            else return;
         }
         
         ofNotifyEvent(createNode, e , this);
