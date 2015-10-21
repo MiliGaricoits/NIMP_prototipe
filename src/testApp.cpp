@@ -31,7 +31,16 @@ void testApp::update(){
 
 
 void testApp::draw(){
-    ofBackgroundGradient(ofColor::gray, ofColor::black);
+    //ofBackgroundGradient(ofColor::gray, ofColor::black);
+    //ofBackground(247, 242, 225);
+    ofBackground(170, 170, 170);
+    ofSetColor(156, 156, 156);
+    
+    for (int i = 0; i < ofGetWidth(); i+=20) {
+        for (int j = 0; j < ofGetHeight(); j+=20) {
+            ofCircle(i, j, 1);
+        }
+    }
     ofSetColor(255,255);
 
     composer.draw();
