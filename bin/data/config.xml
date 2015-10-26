@@ -8,23 +8,23 @@
     <id>0</id>
     <type>ofVideoGrabber</type>
     <path>0</path>
-    <visible>1</visible>
+    <visible>0</visible>
     <texture>
         <point>
-            <x>53.520416260</x>
-            <y>247.144744873</y>
+            <x>581.222900391</x>
+            <y>29.949035645</y>
         </point>
         <point>
-            <x>275.742919922</x>
-            <y>247.140838623</y>
+            <x>767.723632812</x>
+            <y>29.931396484</y>
         </point>
         <point>
-            <x>275.744323730</x>
-            <y>413.807769775</y>
+            <x>767.729980469</x>
+            <y>169.808105469</y>
         </point>
         <point>
-            <x>53.522796631</x>
-            <y>413.807952881</y>
+            <x>581.231506348</x>
+            <y>169.809753418</y>
         </point>
     </texture>
     <mask>
@@ -53,26 +53,26 @@
     <id>1</id>
     <type>ofShader</type>
     <path>/Users/Patricio/Dropbox/Public/GPU-toolbox/pattern1.fs</path>
-    <visible>1</visible>
+    <visible>0</visible>
     <frag>uniform float time;&#x0A;uniform vec2 resolution;&#x0A;uniform vec2 mouse;&#x0A;&#x0A;uniform sampler2DRect backbuffer; // Previus frame for PingPong&#x0A;&#x0A;uniform sampler2DRect tex0; // First dot on the left of the patch&#x0A;uniform sampler2DRect tex1; // Second dot on the left of the patch&#x0A;&#x0A;const float pi = 3.1415926;&#x0A;&#x0A;void main(void){&#x0A; vec2 p = -1.0 + 2.0 * gl_FragCoord.xy / resolution.xy;&#x0A; p.y *= resolution.y/resolution.x;&#x0A; p *= 30.0;&#x0A; const float tot = pi*2.0;&#x0A; const float n = 9.0;&#x0A; const float df = tot/n;&#x0A; float c = 0.0;&#x0A; float t = time*2.0;&#x0A;&#x0A; for (float phi =0.0; phi &lt; tot; phi+=df){&#x0A; c+=cos(cos(phi)*p.x+sin(phi)*p.y +t);&#x0A; }&#x0A; &#x0A; vec2 st = gl_FragCoord.xy;&#x0A;&#x0A; //vec4 A = texture2DRect(tex0, st);&#x0A; vec4 A = vec4(1.0,1.0,1.0,1.0);&#x0A; //vec4 B = texture2DRect(tex1, st);&#x0A; vec4 B = vec4(0.0,0.0,0.0,1.0);&#x0A;&#x0A; gl_FragColor = mix(A,B,c);&#x0A;}&#x0A;&#x0A;&#x0A;</frag>
     <format>6408</format>
     <passes>1</passes>
     <texture>
         <point>
-            <x>49.257293701</x>
-            <y>36.113891602</y>
+            <x>362.973815918</x>
+            <y>353.771484375</y>
         </point>
         <point>
-            <x>269.163513184</x>
-            <y>36.107116699</y>
+            <x>479.658325195</x>
+            <y>353.760498047</y>
         </point>
         <point>
-            <x>269.165344238</x>
-            <y>201.038177490</y>
+            <x>479.661071777</x>
+            <y>441.275878906</y>
         </point>
         <point>
-            <x>49.260070801</x>
-            <y>201.039337158</y>
+            <x>362.978210449</x>
+            <y>441.274658203</y>
         </point>
     </texture>
     <mask>

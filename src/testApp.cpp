@@ -1,5 +1,6 @@
 #include "testApp.h"
 
+
 //-------------------------------------------------------------- SETING
 void testApp::setup(){
     ofEnableAlphaBlending();
@@ -12,7 +13,7 @@ void testApp::setup(){
     gui->setDraggable(false);
     
     // nico ScrollBar setup
-    //composer.setup();
+    composer.scrollBarSetup();
 
 }
 
@@ -103,12 +104,15 @@ void testApp::mouseDragged(int x, int y, int button){
 }
 
 void testApp::mousePressed(int x, int y, int button){
+    cout << "x: " << x << endl;
+    cout << "y: " << y << endl;
 }
 
 void testApp::mouseReleased(int x, int y, int button){
 }
 
 void testApp::windowResized(int w, int h){
+    composer.scrollBarSetup();
 }
 
 void testApp::gotMessage(ofMessage msg){
@@ -136,3 +140,4 @@ void testApp::createNode(textInputEvent &args){
     
     widgetsToDelete.push_back(args.widget);
 }
+

@@ -7,7 +7,7 @@
 #include "textInput.h"
 #include "textInputEvent.h"
 
-class testApp : public ofBaseApp{    
+class testApp : public ofBaseApp{
 public:
 	void setup();
 	void update();
