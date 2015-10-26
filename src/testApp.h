@@ -6,17 +6,8 @@
 #include "ofxUISuperCanvas.h"
 #include "textInput.h"
 #include "textInputEvent.h"
-#include "scrollRangeSlider.h"
 
 class testApp : public ofBaseApp{
-private:
-    // nico scroll sliders
-    float minVerticalSlider;
-    float maxVerticalSlider;
-    float lowVerticalSlider;
-    float highVerticalSlider;
-    void updateVerticalSliderValues();
-    
 public:
 	void setup();
 	void update();
