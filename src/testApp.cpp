@@ -24,7 +24,7 @@ void testApp::setup(){
 
     
     // nico ScrollBar setup
-    composer.scrollBarSetup();
+    composer.setupScrollBar();
 
 }
 
@@ -123,7 +123,6 @@ void testApp::mouseReleased(int x, int y, int button){
 }
 
 void testApp::windowResized(int w, int h){
-    composer.scrollBarSetup();
 }
 
 void testApp::gotMessage(ofMessage msg){
