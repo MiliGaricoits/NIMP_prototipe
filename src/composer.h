@@ -37,6 +37,8 @@ private:
     ofRectangle scrollBarRectangle;
     ofRectangle gripRectangle;
     int mousePreviousY;
+    
+    float KEY_SCROLL_SENSITIVITY = 5.f;
     // nico ScrollBar fin
     
 public:
@@ -45,7 +47,7 @@ public:
     
     void setLinkType (nodeLinkType type);
     void setupScrollBar();
-    void updateScrollBar();
+    void updateScrollBar(ofVec3f diffVec);
     void update();
     void draw();
     

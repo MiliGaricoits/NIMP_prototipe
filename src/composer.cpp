@@ -67,7 +67,7 @@ void composer::setupScrollBar(){
     setDraggingGrip(false); // true when the user is moving the grip
     setMouseOverGrip(false); // true when the mouse is over the grip
     
-    updateScrollBar();
+    updateScrollBar(ofVec3f(0,0,0));
 }
 
 
@@ -76,29 +76,31 @@ void composer::_mouseDragged(ofMouseEventArgs &e){
     ofVec3f mouse = ofVec3f(e.x, e.y,0);
     ofVec3f mouseLast = ofVec3f(ofGetPreviousMouseX(),ofGetPreviousMouseY(),0);
     
+    ofVec3f diffVec = ofVec3f(0,0,0);
 
     if (isScrollBarVisible && isDraggingGrip()) {
+        diffVec = ofVec3f(0, mouseLast.y - mouse.y, 0);
+        
         // Move the grip according to the mouse displacement
         int dy = e.y - mousePreviousY;
         mousePreviousY = e.y;
         gripRectangle.y += dy;
         
-        // si no estoy en ninguno de los 2 bordes, muevo los patches
-        if(!(gripRectangle.y < 0) && !(gripRectangle.getBottom() > scrollBarRectangle.getBottom())){
-            ofVec3f aux = ofVec3f(0, mouseLast.y - mouse.y, 0);
-            movePatches(aux);
-        }
-        
-        // Check if the grip is still in the scroll bar
-        if (gripRectangle.y < 0) {
-            gripRectangle.y = 0;
-        }
-        if (gripRectangle.getBottom() > scrollBarRectangle.getBottom()) {
-            gripRectangle.y = scrollBarRectangle.getBottom() - gripRectangle.height;
-        }
+//        // si no estoy en ninguno de los 2 bordes, muevo los patches
+//        if(!(gripRectangle.y < 0) && !(gripRectangle.getBottom() > scrollBarRectangle.getBottom())){
+//            movePatches(diffVec);
+//        }
+//        
+//        // Check if the grip is still in the scroll bar
+//        if (gripRectangle.y < 0) {
+//            gripRectangle.y = 0;
+//        }
+//        if (gripRectangle.getBottom() > scrollBarRectangle.getBottom()) {
+//            gripRectangle.y = scrollBarRectangle.getBottom() - gripRectangle.height;
+//        }
         
     }
-    updateScrollBar();
+    updateScrollBar(diffVec);
 }
 
 void composer::_mouseReleased(ofMouseEventArgs &e){
@@ -129,6 +131,21 @@ void composer::_mouseMoved(ofMouseEventArgs &e){
 
 void composer::_keyPressed(ofKeyEventArgs &e){
     // hacer que si es flechita mover el scroll
+    ofVec3f diffVec = ofVec3f(0, 0, 0);
+    if (isScrollBarVisible) {
+        if (e.key == OF_KEY_LEFT ){
+            diffVec.x = -KEY_SCROLL_SENSITIVITY;
+        } else if (e.key == OF_KEY_RIGHT ){
+            diffVec.x = KEY_SCROLL_SENSITIVITY;
+        } else if (e.key == OF_KEY_UP ){
+            diffVec.y = KEY_SCROLL_SENSITIVITY;
+            gripRectangle.y -= KEY_SCROLL_SENSITIVITY;
+        } else if (e.key == OF_KEY_DOWN){
+            diffVec.y = -KEY_SCROLL_SENSITIVITY;
+            gripRectangle.y += KEY_SCROLL_SENSITIVITY;
+        }
+    }
+    updateScrollBar(diffVec);
 }
 
 void composer::_windowResized(ofResizeEventArgs &e){
@@ -138,7 +155,23 @@ void composer::_windowResized(ofResizeEventArgs &e){
 /************************************** EVENTOS FIN ******************************/
 
 
-void composer::updateScrollBar(){
+void composer::updateScrollBar(ofVec3f diffVec){
+    
+    if(diffVec.y != 0){
+        if(!(gripRectangle.y < 0) && !(gripRectangle.getBottom() > scrollBarRectangle.getBottom())){
+            movePatches(diffVec);
+        }
+        
+        // Check if the grip is still in the scroll bar
+        if (gripRectangle.y < 0) {
+            gripRectangle.y = 0;
+        }
+        if (gripRectangle.getBottom() > scrollBarRectangle.getBottom()) {
+            gripRectangle.y = scrollBarRectangle.getBottom() - gripRectangle.height;
+        }
+    }
+    
+    
     // The size of the panel. All the screen except margins
     panelWidth = ofGetWidth() - margin * 2;
     panelHeight = ofGetHeight() - margin * 2;
@@ -178,3 +211,5 @@ void composer::updateScrollBar(){
         isScrollBarVisible = false;
     }
 }
+
+
