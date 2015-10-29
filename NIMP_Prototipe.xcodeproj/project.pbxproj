@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00062604515C1A5AD107D190 /* ofxUI2DGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D68246533CF747B2D940A6 /* ofxUI2DGraph.cpp */; };
+		0A086E991BE1960600FF0DBF /* composer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A086E971BE1960600FF0DBF /* composer.cpp */; };
 		0A6CF4391BBDF1830018021D /* nodeVideoInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CF4351BBDF1830018021D /* nodeVideoInterface.cpp */; };
 		0A6CF43A1BBDF1830018021D /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CF4371BBDF1830018021D /* testApp.cpp */; };
 		0AEB9C5C1BC04542009BA6DC /* textInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB9C5A1BC04542009BA6DC /* textInput.cpp */; };
@@ -130,6 +131,9 @@
 		01695A6179C1325AE770E008 /* ofxUIWidgets.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIWidgets.h; path = ../../../addons/ofxUI_nimp/src/ofxUIWidgets.h; sourceTree = SOURCE_ROOT; };
 		01DCC0911400F9ACF5B65578 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		06C038746094A758EBC07F0C /* ofxUIImageToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIImageToggle.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUIImageToggle.cpp; sourceTree = SOURCE_ROOT; };
+		0A086E961BE191A600FF0DBF /* enumerations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enumerations.h; sourceTree = "<group>"; };
+		0A086E971BE1960600FF0DBF /* composer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composer.cpp; sourceTree = "<group>"; };
+		0A086E981BE1960600FF0DBF /* composer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composer.h; sourceTree = "<group>"; };
 		0A6CF4331BBDF1830018021D /* button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
 		0A6CF4341BBDF1830018021D /* enumVideoState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enumVideoState.h; sourceTree = "<group>"; };
 		0A6CF4351BBDF1830018021D /* nodeVideoInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nodeVideoInterface.cpp; sourceTree = "<group>"; };
@@ -690,6 +694,9 @@
 				0AEB9C5A1BC04542009BA6DC /* textInput.cpp */,
 				0AEB9C5B1BC04542009BA6DC /* textInput.h */,
 				0AEB9C6E1BC9DC13009BA6DC /* textInputEvent.h */,
+				0A086E961BE191A600FF0DBF /* enumerations.h */,
+				0A086E971BE1960600FF0DBF /* composer.cpp */,
+				0A086E981BE1960600FF0DBF /* composer.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -863,6 +870,7 @@
 				FA3F9C70231D1DED38EF4FF9 /* ofxUIMovingGraph.cpp in Sources */,
 				EB4BF02410B1CB52247F25D4 /* ofxUIMultiImageButton.cpp in Sources */,
 				1977A9FC07C62916A24EEF93 /* ofxUIMultiImageToggle.cpp in Sources */,
+				0A086E991BE1960600FF0DBF /* composer.cpp in Sources */,
 				0C9644725B45F9D34DA2879C /* ofxUINumberDialer.cpp in Sources */,
 				8FFC980F2B6E99F6153A8976 /* ofxUIRadio.cpp in Sources */,
 				60238F2D32FF5D0C8E8F6983 /* ofxUIRangeSlider.cpp in Sources */,

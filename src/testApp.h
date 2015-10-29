@@ -2,10 +2,11 @@
 
 #include "ofMain.h"
 
-#include "ofxComposer.h"
+#include "composer.h"
 #include "ofxUISuperCanvas.h"
 #include "textInput.h"
 #include "textInputEvent.h"
+#include "enumerations.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -24,9 +25,11 @@ public:
 	void gotMessage(ofMessage msg);
     
     void createNode(textInputEvent &args);
+    void menuEvent(ofxUIEventArgs &e);
     
-    ofxComposer composer;
+    composer composer;
     ofxUISuperCanvas *gui;
+    ofxUISuperCanvas *menu;
     
 protected:
     vector<ofxUIWidget*> widgetsToDelete;

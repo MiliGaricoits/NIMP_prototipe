@@ -12,6 +12,17 @@ void testApp::setup(){
     gui->setColorBack(ofxUIColor(255,255,255,0));
     gui->setDraggable(false);
     
+    menu = new ofxUISuperCanvas("menu", 0, -15, ofGetWidth(), 60);
+    menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
+    menu->setGlobalButtonDimension(30);
+    menu->addImageToggle("straight_links", "assets/line.png", true);
+    menu->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+    menu->addImageToggle("curved_links", "assets/curve_line.png", false);
+    menu->addImageToggle("path_links", "assets/path_line.png", false);
+    
+    ofAddListener(menu->newGUIEvent,this,&testApp::menuEvent);
+
+    
     // nico ScrollBar setup
     composer.scrollBarSetup();
 
@@ -139,5 +150,28 @@ void testApp::createNode(textInputEvent &args){
     ofRemoveListener(((textInput*)args.widget)->createNode , this, &testApp::createNode);
     
     widgetsToDelete.push_back(args.widget);
+}
+
+void testApp::menuEvent(ofxUIEventArgs &e)
+{
+    string name = e.getName();
+    if (name == "straight_links") {
+        ((ofxUIImageToggle*)menu->getWidget("straight_links"))->setValue(true);
+        ((ofxUIImageToggle*)menu->getWidget("path_links"))->setValue(false);
+        ((ofxUIImageToggle*)menu->getWidget("curved_links"))->setValue(false);
+        composer.setLinkType(STRAIGHT_LINKS);
+    }
+    else if (name == "curved_links") {
+        ((ofxUIImageToggle*)menu->getWidget("curved_links"))->setValue(true);
+        ((ofxUIImageToggle*)menu->getWidget("path_links"))->setValue(false);
+        ((ofxUIImageToggle*)menu->getWidget("straight_links"))->setValue(false);
+        composer.setLinkType(CURVE_LINKS);
+    }
+    else if (name == "path_links") {
+        ((ofxUIImageToggle*)menu->getWidget("path_links"))->setValue(true);
+        ((ofxUIImageToggle*)menu->getWidget("curved_links"))->setValue(false);
+        ((ofxUIImageToggle*)menu->getWidget("straight_links"))->setValue(false);
+        composer.setLinkType(PATH_LINKS);
+    }
 }
 
