@@ -33,12 +33,22 @@ private:
     
     float panelWidth;
     float panelHeight;
+    
+    // vertical scrollBar
     bool isScrollBarVisible;
+    bool mouseOverGrip;
     ofRectangle scrollBarRectangle;
     ofRectangle gripRectangle;
     int mousePreviousY;
     
-    float KEY_SCROLL_SENSITIVITY = 5.f;
+    // horizontal scrollBar
+    bool isHScrollBarVisible;
+    bool mouseOverHGrip;
+    ofRectangle hScrollBarRectangle;
+    ofRectangle hGripRectangle;
+    int mousePreviousX;
+    
+    float KEY_SCROLL_SENSITIVITY = 10.f;
     // nico ScrollBar fin
     
 public:
@@ -48,6 +58,7 @@ public:
     void setLinkType (nodeLinkType type);
     void setupScrollBar();
     void updateScrollBar(ofVec3f diffVec);
+    void updateHScrollBar(ofVec3f diffVec);
     void update();
     void draw();
     
