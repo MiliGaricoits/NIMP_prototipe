@@ -113,7 +113,6 @@ void composer::_mouseDragged(ofMouseEventArgs &e){
         mousePreviousX = e.x;
         hGripRectangle.x += dx;
     }
-    cout << "x: " << e.x << endl;
     
     updateScrollBar(diffVec);
     updateHScrollBar(diffVec);
@@ -199,7 +198,6 @@ void composer::_windowResized(ofResizeEventArgs &e){
 void composer::updateScrollBar(ofVec3f diffVec){
     
     // TODO: con la flechita no puedo ir a los topes de la barra
-    // TODO: ver si se puede traer a esta clase el mouseOverGrip
     if(diffVec.y != 0){
         if(!(gripRectangle.y < 0) && !(gripRectangle.getBottom() > scrollBarRectangle.getBottom())){
             movePatches(diffVec);
@@ -232,12 +230,12 @@ void composer::updateScrollBar(ofVec3f diffVec){
     // al ser ratio, van de 0 a 1, y calculo dependiendo el caso
     float gripSizeRatioLow = 1.f;
     float gripSizeRatioHigh = 1.f;
-    if ( (lowestCoord < 0)  && (highestCoord > panelHeight) ) {
+    if ( (lowestCoord + SCROLL_TOLERANCE < 0)  && (highestCoord - SCROLL_TOLERANCE > panelHeight) ) {
         gripSizeRatioHigh = (float)panelHeight / (panelHeight - (float)lowestCoord);
         gripSizeRatioLow = (float)panelHeight / ( (float)highestCoord );
-    } else if ( lowestCoord < 0 ){
+    } else if ( lowestCoord + SCROLL_TOLERANCE < 0 ){
         gripSizeRatioHigh = (float)panelHeight / (panelHeight - (float)lowestCoord);
-    } else if ( highestCoord > panelHeight ) {
+    } else if ( highestCoord - SCROLL_TOLERANCE > panelHeight ) {
         gripSizeRatioLow = (float)panelHeight / ( (float)highestCoord );
     }
     
@@ -255,24 +253,15 @@ void composer::updateScrollBar(ofVec3f diffVec){
     }
 }
 
-
-
-
-
-
-
-
-
 void composer::updateHScrollBar(ofVec3f diffVec){
     
     // TODO: con la flechita no puedo ir a los topes de la barra
-    // TODO: ver si se puede traer a esta clase el mouseOverGrip
     if(diffVec.x != 0){
         if(!(hGripRectangle.x < 0) && !(hGripRectangle.getRight() > hScrollBarRectangle.getRight())){
             movePatches(diffVec);
         }
         
-        // Check if the grip is still in the scroll bar
+//      Check if the grip is still in the scroll bar
         if (hGripRectangle.x < 0) {
             hGripRectangle.x = 0;
         }
@@ -299,12 +288,12 @@ void composer::updateHScrollBar(ofVec3f diffVec){
     // al ser ratio, van de 0 a 1, y calculo dependiendo el caso
     float gripSizeRatioLeft = 1.f;
     float gripSizeRatioRight = 1.f;
-    if ( (leftMostCoord < 0)  && (rightMostCoord > panelWidth) ) {
+    if ( (leftMostCoord + SCROLL_TOLERANCE < 0)  && (rightMostCoord - SCROLL_TOLERANCE > panelWidth) ) {
         gripSizeRatioRight = (float)panelWidth / (panelWidth - (float)leftMostCoord);
         gripSizeRatioLeft = (float)panelWidth / ( (float)rightMostCoord );
-    } else if ( leftMostCoord < 0 ){
+    } else if ( leftMostCoord + SCROLL_TOLERANCE < 0 ){
         gripSizeRatioRight = (float)panelWidth / (panelWidth - (float)leftMostCoord);
-    } else if ( rightMostCoord > panelWidth ) {
+    } else if ( rightMostCoord - SCROLL_TOLERANCE > panelWidth ) {
         gripSizeRatioLeft = (float)panelWidth / ( (float)rightMostCoord );
     }
     
@@ -312,7 +301,8 @@ void composer::updateHScrollBar(ofVec3f diffVec){
     // La altura del grip es el panel por los ratios fuera de la pantalla
     hGripRectangle.width = panelWidth * gripSizeRatioLeft * gripSizeRatioRight;
     
-    // La 'y' del grip esta en la scrollbar por la relacion de lo que queda por arriba de la pantalla
+    
+    // La 'x' del grip esta en la scrollbar por la relacion de lo que queda por la izquierda de la pantalla
     hGripRectangle.x = (1-gripSizeRatioRight)*hScrollBarRectangle.width;
     
     // Si las alturas del grip y del scroll son iguales, es porque tengo todo a la vista
