@@ -16,6 +16,18 @@
 class composer : public ofxComposer
 {
     
+public:
+    
+    composer();
+    
+    void setLinkType (nodeLinkType type);
+    void setupScrollBar();
+    void updateScrollBar(ofVec3f diffVec);
+    void updateHScrollBar(ofVec3f diffVec);
+    
+    void update();
+    void draw();
+    
 private:
     // Events
     void    _mouseMoved(ofMouseEventArgs &e);
@@ -51,18 +63,6 @@ private:
     float KEY_SCROLL_SENSITIVITY = 10.f;
     int SCROLL_TOLERANCE = 10;
     // nico ScrollBar fin
-    
-public:
-    
-    composer();
-    
-    void setLinkType (nodeLinkType type);
-    void setupScrollBar();
-    void updateScrollBar(ofVec3f diffVec);
-    void updateHScrollBar(ofVec3f diffVec);
-    void update();
-    void draw();
-    
 };
 
 #endif /* defined(__NIMP_Prototipe__composer__) */

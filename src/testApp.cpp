@@ -8,17 +8,18 @@ void testApp::setup(){
     ofSetVerticalSync(false);
     
     composer.load("config.xml");
-    gui = new ofxUISuperCanvas("", 0, 0, ofGetWidth(), ofGetHeight());
+    composer.setLinkType(PATH_LINKS);
+    gui = new ofxUISuperCanvas("", 0, 15, ofGetWidth(), ofGetHeight());
     gui->setColorBack(ofxUIColor(255,255,255,0));
     gui->setDraggable(false);
     
     menu = new ofxUISuperCanvas("menu", 0, -15, ofGetWidth(), 60);
     menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
     menu->setGlobalButtonDimension(30);
-    menu->addImageToggle("straight_links", "assets/line.png", true);
+    menu->addImageToggle("straight_links", "assets/line.png", false);
     menu->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
     menu->addImageToggle("curved_links", "assets/curve_line.png", false);
-    menu->addImageToggle("path_links", "assets/path_line.png", false);
+    menu->addImageToggle("path_links", "assets/path_line.png", true);
     
     ofAddListener(menu->newGUIEvent,this,&testApp::menuEvent);
 
