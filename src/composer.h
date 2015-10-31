@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include "ofxComposer.h"
-#include "enumerations.h"
 
 class composer : public ofxComposer
 {
