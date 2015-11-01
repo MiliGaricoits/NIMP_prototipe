@@ -38,7 +38,6 @@ private:
     
     // nico ScrollBar empieza
     /* Display parameters for the panel */
-    float gap;
     float margin;
     float scrollBarWidth;
     
