@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include "ofxComposer.h"
-#include "enumerations.h"
 
 class composer : public ofxComposer
 {
@@ -39,7 +38,6 @@ private:
     
     // nico ScrollBar empieza
     /* Display parameters for the panel */
-    float gap;
     float margin;
     float scrollBarWidth;
     

@@ -27,7 +27,6 @@ void composer::draw(){
     this->ofxComposer::draw();
     // Add a translation to bring the panel to the good position
     ofPushMatrix();
-    ofTranslate(margin, margin, 0);
     // Draw the scroll bar, is needed
     if (isScrollBarVisible) {
         ofSetColor(110);
@@ -65,18 +64,17 @@ void composer::setupScrollBar(){
      The scroll bar contains a "grip". The user can drag the grip with the mouse.
      */
     
-    gap = 10.f;               // Distance between rectangles, and between rectangles and scroll bar
     margin = 20.f;            // Distance between the edge of the screen and the panel frame
     scrollBarWidth = 20.f;
     
     // Now two rectangles, for the scroll bar and his grip placements
     // Coordinates are relative to the panel coordinates, not to the screen coordinates
     // This is a first initialisation, but we don't know many things about these placements at this state
-    scrollBarRectangle = ofRectangle(ofGetWidth() - (margin*2) - scrollBarWidth, 0, scrollBarWidth, 0);
-    gripRectangle = ofRectangle(ofGetWidth() - (margin*2) - scrollBarWidth, 0, scrollBarWidth, 0);
+    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, 0, scrollBarWidth, 0);
+    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, 0, scrollBarWidth, 0);
     
-    hScrollBarRectangle = ofRectangle(0, ofGetHeight() - (margin*2) - scrollBarWidth, 0, scrollBarWidth);
-    hGripRectangle = ofRectangle(0, ofGetHeight() - (margin*2) - scrollBarWidth, 0, scrollBarWidth);
+    hScrollBarRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
+    hGripRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
     
     setDraggingGrip(false); // true when the user is moving the grip
     mouseOverGrip = false; // true when the mouse is over the grip
@@ -127,7 +125,6 @@ void composer::_mousePressed(ofMouseEventArgs &e){
     // Check if the click occur on the grip
     if (isScrollBarVisible) {
         ofRectangle r = gripRectangle;
-        r.translate(margin, margin); // This translation because the coordinates of the grip are relative to the panel, but the mouse position is relative to the screen
         if (r.inside(e.x, e.y)) {
             setDraggingGrip(true);
             mousePreviousY = e.y;
@@ -136,7 +133,6 @@ void composer::_mousePressed(ofMouseEventArgs &e){
     
     if (isHScrollBarVisible) {
         ofRectangle r = hGripRectangle;
-        r.translate(margin, margin); // This translation because the coordinates of the grip are relative to the panel, but the mouse position is relative to the screen
         if (r.inside(e.x, e.y)) {
             setDraggingHGrip(true);
             mousePreviousX = e.x;
@@ -147,7 +143,6 @@ void composer::_mousePressed(ofMouseEventArgs &e){
 void composer::_mouseMoved(ofMouseEventArgs &e){
     if (isScrollBarVisible) {
         ofRectangle r = gripRectangle;
-        r.translate(margin, margin); // This translation because the coordinates of the grip are relative to the panel, but the mouse position is relative to the screen
         mouseOverGrip = r.inside(e.x, e.y);
     } else {
         mouseOverGrip = false;
@@ -155,7 +150,6 @@ void composer::_mouseMoved(ofMouseEventArgs &e){
     
     if (isHScrollBarVisible) {
         ofRectangle r = hGripRectangle;
-        r.translate(margin, margin); // This translation because the coordinates of the grip are relative to the panel, but the mouse position is relative to the screen
         mouseOverHGrip = r.inside(e.x, e.y);
     } else {
         mouseOverHGrip = false;
@@ -214,8 +208,8 @@ void composer::updateScrollBar(ofVec3f diffVec){
     
     
     // The size of the panel. All the screen except margins
-    panelWidth = ofGetWidth() - margin * 3;
-    panelHeight = ofGetHeight() - margin * 3;
+    panelWidth = ofGetWidth() - margin;
+    panelHeight = ofGetHeight() - margin;
     
     gripRectangle.x = scrollBarRectangle.x; // Also adjust the grip x coordinate
     int lowestCoord = getPatchesLowestCoord();  // La coordenada mas baja de un patch
@@ -272,8 +266,8 @@ void composer::updateHScrollBar(ofVec3f diffVec){
     
     
     // The size of the panel. All the screen except margins
-    panelWidth = ofGetWidth() - margin * 3;
-    panelHeight = ofGetHeight() - margin * 3;
+    panelWidth = ofGetWidth() - margin;
+    panelHeight = ofGetHeight() - margin;
     
     hGripRectangle.y = hScrollBarRectangle.y; // Also adjust the grip x coordinate
     int leftMostCoord = getPatchesLeftMostCoord();  // La coordenada mas baja de un patch
