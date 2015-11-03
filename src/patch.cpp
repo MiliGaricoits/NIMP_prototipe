@@ -13,6 +13,7 @@ patch::patch() : ofxPatch() {
     ofAddListener(ofEvents().mousePressed, this, &patch::_mousePressed);
     ofAddListener(ofEvents().mouseDragged, this, &patch::_mouseDragged);
     ofAddListener(ofEvents().mouseReleased, this, &patch::_mouseReleased);
+    ofAddListener(ofEvents().keyPressed, this, &patch::_keyPressed);
 }
 
 /* ================================================ */
@@ -105,18 +106,25 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
             if (!overDot and linkType == PATH_LINKS and outPut.size() > 0){
                 vector<ofPoint> coorners = outPut[i].path_line.getVertices();
                 int addNew = -1;
+                int tolerance = 3;
                 
-                for (int j = 0; j < coorners.size(); j++){
+                for (int j = 0; j < coorners.size()-1; j++){
                     int next = (j+1)%coorners.size();
                     
-                    ofVec2f AtoM = mouse - coorners[j];
-                    ofVec2f AtoB = coorners[next] - coorners[j];
-                    
-                    float a = atan2f(AtoM.x, AtoM.y);
-                    float b = atan2f(AtoB.x, AtoB.y);
-                    
-                    if ( abs(a - b) < 0.05) {
-                        addNew = next;
+                    if (is_between (mouse.x, coorners[j].x, coorners[j+1].x, tolerance) && is_between (mouse.y, coorners[j].y, coorners[j+1].y, tolerance))
+                    {
+                        if ((coorners[j+1].y - coorners[j].y) <= tolerance) // Horizontal line.
+                        {
+                            addNew = j;
+                        }
+                        
+                        const float M = (coorners[j+1].y - coorners[j].y) / (coorners[j+1].x - coorners[j].x); // Slope
+                        const float C = -(M * coorners[j].x) + coorners[j].y; // Y intercept
+                        
+                        // Checking if (x, y) is on the line passing through the end points.
+                        if(std::fabs (mouse.y - (M * mouse.x + C)) <= tolerance) {
+                            addNew = j;
+                        }
                     }
                 }
                 
@@ -126,11 +134,18 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
                     else if (addNew == 0)
                         outPut[i].path_coorners.insert(outPut[i].path_coorners.begin(), mouse);
                     else
-                        outPut[i].path_coorners.insert(outPut[i].path_coorners.begin()+(addNew-1), mouse);
+                        outPut[i].path_coorners.insert(outPut[i].path_coorners.begin()+addNew, mouse);
                 }
             }
         }
     }
+}
+
+bool patch::is_between (float x, float bound1, float bound2, float tolerance) {
+    // Handles cases when 'bound1' is greater than 'bound2' and when
+    // 'bound2' is greater than 'bound1'.
+    return (((x >= (bound1 - tolerance)) && (x <= (bound2 + tolerance))) ||
+            ((x >= (bound2 - tolerance)) && (x <= (bound1 + tolerance))));
 }
 
 void patch::_mouseDragged(ofMouseEventArgs &e) {
@@ -152,6 +167,11 @@ void patch::_mouseReleased(ofMouseEventArgs &e){
     
     selectedLinkPath = -1;
     selectedLink = -1;
+}
+
+void patch::_keyPressed(ofKeyEventArgs &e){
+    
+    ofxPatch::_keyPressed(e);
 }
 
 void patch::_stopVideo(int &_nId) {

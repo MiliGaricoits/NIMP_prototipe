@@ -30,16 +30,19 @@ public:
     void _mousePressed(ofMouseEventArgs &e);
     void _mouseDragged(ofMouseEventArgs &e);
     void _mouseReleased(ofMouseEventArgs &e);
+    void _keyPressed(ofKeyEventArgs &e);
     
     ofPolyline getCoorners();
     ofRectangle getBox() { return box; };
     void setLinkType(nodeLinkType type);
+    bool is_between (float x, float bound1, float bound2, float tolerance);
     
     
 private:
     
     nodeVideoInterface *videoInterface;
     nodeLinkType linkType;
+    bool commandKey;
 };
 
 #endif /* defined(__NIMP_Prototipe__patch__) */
