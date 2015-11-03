@@ -53,7 +53,7 @@ void composer::draw(){
 }
 
 void composer::setLinkType (nodeLinkType type) {
-    for(map<int,ofxPatch*>::iterator it = this->patches.begin(); it != this->patches.end(); it++ ){
+    for(map<int,patch*>::iterator it = this->patches.begin(); it != this->patches.end(); it++ ){
         it->second->setLinkType(type);
     }
 }

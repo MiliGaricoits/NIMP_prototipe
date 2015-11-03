@@ -19,6 +19,27 @@ public:
     
     patch();
     
+    void update();
+    void draw();
+    
+    bool loadFile(string _filePath, string _configFile = "none");
+    
+    void _stopVideo(int &_nId);
+    void _playVideo(int &_nId);
+    
+    void _mousePressed(ofMouseEventArgs &e);
+    void _mouseDragged(ofMouseEventArgs &e);
+    void _mouseReleased(ofMouseEventArgs &e);
+    
+    ofPolyline getCoorners();
+    ofRectangle getBox() { return box; };
+    void setLinkType(nodeLinkType type);
+    
+    
+private:
+    
+    nodeVideoInterface *videoInterface;
+    nodeLinkType linkType;
 };
 
 #endif /* defined(__NIMP_Prototipe__patch__) */
