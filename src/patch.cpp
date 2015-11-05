@@ -105,6 +105,7 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
                         selectedLink = i;
                     }
                     overDot = true;
+                    ofxPatch::setLinkHit(true);
                 }
             }
             
@@ -134,6 +135,7 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
                 }
                 
                 if (addNew >= 0) {
+                    ofxPatch::setLinkHit(true);
                     if (outPut[i].path_coorners.size() == 0)
                         outPut[i].path_coorners.push_back(mouse);
                     else if (addNew == 0)
@@ -165,6 +167,7 @@ void patch::_mouseReleased(ofMouseEventArgs &e){
     
     selectedLinkPath = -1;
     selectedLink = -1;
+    ofxPatch::setLinkHit(false);
 }
 
 void patch::_keyPressed(ofKeyEventArgs &e){

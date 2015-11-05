@@ -24,7 +24,11 @@ void composer::update(){
     this->ofxComposer::update();
 }
 void composer::draw(){
-    this->ofxComposer::draw();
+    ofPushMatrix();
+    ofPushStyle();
+        this->ofxComposer::draw();
+    ofPopStyle();
+    ofPopMatrix();
     // Add a translation to bring the panel to the good position
     ofPushMatrix();
     // Draw the scroll bar, is needed
@@ -114,11 +118,14 @@ void composer::_mouseDragged(ofMouseEventArgs &e){
     
     updateScrollBar(diffVec);
     updateHScrollBar(diffVec);
+    
+    ofxComposer::_mouseDragged(e);
 }
 
 void composer::_mouseReleased(ofMouseEventArgs &e){
     setDraggingGrip(false);
     setDraggingHGrip(false);
+    ofxComposer::_mouseReleased(e);
 }
 
 void composer::_mousePressed(ofMouseEventArgs &e){
@@ -126,6 +133,7 @@ void composer::_mousePressed(ofMouseEventArgs &e){
     if (isScrollBarVisible) {
         ofRectangle r = gripRectangle;
         if (r.inside(e.x, e.y)) {
+            ofxComposer::deactivateAllPatches();
             setDraggingGrip(true);
             mousePreviousY = e.y;
         }
@@ -134,10 +142,13 @@ void composer::_mousePressed(ofMouseEventArgs &e){
     if (isHScrollBarVisible) {
         ofRectangle r = hGripRectangle;
         if (r.inside(e.x, e.y)) {
+            ofxComposer::deactivateAllPatches();
             setDraggingHGrip(true);
             mousePreviousX = e.x;
         }
     }
+    
+    ofxComposer::_mousePressed(e);
 }
 
 void composer::_mouseMoved(ofMouseEventArgs &e){
@@ -155,6 +166,7 @@ void composer::_mouseMoved(ofMouseEventArgs &e){
         mouseOverHGrip = false;
     }
     
+    ofxComposer::_mouseMoved(e);
 }
 
 void composer::_keyPressed(ofKeyEventArgs &e){
@@ -180,10 +192,13 @@ void composer::_keyPressed(ofKeyEventArgs &e){
     }
     updateScrollBar(diffVec);
     updateHScrollBar(diffVec);
+    
+    ofxComposer::_keyPressed(e);
 }
 
 void composer::_windowResized(ofResizeEventArgs &e){
     setupScrollBar();
+    ofxComposer::_windowResized(e);
 }
 
 /************************************** EVENTOS FIN ******************************/
