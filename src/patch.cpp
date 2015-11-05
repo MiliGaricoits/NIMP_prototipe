@@ -97,8 +97,13 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
             for (int j = 0; j < outPut[i].path_coorners.size(); j++){
                 
                 if ( ofDist(e.x, e.y, outPut[i].path_coorners[j].x, outPut[i].path_coorners[j].y) <= 10 ){
-                    selectedLinkPath = j;
-                    selectedLink = i;
+                    if (e.button == 2) {
+                        outPut[i].path_coorners.erase(outPut[i].path_coorners.begin()+j);
+                    }
+                    else {
+                        selectedLinkPath = j;
+                        selectedLink = i;
+                    }
                     overDot = true;
                 }
             }
@@ -141,13 +146,6 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
     }
 }
 
-bool patch::is_between (float x, float bound1, float bound2, float tolerance) {
-    // Handles cases when 'bound1' is greater than 'bound2' and when
-    // 'bound2' is greater than 'bound1'.
-    return (((x >= (bound1 - tolerance)) && (x <= (bound2 + tolerance))) ||
-            ((x >= (bound2 - tolerance)) && (x <= (bound1 + tolerance))));
-}
-
 void patch::_mouseDragged(ofMouseEventArgs &e) {
     
     ofxPatch::_mouseDragged(e);
@@ -172,6 +170,9 @@ void patch::_mouseReleased(ofMouseEventArgs &e){
 void patch::_keyPressed(ofKeyEventArgs &e){
     
     ofxPatch::_keyPressed(e);
+    
+    //if (ofGetKeyPressed(OF_KEY_CONTROL))
+        cout << 'key ' << e.key << '\n';
 }
 
 void patch::_stopVideo(int &_nId) {
@@ -213,4 +214,12 @@ ofPolyline patch::getCoorners() {
 
 void patch::setLinkType(nodeLinkType type) {
     linkType = type;
+}
+
+
+bool patch::is_between (float x, float bound1, float bound2, float tolerance) {
+    // Handles cases when 'bound1' is greater than 'bound2' and when
+    // 'bound2' is greater than 'bound1'.
+    return (((x >= (bound1 - tolerance)) && (x <= (bound2 + tolerance))) ||
+            ((x >= (bound2 - tolerance)) && (x <= (bound1 + tolerance))));
 }
