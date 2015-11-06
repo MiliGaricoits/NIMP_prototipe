@@ -24,6 +24,7 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
     
+    void createNodeInput(float _x = ofGetMouseX(), float _y = ofGetMouseY());
     void createNode(textInputEvent &args);
     void menuEvent(ofxUIEventArgs &e);
     

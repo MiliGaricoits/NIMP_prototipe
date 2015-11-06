@@ -7,6 +7,7 @@
 //
 
 #include "patch.h"
+#include <GLUT/glut.h>
 
 patch::patch() : ofxPatch() {
 
@@ -97,7 +98,7 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
             for (int j = 0; j < outPut[i].path_coorners.size(); j++){
                 
                 if ( ofDist(e.x, e.y, outPut[i].path_coorners[j].x, outPut[i].path_coorners[j].y) <= 10 ){
-                    if (e.button == 2) {
+                    if ((e.button == 2) || (glutGetModifiers() == GLUT_ACTIVE_CTRL)) {
                         outPut[i].path_coorners.erase(outPut[i].path_coorners.begin()+j);
                     }
                     else {

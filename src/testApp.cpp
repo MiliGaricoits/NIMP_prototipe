@@ -1,6 +1,5 @@
 #include "testApp.h"
 
-
 //-------------------------------------------------------------- SETING
 void testApp::setup(){
     ofEnableAlphaBlending();
@@ -16,8 +15,13 @@ void testApp::setup(){
     menu = new ofxUISuperCanvas("menu", 0, -15, ofGetWidth(), 60);
     menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
     menu->setGlobalButtonDimension(30);
-    menu->addImageToggle("straight_links", "assets/line.png", false);
+    menu->addImageButton("create_node", "assets/node.png", false);
     menu->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+    menu->addSpacer(1,30);
+    menu->addImageButton("save_snippet", "assets/save_snippet.png", false);
+    menu->addImageButton("open_snippet", "assets/open_snippet.png", false);
+    menu->addSpacer(1,30);
+    menu->addImageToggle("straight_links", "assets/line.png", false);
     menu->addImageToggle("curved_links", "assets/curve_line.png", false);
     menu->addImageToggle("path_links", "assets/path_line.png", true);
     
@@ -44,6 +48,9 @@ void testApp::update(){
 
 
 void testApp::draw(){
+    
+    menu->setWidth(ofGetWidth());
+    
     //ofBackgroundGradient(ofColor::gray, ofColor::black);
     //ofBackground(247, 242, 225);
     ofBackground(170, 170, 170);
@@ -63,46 +70,23 @@ void testApp::draw(){
 //-------------------------------------------------------------- EVENTS
 void testApp::keyPressed(int key){
     
-    vector<ofxUIWidget*> all_nodes;
-    
     if (key == OF_KEY_DEL) {
         
-        all_nodes = gui->getWidgetsOfType(OFX_UI_WIDGET_TEXTINPUT);
+        vector<ofxUIWidget*> all_nodes = gui->getWidgetsOfType(OFX_UI_WIDGET_TEXTINPUT);
         for (int i = 0; i < all_nodes.size(); i++) {
             if (((ofxUITextInput*) all_nodes[i])->isClicked())
                 gui->removeWidget(all_nodes[i]);
         }
+        
+        // delete memory
+        if (!all_nodes.empty()) {
+            all_nodes.clear();
+            vector<ofxUIWidget*>().swap(all_nodes);
+        }
     }
     else if ((key == 'n') || (key == 'N')){
         
-        all_nodes = gui->getWidgetsOfType(OFX_UI_WIDGET_TEXTINPUT);
-        
-        int i = 0;
-        while (i < all_nodes.size()) {
-            
-            if (((ofxUITextInput*) all_nodes[i])->isClicked())
-                return;
-            i++;
-        };
-        
-        textInput *node = new textInput("", "", 150, 20, ofGetMouseX(), ofGetMouseY());
-        vector<string> nodes;
-        ofxUIDropDownList *dlist = new ofxUIDropDownList("", nodes, 150, ofGetMouseX(), ofGetMouseY());
-        
-        gui->addWidget(dlist);
-        gui->addWidget(node);
-        
-        dlist->setColorBack(ofxUIColor (255,255,255,0));
-        node->setColorBack(ofxUIColor (255,255,255,100));
-        node->setDropdownList(dlist);
-        
-        ofAddListener( node->createNode , this, &testApp::createNode);
-    }
-    
-    // delete memory
-    if (!all_nodes.empty()) {
-        all_nodes.clear();
-        vector<ofxUIWidget*>().swap(all_nodes);
+        this->createNodeInput();
     }
 }
 
@@ -116,8 +100,8 @@ void testApp::mouseDragged(int x, int y, int button){
 }
 
 void testApp::mousePressed(int x, int y, int button){
-    cout << "x: " << x << endl;
-    cout << "y: " << y << endl;
+    //cout << "x: " << x << endl;
+    //cout << "y: " << y << endl;
 }
 
 void testApp::mouseReleased(int x, int y, int button){
@@ -136,6 +120,39 @@ void testApp::dragEvent(ofDragInfo dragInfo){
             composer.addPatchFromFile( dragInfo.files[i], dragInfo.position );
 		}
 	}
+}
+
+
+void testApp::createNodeInput(float _x, float _y){
+ 
+    vector<ofxUIWidget*> all_nodes = gui->getWidgetsOfType(OFX_UI_WIDGET_TEXTINPUT);
+    
+    int i = 0;
+    while (i < all_nodes.size()) {
+        
+        if (((ofxUITextInput*) all_nodes[i])->isClicked())
+            return;
+        i++;
+    };
+    
+    textInput *node = new textInput("", "", 150, 20, _x, _y);
+    vector<string> nodes;
+    ofxUIDropDownList *dlist = new ofxUIDropDownList("", nodes, 150, _x, _y);
+    
+    gui->addWidget(dlist);
+    gui->addWidget(node);
+    
+    dlist->setColorBack(ofxUIColor (255,255,255,0));
+    node->setColorBack(ofxUIColor (255,255,255,100));
+    node->setDropdownList(dlist);
+    
+    ofAddListener( node->createNode , this, &testApp::createNode);
+    
+    // delete memory
+    if (!all_nodes.empty()) {
+        all_nodes.clear();
+        vector<ofxUIWidget*>().swap(all_nodes);
+    }
 }
 
 void testApp::createNode(textInputEvent &args){
@@ -172,6 +189,9 @@ void testApp::menuEvent(ofxUIEventArgs &e)
         ((ofxUIImageToggle*)menu->getWidget("curved_links"))->setValue(false);
         ((ofxUIImageToggle*)menu->getWidget("straight_links"))->setValue(false);
         composer.setLinkType(PATH_LINKS);
+    }
+    else if (name == "create_node") {
+        this->createNodeInput((ofGetWidth()/2)-75, ofGetHeight()/2);
     }
 }
 
