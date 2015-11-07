@@ -17,35 +17,22 @@ void testApp::setup(){
     
     menu = new ofxUISuperCanvas("menu", 0, -15, ofGetWidth(), 60);
     menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
+    menu->setColorBack(ofxUIColor(140, 140, 140,100));
     menu->setGlobalButtonDimension(30);
     
-    /*menu->addImageButton("new_file", "assets/new_file.png", false);
+    new menuItem(menu, "MultiImageButton", "New Patcher", "assets/new_file.png", false);
     menu->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
-    menu->addImageButton("open_file", "assets/open_file.png", false);
-    menu->addImageButton("save_file", "assets/save_file.png", false);
-    menu->addSpacer(1,30);
-    menu->addImageButton("create_node", "assets/node.png", false);
-    menu->addSpacer(1,30);
-    menu->addImageButton("save_snippet", "assets/save_snippet.png", false);
-    menu->addImageButton("open_snippet", "assets/open_snippet.png", false);
-    menu->addSpacer(1,30);
-    menu->addImageToggle("straight_links", "assets/line.png", false);
-    menu->addImageToggle("curved_links", "assets/curve_line.png", false);
-    menu->addImageToggle("path_links", "assets/path_line.png", true);*/
-    
-    new menuItem(menu, "ImageButton", "New Patcher", "assets/new_file.png", false);
-    menu->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
-    new menuItem(menu, "ImageButton", "Open Patcher", "assets/open_file.png", false);
-    new menuItem(menu, "ImageButton", "Save Patcher", "assets/save_file.png", false);
-    menu->addSpacer(1,30);
-    new menuItem(menu, "ImageButton", "Create Node", "assets/node.png", false);
-    menu->addSpacer(1,30);
-    new menuItem(menu, "ImageButton", "Save Snippet", "assets/save_snippet.png", false);
-    new menuItem(menu, "ImageButton", "Open Snippet", "assets/open_snippet.png", false);
-    menu->addSpacer(1,30);
-    new menuItem(menu, "ImageToggle", "Straight Links", "assets/line.png", false);
-    new menuItem(menu, "ImageToggle", "Curver Links", "assets/curve_line.png", false);
-    new menuItem(menu, "ImageToggle", "Segmented Links", "assets/path_line.png", true);
+    new menuItem(menu, "MultiImageButton", "Open Patcher", "assets/open_file.png", false);
+    new menuItem(menu, "MultiImageButton", "Save Patcher", "assets/save_file.png", false);
+    menu->addSpacer(1,30)->setColorFill(ofxUIColor(120, 120, 120,200));
+    new menuItem(menu, "MultiImageButton", "Create Node", "assets/node.png", false);
+    menu->addSpacer(1,30)->setColorFill(ofxUIColor(120, 120, 120,200));
+    new menuItem(menu, "MultiImageButton", "Save Snippet", "assets/save_snippet.png", false);
+    new menuItem(menu, "MultiImageButton", "Open Snippet", "assets/open_snippet.png", false);
+    menu->addSpacer(1,30)->setColorFill(ofxUIColor(120, 120, 120,200));
+    new menuItem(menu, "MultiImageToggle", "Straight Links", "assets/line.png", false);
+    new menuItem(menu, "MultiImageToggle", "Curved Links", "assets/curve_line.png", false);
+    new menuItem(menu, "MultiImageToggle", "Segmented Links", "assets/path_line.png", true);
     
     ofAddListener(menu->newGUIEvent,this,&testApp::menuEvent);
 
@@ -76,7 +63,7 @@ void testApp::draw(){
     
     //ofBackgroundGradient(ofColor::gray, ofColor::black);
     //ofBackground(247, 242, 225);
-    ofBackground(170, 170, 170);
+    ofBackground(180, 180, 180);
     ofSetColor(156, 156, 156);
     
     for (int i = 0; i < ofGetWidth(); i+=20) {
@@ -181,21 +168,21 @@ void testApp::menuEvent(ofxUIEventArgs &e)
 {
     string name = e.getName();
     if (name == "Straight Links") {
-        ((ofxUIImageToggle*)menu->getWidget("straight_links"))->setValue(true);
-        ((ofxUIImageToggle*)menu->getWidget("path_links"))->setValue(false);
-        ((ofxUIImageToggle*)menu->getWidget("curved_links"))->setValue(false);
+        ((ofxUIImageToggle*)menu->getWidget("Straight Links"))->setValue(true);
+        ((ofxUIImageToggle*)menu->getWidget("Segmented Links"))->setValue(false);
+        ((ofxUIImageToggle*)menu->getWidget("Curved Links"))->setValue(false);
         composer.setLinkType(STRAIGHT_LINKS);
     }
     else if (name == "Curved Links") {
-        ((ofxUIImageToggle*)menu->getWidget("curved_links"))->setValue(true);
-        ((ofxUIImageToggle*)menu->getWidget("path_links"))->setValue(false);
-        ((ofxUIImageToggle*)menu->getWidget("straight_links"))->setValue(false);
+        ((ofxUIImageToggle*)menu->getWidget("Curved Links"))->setValue(true);
+        ((ofxUIImageToggle*)menu->getWidget("Segmented Links"))->setValue(false);
+        ((ofxUIImageToggle*)menu->getWidget("Straight Links"))->setValue(false);
         composer.setLinkType(CURVE_LINKS);
     }
     else if (name == "Segmented Links") {
-        ((ofxUIImageToggle*)menu->getWidget("path_links"))->setValue(true);
-        ((ofxUIImageToggle*)menu->getWidget("curved_links"))->setValue(false);
-        ((ofxUIImageToggle*)menu->getWidget("straight_links"))->setValue(false);
+        ((ofxUIImageToggle*)menu->getWidget("Segmented Links"))->setValue(true);
+        ((ofxUIImageToggle*)menu->getWidget("Curved Links"))->setValue(false);
+        ((ofxUIImageToggle*)menu->getWidget("Straight Links"))->setValue(false);
         composer.setLinkType(PATH_LINKS);
     }
     else if (name == "Create Node") {
