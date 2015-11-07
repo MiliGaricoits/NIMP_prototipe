@@ -7,6 +7,7 @@
 #include "textInput.h"
 #include "textInputEvent.h"
 #include "enumerations.h"
+#include "menuItem.h"
 
 class testApp : public ofBaseApp{
 public:

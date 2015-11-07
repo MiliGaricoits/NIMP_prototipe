@@ -10,6 +10,7 @@
 		00062604515C1A5AD107D190 /* ofxUI2DGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D68246533CF747B2D940A6 /* ofxUI2DGraph.cpp */; };
 		0A086E991BE1960600FF0DBF /* composer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A086E971BE1960600FF0DBF /* composer.cpp */; };
 		0A086E9C1BE5566200FF0DBF /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A086E9A1BE5566200FF0DBF /* patch.cpp */; };
+		0A3801CD1BEE5BCE00395C19 /* menuItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A3801CB1BEE5BCE00395C19 /* menuItem.cpp */; };
 		0A6CF4391BBDF1830018021D /* nodeVideoInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CF4351BBDF1830018021D /* nodeVideoInterface.cpp */; };
 		0A6CF43A1BBDF1830018021D /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CF4371BBDF1830018021D /* testApp.cpp */; };
 		0AEB9C5C1BC04542009BA6DC /* textInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB9C5A1BC04542009BA6DC /* textInput.cpp */; };
@@ -137,6 +138,8 @@
 		0A086E981BE1960600FF0DBF /* composer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composer.h; sourceTree = "<group>"; };
 		0A086E9A1BE5566200FF0DBF /* patch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = patch.cpp; sourceTree = "<group>"; };
 		0A086E9B1BE5566200FF0DBF /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patch.h; sourceTree = "<group>"; };
+		0A3801CB1BEE5BCE00395C19 /* menuItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menuItem.cpp; sourceTree = "<group>"; };
+		0A3801CC1BEE5BCE00395C19 /* menuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuItem.h; sourceTree = "<group>"; };
 		0A6CF4331BBDF1830018021D /* button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
 		0A6CF4341BBDF1830018021D /* enumVideoState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enumVideoState.h; sourceTree = "<group>"; };
 		0A6CF4351BBDF1830018021D /* nodeVideoInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nodeVideoInterface.cpp; sourceTree = "<group>"; };
@@ -702,6 +705,8 @@
 				0A086E981BE1960600FF0DBF /* composer.h */,
 				0A086E9A1BE5566200FF0DBF /* patch.cpp */,
 				0A086E9B1BE5566200FF0DBF /* patch.h */,
+				0A3801CB1BEE5BCE00395C19 /* menuItem.cpp */,
+				0A3801CC1BEE5BCE00395C19 /* menuItem.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -877,6 +882,7 @@
 				1977A9FC07C62916A24EEF93 /* ofxUIMultiImageToggle.cpp in Sources */,
 				0A086E991BE1960600FF0DBF /* composer.cpp in Sources */,
 				0C9644725B45F9D34DA2879C /* ofxUINumberDialer.cpp in Sources */,
+				0A3801CD1BEE5BCE00395C19 /* menuItem.cpp in Sources */,
 				8FFC980F2B6E99F6153A8976 /* ofxUIRadio.cpp in Sources */,
 				60238F2D32FF5D0C8E8F6983 /* ofxUIRangeSlider.cpp in Sources */,
 				D3B25AC4272E4D27EA9D865C /* ofxUIRectangle.cpp in Sources */,
