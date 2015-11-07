@@ -227,7 +227,7 @@ void composer::updateScrollBar(ofVec3f diffVec){
     panelHeight = ofGetHeight() - margin - MENU_HEIGHT;
     
     gripRectangle.x = scrollBarRectangle.x; // Also adjust the grip x coordinate
-    int lowestCoord = getPatchesLowestCoord();  // La coordenada mas baja de un patch
+    int lowestCoord = getPatchesLowestCoord() - MENU_HEIGHT;  // La coordenada mas baja de un patch
     int highestCoord = getPatchesHighestCoord(); // La coordenada mas alta de un patch
     
     // Muestro la scrollBar
@@ -253,15 +253,14 @@ void composer::updateScrollBar(ofVec3f diffVec){
     gripRectangle.height = panelHeight * gripSizeRatioLow * gripSizeRatioHigh;
     
     // La 'y' del grip esta en la scrollbar por la relacion de lo que queda por arriba de la pantalla
-    gripRectangle.y = (1-gripSizeRatioHigh)*scrollBarRectangle.height;
+    gripRectangle.y = (1-gripSizeRatioHigh)*scrollBarRectangle.height + MENU_HEIGHT;
     
     // Si las alturas del grip y del scroll son iguales, es porque tengo todo a la vista
     // hago que la resta sea menor a 2 para dejar un margen, si no, queda a veces la barra cuando no es necesario
     if( (scrollBarRectangle.height - gripRectangle.height) < 2 ){
         isScrollBarVisible = false;
     }
-    
-    gripRectangle.y += MENU_HEIGHT;
+
 }
 
 void composer::updateHScrollBar(ofVec3f diffVec){
