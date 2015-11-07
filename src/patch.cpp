@@ -10,6 +10,9 @@
 #include <GLUT/glut.h>
 
 patch::patch() : ofxPatch() {
+    
+    selectedLink = -1;
+    selectedLinkPath = -1;
 
     ofAddListener(ofEvents().mousePressed, this, &patch::_mousePressed);
     ofAddListener(ofEvents().mouseDragged, this, &patch::_mouseDragged);
@@ -151,13 +154,15 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
 
 void patch::_mouseDragged(ofMouseEventArgs &e) {
     
-    ofxPatch::_mouseDragged(e);
-    
-    ofVec3f mouse = ofVec3f(e.x, e.y,0);
-    
-    if (bEditMode){
-        if (selectedLink >= 0 and selectedLinkPath >= 0) {
-            outPut[selectedLink].path_coorners[selectedLinkPath] = mouse;
+    if (!gui->getOtherSelected()) {
+        ofxPatch::_mouseDragged(e);
+        
+        ofVec3f mouse = ofVec3f(e.x, e.y,0);
+        
+        if (bEditMode){
+            if (selectedLink >= 0 and selectedLinkPath >= 0) {
+                outPut[selectedLink].path_coorners[selectedLinkPath] = mouse;
+            }
         }
     }
 }
@@ -226,4 +231,8 @@ bool patch::is_between (float x, float bound1, float bound2, float tolerance) {
     // 'bound2' is greater than 'bound1'.
     return (((x >= (bound1 - tolerance)) && (x <= (bound2 + tolerance))) ||
             ((x >= (bound2 - tolerance)) && (x <= (bound1 + tolerance))));
+}
+
+void patch::setMainCanvas(ofxUISuperCanvas* _gui) {
+    this->gui = _gui;
 }

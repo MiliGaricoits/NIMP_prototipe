@@ -29,9 +29,10 @@ public:
     void menuEvent(ofxUIEventArgs &e);
     
     composer composer;
-    ofxUISuperCanvas *gui;
-    ofxUISuperCanvas *menu;
+    ofxUISuperCanvas* gui;
+    ofxUISuperCanvas* menu;
     
 protected:
     vector<ofxUIWidget*> widgetsToDelete;
+    textInput* newNodeInput;
 };

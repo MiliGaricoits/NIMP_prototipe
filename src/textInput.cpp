@@ -21,6 +21,8 @@ textInput::textInput(string _name, string _textstring, float w, float h, float x
     nodes.push_back("texture");
     nodes.push_back("video");
     nodes.push_back("camera");
+    
+    imSelected = false;
 }
 
 void textInput::setDropdownList(ofxUIDropDownList* dl) {
@@ -60,12 +62,31 @@ void textInput::keyPressed(int key) {
 
 void textInput::mouseDragged(int x, int y, int button) {
     
-    ofxUITextInput::mouseDragged(x, y, button);
-    
-    if ((this->draggable) and (this->hit)) {
-        this->dropdownList->getRect()->setX(x - hitPoint.x);
-        this->dropdownList->getRect()->setY(y - hitPoint.y);
+    if ( (this->hit && !((ofxUISuperCanvas*)this->getCanvasParent())->getOtherSelected()) || (this->hit && imSelected) ) {
+        ofxUITextInput::mouseDragged(x, y, button);
+        
+        if ((this->draggable) and (this->hit)) {
+            this->dropdownList->getRect()->setX(x - hitPoint.x);
+            this->dropdownList->getRect()->setY(y - hitPoint.y);
+            
+            ((ofxUISuperCanvas*)this->getCanvasParent())->setOtherSelected(true);
+            imSelected = true;
+        }
     }
+}
+
+void textInput::mousePressed(int x, int y, int button) {
+    
+    ofxUITextInput::mousePressed(x, y, button);
+}
+
+void textInput::mouseReleased(int x, int y, int button) {
+    
+    if (hit) {
+        ((ofxUISuperCanvas*)this->getCanvasParent())->setOtherSelected(false);
+        imSelected = false;
+    }
+    ofxUITextInput::mouseReleased(x, y, button);
 }
 
 void textInput::guiEvent(ofxUIEventArgs &e){

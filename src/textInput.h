@@ -26,6 +26,8 @@ public:
     
     void keyPressed(int key);
     void mouseDragged(int x, int y, int button);
+    void mousePressed(int x, int y, int button);
+    void mouseReleased(int x, int y, int button);
     void guiEvent(ofxUIEventArgs &e);
     
     ofEvent<textInputEvent> createNode;
@@ -34,6 +36,7 @@ protected:
     
     ofxUIDropDownList *dropdownList;
     vector<string> nodes;
+    bool imSelected;
 };
 
 #endif /* defined(__NIMP_Prototipe__textInput__) */

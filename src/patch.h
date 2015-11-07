@@ -37,12 +37,16 @@ public:
     void setLinkType(nodeLinkType type);
     bool is_between (float x, float bound1, float bound2, float tolerance);
     
+    void setMainCanvas(ofxUISuperCanvas* gui);
     
 private:
     
     nodeVideoInterface *videoInterface;
     nodeLinkType linkType;
     bool commandKey;
+    int selectedLinkPath;
+    int selectedLink;
+    ofxUISuperCanvas* gui;
 };
 
 #endif /* defined(__NIMP_Prototipe__patch__) */

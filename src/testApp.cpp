@@ -6,11 +6,14 @@ void testApp::setup(){
     ofEnableSmoothing();
     ofSetVerticalSync(false);
     
-    composer.load("config.xml");
-    composer.setLinkType(PATH_LINKS);
     gui = new ofxUISuperCanvas("", 0, 15, ofGetWidth(), ofGetHeight());
     gui->setColorBack(ofxUIColor(255,255,255,0));
     gui->setDraggable(false);
+    gui->setOtherSelected(false);
+    
+    composer.setMainCanvas(gui);
+    composer.load("config.xml");
+    composer.setLinkType(PATH_LINKS);
     
     menu = new ofxUISuperCanvas("menu", 0, -15, ofGetWidth(), 60);
     menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
@@ -30,7 +33,6 @@ void testApp::setup(){
     
     // nico ScrollBar setup
     composer.setupScrollBar();
-
 }
 
 //-------------------------------------------------------------- LOOP
@@ -40,6 +42,8 @@ void testApp::update(){
     
     if (widgetsToDelete.size() > 0) {
         for(auto widget : widgetsToDelete) {
+            if (newNodeInput == widget)
+                newNodeInput = NULL;
             gui->removeWidget(widget);
         }
         widgetsToDelete.clear();
@@ -72,21 +76,22 @@ void testApp::keyPressed(int key){
     
     if (key == OF_KEY_DEL) {
         
-        vector<ofxUIWidget*> all_nodes = gui->getWidgetsOfType(OFX_UI_WIDGET_TEXTINPUT);
-        for (int i = 0; i < all_nodes.size(); i++) {
-            if (((ofxUITextInput*) all_nodes[i])->isClicked())
-                gui->removeWidget(all_nodes[i]);
-        }
-        
-        // delete memory
-        if (!all_nodes.empty()) {
-            all_nodes.clear();
-            vector<ofxUIWidget*>().swap(all_nodes);
+        if (((ofxUITextInput*) newNodeInput)->isClicked()) {
+            gui->removeWidget(newNodeInput);
+            newNodeInput = NULL;
         }
     }
     else if ((key == 'n') || (key == 'N')){
         
-        this->createNodeInput();
+        if (newNodeInput == NULL)
+            this->createNodeInput();
+        else if (!newNodeInput->isClicked()){
+            newNodeInput->getRect()->setX(ofGetMouseX());
+            newNodeInput->getRect()->setY(ofGetMouseY());
+            
+            newNodeInput->getDropdownList()->getRect()->setX(ofGetMouseX());
+            newNodeInput->getDropdownList()->getRect()->setY(ofGetMouseY());
+        }
     }
 }
 
@@ -100,8 +105,6 @@ void testApp::mouseDragged(int x, int y, int button){
 }
 
 void testApp::mousePressed(int x, int y, int button){
-    //cout << "x: " << x << endl;
-    //cout << "y: " << y << endl;
 }
 
 void testApp::mouseReleased(int x, int y, int button){
@@ -124,16 +127,6 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 
 
 void testApp::createNodeInput(float _x, float _y){
- 
-    vector<ofxUIWidget*> all_nodes = gui->getWidgetsOfType(OFX_UI_WIDGET_TEXTINPUT);
-    
-    int i = 0;
-    while (i < all_nodes.size()) {
-        
-        if (((ofxUITextInput*) all_nodes[i])->isClicked())
-            return;
-        i++;
-    };
     
     textInput *node = new textInput("", "", 150, 20, _x, _y);
     vector<string> nodes;
@@ -148,11 +141,7 @@ void testApp::createNodeInput(float _x, float _y){
     
     ofAddListener( node->createNode , this, &testApp::createNode);
     
-    // delete memory
-    if (!all_nodes.empty()) {
-        all_nodes.clear();
-        vector<ofxUIWidget*>().swap(all_nodes);
-    }
+    newNodeInput = node;
 }
 
 void testApp::createNode(textInputEvent &args){
@@ -165,8 +154,8 @@ void testApp::createNode(textInputEvent &args){
     }
     
     ofRemoveListener(((textInput*)args.widget)->createNode , this, &testApp::createNode);
-    
-    widgetsToDelete.push_back(args.widget);
+
+    widgetsToDelete.push_back(args.widget); // delete input from canvas
 }
 
 void testApp::menuEvent(ofxUIEventArgs &e)
@@ -191,7 +180,16 @@ void testApp::menuEvent(ofxUIEventArgs &e)
         composer.setLinkType(PATH_LINKS);
     }
     else if (name == "create_node") {
-        this->createNodeInput((ofGetWidth()/2)-75, ofGetHeight()/2);
+        
+        if (newNodeInput == NULL)
+            this->createNodeInput((ofGetWidth()/2)-75, ofGetHeight()/2);
+        else if (!newNodeInput->isClicked()){
+            newNodeInput->getRect()->setX((ofGetWidth()/2)-75);
+            newNodeInput->getRect()->setY(ofGetHeight()/2);
+            
+            newNodeInput->getDropdownList()->getRect()->setX((ofGetWidth()/2)-75);
+            newNodeInput->getDropdownList()->getRect()->setY(ofGetHeight()/2);
+        }
     }
 }
 
