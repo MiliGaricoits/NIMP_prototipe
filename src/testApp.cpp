@@ -18,8 +18,13 @@ void testApp::setup(){
     menu = new ofxUISuperCanvas("menu", 0, -15, ofGetWidth(), 60);
     menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
     menu->setGlobalButtonDimension(30);
-    menu->addImageButton("create_node", "assets/node.png", false);
+    
+    menu->addImageButton("new_file", "assets/new_file.png", false);
     menu->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+    menu->addImageButton("open_file", "assets/open_file.png", false);
+    menu->addImageButton("save_file", "assets/save_file.png", false);
+    menu->addSpacer(1,30);
+    menu->addImageButton("create_node", "assets/node.png", false);
     menu->addSpacer(1,30);
     menu->addImageButton("save_snippet", "assets/save_snippet.png", false);
     menu->addImageButton("open_snippet", "assets/open_snippet.png", false);

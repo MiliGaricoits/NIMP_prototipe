@@ -91,7 +91,13 @@ void textInput::mouseReleased(int x, int y, int button) {
 
 void textInput::guiEvent(ofxUIEventArgs &e){
     
-    if(e.widget == this->dropdownList){
+    if (e.widget == this) {
+        if (this->isClicked())
+            this->dropdownList->setVisible(true);
+        else this->dropdownList->setVisible(false);
+    }
+    
+    if(e.widget == this->dropdownList && this->dropdownList->getSelected().size()){
         this->setTextString(this->dropdownList->getSelected()[0]->getName());
         
         textInputEvent e;
