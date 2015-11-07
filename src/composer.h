@@ -60,6 +60,7 @@ private:
     
     float KEY_SCROLL_SENSITIVITY = 10.f;
     int SCROLL_TOLERANCE = 10;
+    float MENU_HEIGHT = 45.f;
     // nico ScrollBar fin
 };
 

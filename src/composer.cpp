@@ -33,23 +33,23 @@ void composer::draw(){
     ofPushMatrix();
     // Draw the scroll bar, is needed
     if (isScrollBarVisible) {
-        ofSetColor(110);
+        ofSetColor(40);
         ofRect(scrollBarRectangle);
         if (isDraggingGrip() || mouseOverGrip) {
             ofSetColor(230);
         } else {
-            ofSetColor(180);
+            ofSetColor(100);
         }
         ofRect(gripRectangle);
     }
     
     if (isHScrollBarVisible) {
-        ofSetColor(110);
+        ofSetColor(40);
         ofRect(hScrollBarRectangle);
         if (isDraggingHGrip() || mouseOverHGrip) {
             ofSetColor(230);
         } else {
-            ofSetColor(180);
+            ofSetColor(100);
         }
         ofRect(hGripRectangle);
     }
@@ -74,8 +74,8 @@ void composer::setupScrollBar(){
     // Now two rectangles, for the scroll bar and his grip placements
     // Coordinates are relative to the panel coordinates, not to the screen coordinates
     // This is a first initialisation, but we don't know many things about these placements at this state
-    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, 0, scrollBarWidth, 0);
-    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, 0, scrollBarWidth, 0);
+    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT, scrollBarWidth, 0);
+    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT, scrollBarWidth, 0);
     
     hScrollBarRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
     hGripRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
@@ -208,12 +208,12 @@ void composer::updateScrollBar(ofVec3f diffVec){
     
     // TODO: con la flechita no puedo ir a los topes de la barra
     if(diffVec.y != 0){
-        if(!(gripRectangle.y < 0) && !(gripRectangle.getBottom() > scrollBarRectangle.getBottom())){
+        if(!(gripRectangle.y < MENU_HEIGHT) && !(gripRectangle.getBottom() > scrollBarRectangle.getBottom())){
             movePatches(diffVec);
         }
         
         // Check if the grip is still in the scroll bar
-        if (gripRectangle.y < 0) {
+        if (gripRectangle.y < MENU_HEIGHT) {
             gripRectangle.y = 0;
         }
         if (gripRectangle.getBottom() > scrollBarRectangle.getBottom()) {
@@ -224,7 +224,7 @@ void composer::updateScrollBar(ofVec3f diffVec){
     
     // The size of the panel. All the screen except margins
     panelWidth = ofGetWidth() - margin;
-    panelHeight = ofGetHeight() - margin;
+    panelHeight = ofGetHeight() - margin - MENU_HEIGHT;
     
     gripRectangle.x = scrollBarRectangle.x; // Also adjust the grip x coordinate
     int lowestCoord = getPatchesLowestCoord();  // La coordenada mas baja de un patch
@@ -260,6 +260,8 @@ void composer::updateScrollBar(ofVec3f diffVec){
     if( (scrollBarRectangle.height - gripRectangle.height) < 2 ){
         isScrollBarVisible = false;
     }
+    
+    gripRectangle.y += MENU_HEIGHT;
 }
 
 void composer::updateHScrollBar(ofVec3f diffVec){
