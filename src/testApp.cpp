@@ -17,7 +17,7 @@ void testApp::setup(){
     
     menu = new ofxUISuperCanvas("menu", 0, -15, ofGetWidth(), 60);
     menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
-    menu->setColorBack(ofxUIColor(140, 140, 140,100));
+    menu->setColorBack(ofxUIColor(140, 140, 140,255));
     menu->setGlobalButtonDimension(30);
     
     new menuItem(menu, "MultiImageButton", "New Patcher", "assets/new_file.png", false);
@@ -33,6 +33,8 @@ void testApp::setup(){
     new menuItem(menu, "MultiImageToggle", "Straight Links", "assets/line.png", false);
     new menuItem(menu, "MultiImageToggle", "Curved Links", "assets/curve_line.png", false);
     new menuItem(menu, "MultiImageToggle", "Segmented Links", "assets/path_line.png", true);
+    menu->addSpacer(1,30)->setColorFill(ofxUIColor(120, 120, 120,200));
+    new menuItem(menu, "MultiImageToggle", "Edit Mode on/off", "assets/edit_mode.png", false);
     
     ofAddListener(menu->newGUIEvent,this,&testApp::menuEvent);
 
@@ -102,6 +104,12 @@ void testApp::keyPressed(int key){
 }
 
 void testApp::keyReleased(int key){
+    
+    if ((key == 'n') || (key == 'N')){
+        
+        if (newNodeInput != NULL && !newNodeInput->isClicked())
+            newNodeInput->setFocus(true);
+    }
 }
 
 void testApp::mouseMoved(int x, int y ){
@@ -141,8 +149,9 @@ void testApp::createNodeInput(float _x, float _y){
     gui->addWidget(dlist);
     gui->addWidget(node);
     
-    dlist->setColorBack(ofxUIColor (255,255,255,0));
-    node->setColorBack(ofxUIColor (255,255,255,100));
+    //dlist->setColorBack(ofxUIColor (200,200,200,20));
+    node->setColorBack(ofxUIColor (80,80,80,100));
+    node->setColorOutlineHighlight(ofxUIColor(150,150,250));
     node->setDropdownList(dlist);
     
     ofAddListener( node->createNode , this, &testApp::createNode);
@@ -195,7 +204,15 @@ void testApp::menuEvent(ofxUIEventArgs &e)
             
             newNodeInput->getDropdownList()->getRect()->setX((ofGetWidth()/2)-75);
             newNodeInput->getDropdownList()->getRect()->setY(ofGetHeight()/2);
+            
+            newNodeInput->setFocus(true);
         }
+    }
+    else if (name == "Edit Mode on/off") {
+        
+        if (composer.getEdit())
+            composer.setEdit(false);
+        else composer.setEdit(true);
     }
 }
 

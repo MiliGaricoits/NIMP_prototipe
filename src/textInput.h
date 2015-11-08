@@ -32,11 +32,12 @@ public:
     
     ofEvent<textInputEvent> createNode;
 
-protected:
+private:
     
     ofxUIDropDownList *dropdownList;
     vector<string> nodes;
     bool imSelected;
+
 };
 
 #endif /* defined(__NIMP_Prototipe__textInput__) */

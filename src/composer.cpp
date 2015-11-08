@@ -20,9 +20,14 @@ composer::composer() : ofxComposer() {
     ofAddListener(ofEvents().mouseDragged, this, &composer::_mouseDragged);
 }
 
+/* ================================================ */
+/*                      LOOPS                       */
+/* ================================================ */
+
 void composer::update(){
     this->ofxComposer::update();
 }
+
 void composer::draw(){
     ofPushMatrix();
     ofPushStyle();
@@ -56,42 +61,10 @@ void composer::draw(){
     ofPopMatrix();
 }
 
-void composer::setLinkType (nodeLinkType type) {
-    for(map<int,patch*>::iterator it = this->patches.begin(); it != this->patches.end(); it++ ){
-        it->second->setLinkType(type);
-    }
-}
+/* ================================================ */
+/*                      EVENTS                      */
+/* ================================================ */
 
-void composer::setupScrollBar(){
-    /*
-     The "panel" is a frame. This frame contains the displayed images, and the scroll bar.
-     The scroll bar contains a "grip". The user can drag the grip with the mouse.
-     */
-    
-    margin = 20.f;            // Distance between the edge of the screen and the panel frame
-    scrollBarWidth = 20.f;
-    
-    // Now two rectangles, for the scroll bar and his grip placements
-    // Coordinates are relative to the panel coordinates, not to the screen coordinates
-    // This is a first initialisation, but we don't know many things about these placements at this state
-    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT, scrollBarWidth, 0);
-    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT, scrollBarWidth, 0);
-    
-    hScrollBarRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
-    hGripRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
-    
-    setDraggingGrip(false); // true when the user is moving the grip
-    mouseOverGrip = false; // true when the mouse is over the grip
-    
-    mouseOverHGrip = false;
-    setDraggingHGrip(false);
-    
-    updateScrollBar(ofVec3f(0,0,0));
-    updateHScrollBar(ofVec3f(0,0,0));
-}
-
-
-/************************************** EVENTOS INICIO ******************************/
 void composer::_mouseDragged(ofMouseEventArgs &e){
     ofVec3f mouse = ofVec3f(e.x, e.y,0);
     ofVec3f mouseLast = ofVec3f(ofGetPreviousMouseX(),ofGetPreviousMouseY(),0);
@@ -201,8 +174,47 @@ void composer::_windowResized(ofResizeEventArgs &e){
     ofxComposer::_windowResized(e);
 }
 
-/************************************** EVENTOS FIN ******************************/
+/* ================================================ */
+/*       GETTERS | SETTERS | OTHER FUNCTIONS        */
+/* ================================================ */
 
+bool composer::getEdit(){
+    return this->bEditMode;
+}
+
+void composer::setLinkType (nodeLinkType type) {
+    for(map<int,patch*>::iterator it = this->patches.begin(); it != this->patches.end(); it++ ){
+        it->second->setLinkType(type);
+    }
+}
+
+void composer::setupScrollBar(){
+    /*
+     The "panel" is a frame. This frame contains the displayed images, and the scroll bar.
+     The scroll bar contains a "grip". The user can drag the grip with the mouse.
+     */
+    
+    margin = 20.f;            // Distance between the edge of the screen and the panel frame
+    scrollBarWidth = 20.f;
+    
+    // Now two rectangles, for the scroll bar and his grip placements
+    // Coordinates are relative to the panel coordinates, not to the screen coordinates
+    // This is a first initialisation, but we don't know many things about these placements at this state
+    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT, scrollBarWidth, 0);
+    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT, scrollBarWidth, 0);
+    
+    hScrollBarRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
+    hGripRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
+    
+    setDraggingGrip(false); // true when the user is moving the grip
+    mouseOverGrip = false; // true when the mouse is over the grip
+    
+    mouseOverHGrip = false;
+    setDraggingHGrip(false);
+    
+    updateScrollBar(ofVec3f(0,0,0));
+    updateHScrollBar(ofVec3f(0,0,0));
+}
 
 void composer::updateScrollBar(ofVec3f diffVec){
     

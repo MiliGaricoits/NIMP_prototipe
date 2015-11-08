@@ -15,7 +15,6 @@ textInput::textInput(string _name, string _textstring, float w, float h, float x
 {
     init(_name, _textstring, w, h, x, y, _size);
     
-    nodes.push_back("gif");
     nodes.push_back("image");
     nodes.push_back("shader");
     nodes.push_back("texture");
@@ -25,24 +24,10 @@ textInput::textInput(string _name, string _textstring, float w, float h, float x
     imSelected = false;
 }
 
-void textInput::setDropdownList(ofxUIDropDownList* dl) {
-    
-    dl->open();
-    dl->setVisible(false);
-    dl->setAutoClose(true);
-    
-    dl->addToggles(nodes);
-    dl->setToggleVisibility(false);
-    
-    this->addEmbeddedWidget(dl);
-    this->dropdownList = dl;
-    
-    ofAddListener(((ofxUISuperCanvas*) dl->getCanvasParent())->newGUIEvent,this,&textInput::guiEvent);
-}
+/* ================================================ */
+/*                      EVENTS                      */
+/* ================================================ */
 
-ofxUIDropDownList* textInput::getDropdownList() {
-    return this->dropdownList;
-}
 
 void textInput::keyPressed(int key) {
     
@@ -55,7 +40,9 @@ void textInput::keyPressed(int key) {
                 n->setVisible(true);
             else n->setVisible(false);
         }
-
+        
+        dropdownList->clearSelected();
+        
         if (not this->dropdownList->isOpen()) this->dropdownList->open();
     }
 }
@@ -75,29 +62,25 @@ void textInput::mouseDragged(int x, int y, int button) {
     }
 }
 
-void textInput::mousePressed(int x, int y, int button) {
-    
-    ofxUITextInput::mousePressed(x, y, button);
-}
-
 void textInput::mouseReleased(int x, int y, int button) {
     
     if (hit) {
         ((ofxUISuperCanvas*)this->getCanvasParent())->setOtherSelected(false);
         imSelected = false;
+        
+        if (isFocused())
+            this->dropdownList->setVisible(true);
+        else {
+            dropdownList->clearSelected();
+            this->dropdownList->setVisible(false);
+        }
     }
     ofxUITextInput::mouseReleased(x, y, button);
 }
 
 void textInput::guiEvent(ofxUIEventArgs &e){
     
-    if (e.widget == this) {
-        if (this->isClicked())
-            this->dropdownList->setVisible(true);
-        else this->dropdownList->setVisible(false);
-    }
-    
-    if(e.widget == this->dropdownList && this->dropdownList->getSelected().size()){
+    if(e.widget == this->dropdownList && this->dropdownList->getSelected().size()) {
         this->setTextString(this->dropdownList->getSelected()[0]->getName());
         
         textInputEvent e;
@@ -137,7 +120,10 @@ void textInput::guiEvent(ofxUIEventArgs &e){
                 }
                 file.close();
             }
-            else return;
+            else {
+                dropdownList->clearSelected();
+                return;
+            }
         }
         else if (e.type == "video") {
             
@@ -164,7 +150,10 @@ void textInput::guiEvent(ofxUIEventArgs &e){
                 }
                 file.close();
             }
-            else return;
+            else {
+                dropdownList->clearSelected();
+                return;
+            }
         }
         else if (e.type == "shader") {
             
@@ -189,7 +178,10 @@ void textInput::guiEvent(ofxUIEventArgs &e){
                 }
                 file.close();
             }
-            else return;
+            else {
+                dropdownList->clearSelected();
+                return;
+            }
         }
         else if (e.type == "texture") {
             
@@ -214,10 +206,37 @@ void textInput::guiEvent(ofxUIEventArgs &e){
                 }
                 file.close();
             }
-            else return;
+            else {
+                dropdownList->clearSelected();
+                return;
+            }
         }
         
         ofNotifyEvent(createNode, e , this);
         
     }
 }
+
+/* ================================================ */
+/*       GETTERS | SETTERS | OTHER FUNCTIONS        */
+/* ================================================ */
+
+void textInput::setDropdownList(ofxUIDropDownList* dl) {
+    
+    dl->open();
+    dl->setVisible(false);
+    dl->setAutoClose(true);
+    
+    dl->addToggles(nodes);
+    dl->setToggleVisibility(false);
+    
+    this->addEmbeddedWidget(dl);
+    this->dropdownList = dl;
+    
+    ofAddListener(((ofxUISuperCanvas*) dl->getCanvasParent())->newGUIEvent,this,&textInput::guiEvent);
+}
+
+ofxUIDropDownList* textInput::getDropdownList() {
+    return this->dropdownList;
+}
+

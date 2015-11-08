@@ -19,7 +19,9 @@ public:
     
     composer();
     
+    bool getEdit();
     void setLinkType (nodeLinkType type);
+    
     void setupScrollBar();
     void updateScrollBar(ofVec3f diffVec);
     void updateHScrollBar(ofVec3f diffVec);
