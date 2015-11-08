@@ -21,13 +21,15 @@ class textInput : public ofxUITextInput
 public:
     
     textInput(string _name, string _textstring, float w, float h = 0, float x = 0, float y = 0, int _size = OFX_UI_FONT_SMALL);
-    void setDropdownList(ofxUIDropDownList* dl);
-    ofxUIDropDownList* getDropdownList();
+    ~textInput();
     
     void keyPressed(int key);
     void mouseDragged(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
     void guiEvent(ofxUIEventArgs &e);
+    
+    void setDropdownList(ofxUIDropDownList* dl);
+    ofxUIDropDownList* getDropdownList();
     
     ofEvent<textInputEvent> createNode;
 

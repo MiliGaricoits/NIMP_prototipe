@@ -24,6 +24,11 @@ textInput::textInput(string _name, string _textstring, float w, float h, float x
     imSelected = false;
 }
 
+textInput::~textInput() {
+    
+    ofRemoveListener(((ofxUISuperCanvas*) this->getCanvasParent())->newGUIEvent, this, &textInput::guiEvent);
+}
+
 /* ================================================ */
 /*                      EVENTS                      */
 /* ================================================ */
