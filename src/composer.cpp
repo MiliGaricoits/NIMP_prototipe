@@ -240,7 +240,7 @@ void composer::updateScrollBar(ofVec3f diffVec){
     
     gripRectangle.x = scrollBarRectangle.x;                   // Also adjust the grip x coordinate
     int lowestCoord = getPatchesLowestCoord() - MENU_HEIGHT;  // La coordenada mas baja de un patch
-    int highestCoord = getPatchesHighestCoord() - MENU_HEIGHT;              // La coordenada mas alta de un patch
+    int highestCoord = getPatchesHighestCoord() - MENU_HEIGHT;// La coordenada mas alta de un patch
     
     // Muestro la scrollBar
     isScrollBarVisible = true;
