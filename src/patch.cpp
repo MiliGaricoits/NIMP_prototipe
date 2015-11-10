@@ -236,3 +236,12 @@ bool patch::is_between (float x, float bound1, float bound2, float tolerance) {
 void patch::setMainCanvas(ofxUISuperCanvas* _gui) {
     this->gui = _gui;
 }
+
+// nico snippet
+bool patch::loadSnippetPatch(string snippetName, int relativeId, int previousPatchesSize) {
+    return ofxPatch::loadSnippetPatch(snippetName, relativeId, previousPatchesSize);
+}
+
+bool patch::saveSnippetPatch(string snippetName) {
+    ofxPatch::saveSnippetPatch(snippetName);
+}

@@ -64,6 +64,7 @@ private:
     int SCROLL_TOLERANCE = 10;
     float MENU_HEIGHT = 45.f;
     // nico ScrollBar fin
+    
 };
 
 #endif /* defined(__NIMP_Prototipe__composer__) */

@@ -166,6 +166,11 @@ void composer::_keyPressed(ofKeyEventArgs &e){
     updateScrollBar(diffVec);
     updateHScrollBar(diffVec);
     
+    
+    if (e.key == 'j') {
+        loadSnippet("snippet.xml");
+    }
+    
     ofxComposer::_keyPressed(e);
 }
 
@@ -334,6 +339,95 @@ void composer::updateHScrollBar(ofVec3f diffVec){
     }
 }
 
+
+
+/************************************** EMPIEZA SNIPPETS *********************************/
+void ofxComposer::loadSnippet(string snippetName) {
+    ofxXmlSettings XML;
+    
+    int previousPatchesSize = patches.size();
+//    int previousPatchesSize = 0;
+    deactivateAllPatches();
+    
+//    patches.clear();
+    if (XML.loadFile(snippetName)){
+        
+#ifdef USE_OFXGLEDITOR
+        editor.setup(XML.getValue("general:console:font", "menlo.ttf"));
+#endif
+        int totalPatchs = XML.getNumTags("surface");
+        
+        // Load each surface present on the xml file
+        //
+        for(int i = 0; i < totalPatchs ; i++){
+            patch *nPatch = new patch();
+            bool loaded = nPatch->loadSnippetPatch(snippetName, i, previousPatchesSize);
+            if (loaded){
+                
+#ifdef USE_OFXGLEDITOR
+                if (nPatch->getType() == "ofxGLEditor"){
+                    ofLog(OF_LOG_NOTICE,"ofxComposer: ofxGLEditor loaded");
+                    nPatch->setTexture( editorFbo.getTextureReference(), 0);
+                    bGLEditorPatch = true;
+                }
+#endif
+                // Listen to close bottom on the titleBar
+                //
+                ofAddListener( nPatch->title->close , this, &ofxComposer::closePatch);
+                
+                // Insert the new patch into the map
+                //
+                patches[nPatch->getId()] = nPatch;
+                
+                //mili
+                nPatch->setMainCanvas(this->gui);
+                //
+                
+                nPatch->bActive = true;
+            }
+        }
+        
+        // Load links between Patchs
+        //
+        for(int i = 0; i < totalPatchs ; i++){
+            if (XML.pushTag("surface", i)){
+                int fromID = XML.getValue("id", -1);
+                
+                if (XML.pushTag("out")){
+                    
+                    int totalLinks = XML.getNumTags("dot");
+                    for(int j = 0; j < totalLinks ; j++){
+                        
+                        if (XML.pushTag("dot",j)){
+                            int toID = XML.getValue("to", 0);
+                            int nTex = XML.getValue("tex", 0);
+                            
+                            // If everything goes ok "i" will match the position of the vector
+                            // with the position on the XML, in the same place of the vector array
+                            // defined on the previus loop
+                            //
+                            connect( fromID + previousPatchesSize, toID + previousPatchesSize, nTex);
+                            
+                            XML.popTag();
+                        }
+                    }
+                    XML.popTag();
+                }
+                XML.popTag();
+            }
+        }
+    }
+}
+
+
+bool ofxComposer::saveSnippet(string snippetName) {
+    bool saveOk = true;
+    for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
+        saveOk = saveOk && it->second->saveSnippetPatch(snippetName);
+    }
+    return saveOk;
+}
+/*****************************************************************************************/
 
 
 

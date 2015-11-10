@@ -1,30 +1,24 @@
-<web>http://www.patriciogonzalezvivo.com</web>
-<general>
-    <fullscreen>0</fullscreen>
-    <width>640</width>
-    <height>480</height>
-</general>
 <surface>
-    <id>1</id>
+    <id>0</id>
     <type>ofVideoGrabber</type>
     <path>0</path>
     <visible>0</visible>
     <texture>
         <point>
-            <x>202.437316895</x>
-            <y>652.009033203</y>
+            <x>241.437316895</x>
+            <y>223.009033203</y>
         </point>
         <point>
-            <x>359.000000000</x>
-            <y>653.000000000</y>
+            <x>398.000000000</x>
+            <y>224.000000000</y>
         </point>
         <point>
-            <x>360.367340088</x>
-            <y>770.436401367</y>
+            <x>399.367340088</x>
+            <y>341.436370850</y>
         </point>
         <point>
-            <x>202.445617676</x>
-            <y>770.436401367</y>
+            <x>241.445617676</x>
+            <y>341.436401367</y>
         </point>
     </texture>
     <mask>
@@ -47,14 +41,10 @@
     </mask>
     <out>
         <active>1</active>
-        <dot>
-            <to>2</to>
-            <tex>0</tex>
-        </dot>
     </out>
 </surface>
 <surface>
-    <id>2</id>
+    <id>1</id>
     <type>ofShader</type>
     <path>/Users/Patricio/Dropbox/Public/GPU-toolbox/pattern1.fs</path>
     <visible>1</visible>
@@ -63,20 +53,20 @@
     <passes>1</passes>
     <texture>
         <point>
-            <x>518.327209473</x>
-            <y>644.253662109</y>
+            <x>591.327209473</x>
+            <y>182.253692627</y>
         </point>
         <point>
-            <x>687.678466797</x>
-            <y>644.232910156</y>
+            <x>760.678466797</x>
+            <y>182.232879639</y>
         </point>
         <point>
-            <x>687.684326172</x>
-            <y>771.250305176</y>
+            <x>760.684326172</x>
+            <y>309.250305176</y>
         </point>
         <point>
-            <x>518.337768555</x>
-            <y>771.250976562</y>
+            <x>591.337768555</x>
+            <y>309.250976562</y>
         </point>
     </texture>
     <mask>
