@@ -167,15 +167,12 @@ void composer::_keyPressed(ofKeyEventArgs &e){
     updateHScrollBar(diffVec);
     
     
-    if (e.key == 'j') {
-        loadSnippet("snippet.xml");
-    }
-    if (e.key == 'k') {
-//        for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
-//            cout << "id: " << it->second->getId() << endl;
-//        }
-        saveSnippet("snippetSave.xml");
-    }
+//    if (e.key == 'j') {
+//        loadSnippet("snippet.xml");
+//    }
+//    if (e.key == 'k') {
+//        saveSnippet("snippetSave.xml");
+//    }
     
     ofxComposer::_keyPressed(e);
 }
