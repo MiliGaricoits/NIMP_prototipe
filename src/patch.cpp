@@ -242,6 +242,6 @@ bool patch::loadSnippetPatch(string snippetName, int relativeId, int previousPat
     return ofxPatch::loadSnippetPatch(snippetName, relativeId, previousPatchesSize);
 }
 
-bool patch::saveSnippetPatch(string snippetName) {
-    ofxPatch::saveSnippetPatch(snippetName);
+bool patch::saveSnippetPatch(string snippetName, map<int, int> idMap, ofxXmlSettings xml) {
+   return ofxPatch::saveSnippetPatch(snippetName, idMap, xml);
 }

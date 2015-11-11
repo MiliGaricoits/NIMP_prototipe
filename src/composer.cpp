@@ -170,6 +170,12 @@ void composer::_keyPressed(ofKeyEventArgs &e){
     if (e.key == 'j') {
         loadSnippet("snippet.xml");
     }
+    if (e.key == 'k') {
+//        for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
+//            cout << "id: " << it->second->getId() << endl;
+//        }
+        saveSnippet("snippetSave.xml");
+    }
     
     ofxComposer::_keyPressed(e);
 }
@@ -346,10 +352,8 @@ void ofxComposer::loadSnippet(string snippetName) {
     ofxXmlSettings XML;
     
     int previousPatchesSize = patches.size();
-//    int previousPatchesSize = 0;
     deactivateAllPatches();
     
-//    patches.clear();
     if (XML.loadFile(snippetName)){
         
 #ifdef USE_OFXGLEDITOR
@@ -422,9 +426,35 @@ void ofxComposer::loadSnippet(string snippetName) {
 
 bool ofxComposer::saveSnippet(string snippetName) {
     bool saveOk = true;
-    for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
-        saveOk = saveOk && it->second->saveSnippetPatch(snippetName);
+    
+    ofxXmlSettings XML;
+    
+    bool a;
+    bool b;
+    // Delete and create xml file
+    if (XML.loadFile(snippetName)) {
+        XML.clear();
+//        a = XML.saveFile();
+    } else {
+        b = XML.saveFile(snippetName);
+        XML.loadFile(snippetName);
     }
+    
+    
+    map<int,int> idMap;// = new map<int, int>;
+    int idAux = 0;
+    for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
+        if(it->second->bActive) {
+            idMap[it->second->getId()] = idAux;
+            idAux++;
+        }
+    }
+    for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
+        saveOk = saveOk && it->second->saveSnippetPatch(snippetName, idMap, XML);
+    }
+    
+    XML.saveFile(snippetName);
+    
     return saveOk;
 }
 /*****************************************************************************************/
