@@ -72,7 +72,7 @@ void nodeVideoInterface::draw(){
     ofPushStyle();
     
     // Draw controls
-    gui->setPosition(windowsBox->x + windowsBox->width - gui->getRect()->width , windowsBox->y + windowsBox->height - 16);
+    gui->ofxUICanvas::setPosition(windowsBox->x + windowsBox->width - gui->getRect()->width , windowsBox->y + windowsBox->height - 16);
     ofFill();
     ofSetColor(0,250, 130);
     ofRect(windowsBox->x, windowsBox->y + windowsBox->height, windowsBox->width, height);

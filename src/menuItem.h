@@ -17,7 +17,7 @@ class menuItem: public ofxMSAInteractiveObject {
     
 public:
     
-    menuItem(ofxUISuperCanvas* menu, string type, string name, string img, bool active);
+    menuItem(ofxUISuperCanvas* menu, string type, string name, string img, bool active, float x = 0, float y = 0);
     
     void draw();
     

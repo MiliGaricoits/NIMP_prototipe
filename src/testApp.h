@@ -30,10 +30,13 @@ public:
     void menuEvent(ofxUIEventArgs &e);
     
     composer composer;
-    ofxUISuperCanvas* gui;
-    ofxUISuperCanvas* menu;
     
 protected:
     vector<ofxUIWidget*> widgetsToDelete;
     textInput* newNodeInput;
+    ofxUISuperCanvas* gui;
+    ofxUISuperCanvas* menu;
+    ofxUISuperCanvas* right_menu;
+    bool open_flyout;
+    ofEasyCam cam;
 };

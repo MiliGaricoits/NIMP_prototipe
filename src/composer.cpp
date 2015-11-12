@@ -200,8 +200,8 @@ void composer::setupScrollBar(){
     // Now two rectangles, for the scroll bar and his grip placements
     // Coordinates are relative to the panel coordinates, not to the screen coordinates
     // This is a first initialisation, but we don't know many things about these placements at this state
-    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT, scrollBarWidth, 0);
-    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT, scrollBarWidth, 0);
+    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT+MENU_TOP_PADDING, scrollBarWidth, 0);
+    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT+MENU_TOP_PADDING, scrollBarWidth, 0);
     
     hScrollBarRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
     hGripRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);

@@ -9,6 +9,10 @@
 #ifndef NIMP_Prototipe_enumerations_h
 #define NIMP_Prototipe_enumerations_h
 
+#define MENU_HEIGHT 50
+#define MENU_TOP_PADDING -17
+#define RIGHT_MENU_WIDTH 35
+
 enum nodeLinkType
 {
     STRAIGHT_LINKS = 0,

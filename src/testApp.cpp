@@ -6,7 +6,65 @@ void testApp::setup(){
     ofEnableSmoothing();
     ofSetVerticalSync(false);
     
-    gui = new ofxUISuperCanvas("", 0, 15, ofGetWidth(), ofGetHeight());
+    open_flyout = false;
+    
+    //*** CAMERA SETUP ***//
+    
+    cam.setDistance(600);
+    cam.disableMouseInput();
+    cam.setVFlip(true);
+    
+    //*** TOP MENU ***//
+    
+    menu = new ofxUISuperCanvas("menu", 0, MENU_TOP_PADDING, ofGetWidth(), MENU_HEIGHT);
+    menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
+    menu->setColorBack(ofxUIColor(140, 140, 140,255));
+    //menu->setGlobalButtonDimension(25);
+    ofxUISpacer* spacer;
+    
+    new menuItem(menu, "MultiImageButton", "New Patcher", "assets/new_file.png", false, 35, 20);
+    //menu->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+    new menuItem(menu, "MultiImageButton", "Open Patcher", "assets/open_file.png", false, 65, 20);
+    new menuItem(menu, "MultiImageButton", "Save Patcher", "assets/save_file.png", false, 95, 20);
+    spacer = new ofxUISpacer(130, 20, 1,25);
+    menu->addWidget(spacer);
+    spacer->setColorFill(ofxUIColor(120, 120, 120, 200));
+    new menuItem(menu, "MultiImageButton", "Create Node", "assets/node.png", false, 140, 20);
+    spacer = new ofxUISpacer(175, 20, 1,25);
+    menu->addWidget(spacer);
+    spacer->setColorFill(ofxUIColor(120, 120, 120, 200));
+    new menuItem(menu, "MultiImageButton", "Save Snippet", "assets/save_snippet.png", false, 185, 20);
+    new menuItem(menu, "MultiImageButton", "Open Snippet", "assets/open_snippet.png", false, 215, 20);
+    spacer = new ofxUISpacer(250, 20, 1,25);
+    menu->addWidget(spacer);
+    spacer->setColorFill(ofxUIColor(120, 120, 120, 200));
+    new menuItem(menu, "MultiImageToggle", "Straight Links", "assets/line.png", false, 260, 20);
+    new menuItem(menu, "MultiImageToggle", "Curved Links", "assets/curve_line.png", false, 290, 20);
+    new menuItem(menu, "MultiImageToggle", "Segmented Links", "assets/path_line.png", true, 320, 20);
+    spacer = new ofxUISpacer(355, 20, 1,25);
+    menu->addWidget(spacer);
+    spacer->setColorFill(ofxUIColor(120, 120, 120, 200));
+    new menuItem(menu, "MultiImageToggle", "Edit Mode on/off", "assets/edit_mode.png", false, 365, 20);
+    
+    ofAddListener(menu->newGUIEvent,this,&testApp::menuEvent);
+    
+    
+    //*** RIGHT MENU ***//
+    
+    right_menu = new ofxUISuperCanvas("menu", 0, MENU_HEIGHT + MENU_TOP_PADDING, RIGHT_MENU_WIDTH, ofGetHeight() - (MENU_HEIGHT + MENU_TOP_PADDING));
+    right_menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
+    right_menu->setColorBack(ofxUIColor(140, 140, 140,255));
+    
+    new menuItem(right_menu, "MultiImageButton", "Zoom In", "assets/zoom_in.png", false, 5, right_menu->getRect()->getHeight()-30);
+    new menuItem(right_menu, "MultiImageButton", "Zoom Out", "assets/zoom_out.png", false, 5, right_menu->getRect()->getHeight()-60);
+    new menuItem(right_menu, "MultiImageToggle", "Inspect", "assets/open_flyout.png", false, 5, right_menu->getRect()->getHeight()-100);
+    
+    ofAddListener(right_menu->newGUIEvent,this,&testApp::menuEvent);
+    
+    
+    //*** MAIN CANVAS ***//
+    
+    gui = new ofxUISuperCanvas("", RIGHT_MENU_WIDTH, MENU_HEIGHT + MENU_TOP_PADDING, ofGetWidth() - RIGHT_MENU_WIDTH, ofGetHeight() - (MENU_HEIGHT +MENU_TOP_PADDING));
     gui->setColorBack(ofxUIColor(255,255,255,0));
     gui->setDraggable(false);
     gui->setOtherSelected(false);
@@ -14,30 +72,6 @@ void testApp::setup(){
     composer.setMainCanvas(gui);
     composer.load("config.xml");
     composer.setLinkType(PATH_LINKS);
-    
-    menu = new ofxUISuperCanvas("menu", 0, -15, ofGetWidth(), 60);
-    menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
-    menu->setColorBack(ofxUIColor(140, 140, 140,255));
-    menu->setGlobalButtonDimension(30);
-    
-    new menuItem(menu, "MultiImageButton", "New Patcher", "assets/new_file.png", false);
-    menu->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
-    new menuItem(menu, "MultiImageButton", "Open Patcher", "assets/open_file.png", false);
-    new menuItem(menu, "MultiImageButton", "Save Patcher", "assets/save_file.png", false);
-    menu->addSpacer(1,30)->setColorFill(ofxUIColor(120, 120, 120,200));
-    new menuItem(menu, "MultiImageButton", "Create Node", "assets/node.png", false);
-    menu->addSpacer(1,30)->setColorFill(ofxUIColor(120, 120, 120,200));
-    new menuItem(menu, "MultiImageButton", "Save Snippet", "assets/save_snippet.png", false);
-    new menuItem(menu, "MultiImageButton", "Open Snippet", "assets/open_snippet.png", false);
-    menu->addSpacer(1,30)->setColorFill(ofxUIColor(120, 120, 120,200));
-    new menuItem(menu, "MultiImageToggle", "Straight Links", "assets/line.png", false);
-    new menuItem(menu, "MultiImageToggle", "Curved Links", "assets/curve_line.png", false);
-    new menuItem(menu, "MultiImageToggle", "Segmented Links", "assets/path_line.png", true);
-    menu->addSpacer(1,30)->setColorFill(ofxUIColor(120, 120, 120,200));
-    new menuItem(menu, "MultiImageToggle", "Edit Mode on/off", "assets/edit_mode.png", false);
-    
-    ofAddListener(menu->newGUIEvent,this,&testApp::menuEvent);
-
     
     // nico ScrollBar setup
     composer.setupScrollBar();
@@ -56,15 +90,18 @@ void testApp::update(){
         }
         widgetsToDelete.clear();
     }
+    
+    if (open_flyout){
+        right_menu->setWidth(250);
+    }
 }
 
 
 void testApp::draw(){
     
     menu->setWidth(ofGetWidth());
+    right_menu->setHeight(ofGetHeight() - (MENU_HEIGHT + MENU_TOP_PADDING));
     
-    //ofBackgroundGradient(ofColor::gray, ofColor::black);
-    //ofBackground(247, 242, 225);
     ofBackground(180, 180, 180);
     ofSetColor(156, 156, 156);
     
@@ -74,8 +111,12 @@ void testApp::draw(){
         }
     }
     ofSetColor(255,255);
-
+    
+    //cam.lookAt(*gui);
+    cam.begin();
+    ofTranslate(-ofGetWidth()/2, -ofGetHeight()/2);
     composer.draw();
+    cam.end();
 }
 
 
@@ -213,6 +254,15 @@ void testApp::menuEvent(ofxUIEventArgs &e)
         if (composer.getEdit())
             composer.setEdit(false);
         else composer.setEdit(true);
+    }
+    else if (name == "Inspect"){
+        open_flyout = true;
+    }
+    else if (name == "Zoom In"){
+        cam.setDistance(cam.getDistance()-50);
+    }
+    else if (name == "Zoom Out"){
+        cam.setDistance(cam.getDistance()+50);
     }
 }
 

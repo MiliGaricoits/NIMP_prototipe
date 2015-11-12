@@ -8,19 +8,23 @@
 
 #include "menuItem.h"
 
-menuItem::menuItem(ofxUISuperCanvas* menu, string type, string name, string img, bool active) {
+menuItem::menuItem(ofxUISuperCanvas* menu, string type, string name, string img, bool active, float x, float y) {
     
     this->label = name;
     this->counter = 0;
     
     if (type == "MultiImageButton") {
-        ofxUIMultiImageButton* button = menu->addMultiImageButton(name, img, active);
+        
+        ofxUIMultiImageButton* button = new ofxUIMultiImageButton(x, y, 25, 25, active, img, name);
+        menu->addWidget(button);
         
         this->setPos(button->getRect()->getX(), button->getRect()->getY());
         this->setSize(button->getRect()->getWidth(), button->getRect()->getHeight());
     }
     else if (type == "MultiImageToggle") {
-        ofxUIMultiImageToggle* toggle = menu->addMultiImageToggle(name, img, active);
+        
+        ofxUIMultiImageToggle* toggle = new ofxUIMultiImageToggle(x, y, 25, 25, active, img, name);
+        menu->addWidget(toggle);
         
         this->setPos(toggle->getRect()->getX(), toggle->getRect()->getY());
         this->setSize(toggle->getRect()->getWidth(), toggle->getRect()->getHeight());

@@ -235,4 +235,5 @@ bool patch::is_between (float x, float bound1, float bound2, float tolerance) {
 
 void patch::setMainCanvas(ofxUISuperCanvas* _gui) {
     this->gui = _gui;
+    this->setParent(*this->gui);
 }
