@@ -39,6 +39,9 @@ public:
     
     void setMainCanvas(ofxUISuperCanvas* gui);
     
+    bool loadSnippetPatch(string snippetName, int relativeId, int cantPatchesOriginal);
+    bool saveSnippetPatch(string snippetName, map<int, int> idMap, ofxXmlSettings xml);
+    
 private:
     
     nodeVideoInterface *videoInterface;

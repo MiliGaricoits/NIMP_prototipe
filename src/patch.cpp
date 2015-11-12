@@ -237,3 +237,12 @@ void patch::setMainCanvas(ofxUISuperCanvas* _gui) {
     this->gui = _gui;
     this->setParent(*this->gui);
 }
+
+// nico snippet
+bool patch::loadSnippetPatch(string snippetName, int relativeId, int previousPatchesSize) {
+    return ofxPatch::loadSnippetPatch(snippetName, relativeId, previousPatchesSize);
+}
+
+bool patch::saveSnippetPatch(string snippetName, map<int, int> idMap, ofxXmlSettings xml) {
+   return ofxPatch::saveSnippetPatch(snippetName, idMap, xml);
+}

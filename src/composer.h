@@ -64,6 +64,7 @@ private:
     float KEY_SCROLL_SENSITIVITY = 10.f;
     int SCROLL_TOLERANCE = 10;
     // nico ScrollBar fin
+    
 };
 
 #endif /* defined(__NIMP_Prototipe__composer__) */
