@@ -196,6 +196,10 @@ void composer::setLinkType (nodeLinkType type) {
     }
 }
 
+map<int,patch*> composer::getPatches() {
+    return patches;
+}
+
 void composer::setupScrollBar(){
     /*
      The "panel" is a frame. This frame contains the displayed images, and the scroll bar.

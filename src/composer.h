@@ -30,6 +30,8 @@ public:
     void update();
     void draw();
     
+    map<int,patch*> getPatches();
+    
 private:
     // Events
     void    _mouseMoved(ofMouseEventArgs &e);

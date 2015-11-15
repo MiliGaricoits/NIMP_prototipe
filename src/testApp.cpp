@@ -12,6 +12,7 @@ void testApp::setup(){
     
     cam.setDistance(600);
     cam.disableMouseInput();
+    cam.enableOrtho();
     cam.setVFlip(true);
     
     //*** TOP MENU ***//
@@ -75,6 +76,11 @@ void testApp::setup(){
     
     // nico ScrollBar setup
     composer.setupScrollBar();
+    
+    map<int,patch*> patches = composer.getPatches();
+    for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
+        it->second->setParent(cam);
+    }
 }
 
 //-------------------------------------------------------------- LOOP
@@ -114,7 +120,7 @@ void testApp::draw(){
     
     //cam.lookAt(*gui);
     cam.begin();
-    ofTranslate(-ofGetWidth()/2, -ofGetHeight()/2);
+//    ofTranslate(-ofGetWidth()/2, -ofGetHeight()/2);
     composer.draw();
     cam.end();
 }
