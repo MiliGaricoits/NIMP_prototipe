@@ -121,7 +121,7 @@ void testApp::draw(){
     
     //cam.lookAt(*gui);
     cam.begin();
-//    ofTranslate(-ofGetWidth()/2, -ofGetHeight()/2);
+    //ofTranslate(-ofGetWidth()/2, -ofGetHeight()/2);
     composer.draw();
     cam.end();
 }
@@ -290,10 +290,14 @@ void testApp::menuEvent(ofxUIEventArgs &e)
         open_flyout = true;
     }
     else if (name == "Zoom In"){
-        cam.setDistance(cam.getDistance()-50);
+        //cam.setDistance(cam.getDistance()-50);
+        scale -= 10*SCALE_SENSITIVITY;
+        cam.setScale(scale);
     }
     else if (name == "Zoom Out"){
-        cam.setDistance(cam.getDistance()+50);
+        //cam.setDistance(cam.getDistance()+50);
+        scale += 10*SCALE_SENSITIVITY;
+        cam.setScale(scale);
     }
 }
 
