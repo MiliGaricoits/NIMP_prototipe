@@ -31,6 +31,10 @@ public:
     
     composer composer;
     
+    bool hagoZoom;
+    float scale;
+    float SCALE_SENSITIVITY = 0.001f;
+    
 protected:
     vector<ofxUIWidget*> widgetsToDelete;
     textInput* newNodeInput;

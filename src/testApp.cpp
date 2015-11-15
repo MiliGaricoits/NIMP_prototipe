@@ -14,6 +14,7 @@ void testApp::setup(){
     cam.disableMouseInput();
     cam.enableOrtho();
     cam.setVFlip(true);
+    scale = 1.f;
     
     //*** TOP MENU ***//
     
@@ -160,15 +161,39 @@ void testApp::keyReleased(int key){
 }
 
 void testApp::mouseMoved(int x, int y ){
+    map<int,patch*> p = composer.getPatches();
+    //    cout << "x: " << x << endl;
+    //    cout << "y: " << y << endl;
+    for(map<int,patch*>::iterator it = p.begin(); it != p.end(); it++ ){
+        //        cam.begin();
+        //        ofTranslate(x,y);
+        if(it->second->isOver(ofPoint(x,y))) {
+            cout << "ESTOY ARRIBA! " << endl;
+        } else {
+            cout << "ESTOY FUERA DE PATCH" << endl;
+        }
+        //        cam.end();
+    }
 }
 
 void testApp::mouseDragged(int x, int y, int button){
+    if(hagoZoom){
+        ofVec3f mouse = ofVec3f(x, y,0);
+        ofVec3f mouseLast = ofVec3f(ofGetPreviousMouseX(),ofGetPreviousMouseY(),0);
+        float dify = mouse.y - mouseLast.y;
+        scale += dify*SCALE_SENSITIVITY;
+        cam.setScale(scale);
+    }
 }
 
 void testApp::mousePressed(int x, int y, int button){
+    if(button == 2){
+        hagoZoom = true;
+    }
 }
 
 void testApp::mouseReleased(int x, int y, int button){
+    hagoZoom = false;
 }
 
 void testApp::windowResized(int w, int h){
