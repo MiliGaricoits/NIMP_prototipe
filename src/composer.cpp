@@ -28,10 +28,10 @@ void composer::update(){
     this->ofxComposer::update();
 }
 
-void composer::draw(){
+void composer::customDraw(){
     ofPushMatrix();
     ofPushStyle();
-        this->ofxComposer::draw();
+        this->ofxComposer::customDraw();
     ofPopStyle();
     ofPopMatrix();
     // Add a translation to bring the panel to the good position

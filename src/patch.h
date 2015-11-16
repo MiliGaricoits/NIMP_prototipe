@@ -20,7 +20,7 @@ public:
     patch();
     
     void update();
-    void draw();
+    void customDraw();
     
     bool loadFile(string _filePath, string _configFile = "none");
     

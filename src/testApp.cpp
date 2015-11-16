@@ -77,7 +77,7 @@ void testApp::setup(){
     
     // nico ScrollBar setup
     composer.setupScrollBar();
-    
+    composer.setParent(cam);
     map<int,patch*> patches = composer.getPatches();
     for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
         it->second->setParent(cam);
@@ -122,7 +122,7 @@ void testApp::draw(){
     //cam.lookAt(*gui);
     cam.begin();
     //ofTranslate(-ofGetWidth()/2, -ofGetHeight()/2);
-    composer.draw();
+    composer.customDraw();
     cam.end();
 }
 
@@ -161,19 +161,19 @@ void testApp::keyReleased(int key){
 }
 
 void testApp::mouseMoved(int x, int y ){
-    map<int,patch*> p = composer.getPatches();
-    //    cout << "x: " << x << endl;
-    //    cout << "y: " << y << endl;
-    for(map<int,patch*>::iterator it = p.begin(); it != p.end(); it++ ){
-        //        cam.begin();
-        //        ofTranslate(x,y);
-        if(it->second->isOver(ofPoint(x,y))) {
-            cout << "ESTOY ARRIBA! " << endl;
-        } else {
-            cout << "ESTOY FUERA DE PATCH" << endl;
-        }
-        //        cam.end();
-    }
+//    map<int,patch*> p = composer.getPatches();
+//    //    cout << "x: " << x << endl;
+//    //    cout << "y: " << y << endl;
+//    for(map<int,patch*>::iterator it = p.begin(); it != p.end(); it++ ){
+//        //        cam.begin();
+//        //        ofTranslate(x,y);
+//        if(it->second->isOver(ofPoint(x,y))) {
+//            cout << "ESTOY ARRIBA! " << endl;
+//        } else {
+//            cout << "ESTOY FUERA DE PATCH" << endl;
+//        }
+//        //        cam.end();
+//    }
 }
 
 void testApp::mouseDragged(int x, int y, int button){

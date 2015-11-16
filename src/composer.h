@@ -28,7 +28,7 @@ public:
     void updateHScrollBar(ofVec3f diffVec);
     
     void update();
-    void draw();
+    void customDraw();
     
     map<int,patch*> getPatches();
     

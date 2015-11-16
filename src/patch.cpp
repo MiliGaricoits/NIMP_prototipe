@@ -33,9 +33,9 @@ void patch::update() {
     }
 }
 
-void patch::draw() {
+void patch::customDraw() {
     
-    ofxPatch::draw();
+    ofxPatch::customDraw();
     
     if (bEditMode) {
         
@@ -93,6 +93,7 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
     // Is over link dot ?
     //
     ofVec3f mouse = ofVec3f(e.x, e.y, 0.0);
+    ofVec3f mouse_transformed = mouse*this->getGlobalTransformMatrix();
     
     if (bEditMode){
         bool overDot = false;
@@ -100,7 +101,7 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
             
             for (int j = 0; j < outPut[i].path_coorners.size(); j++){
                 
-                if ( ofDist(e.x, e.y, outPut[i].path_coorners[j].x, outPut[i].path_coorners[j].y) <= 10 ){
+                if ( ofDist(mouse_transformed.x, mouse_transformed.y, outPut[i].path_coorners[j].x, outPut[i].path_coorners[j].y) <= 10 ){
                     if ((e.button == 2) || (glutGetModifiers() == GLUT_ACTIVE_CTRL)) {
                         outPut[i].path_coorners.erase(outPut[i].path_coorners.begin()+j);
                     }
@@ -114,38 +115,41 @@ void patch::_mousePressed(ofMouseEventArgs &e) {
             }
             
             if (!overDot and linkType == PATH_LINKS and outPut.size() > 0){
-                vector<ofPoint> coorners = outPut[i].path_line.getVertices();
-                int addNew = -1;
-                int tolerance = 3;
+                vector<ofPoint> link_vertices = outPut[i].path_line.getVertices();
                 
-                for (int j = 0; j < coorners.size()-1; j++){
-                    int next = (j+1)%coorners.size();
+                if (link_vertices.size()){
+                    int addNew = -1;
+                    int tolerance = 3;
                     
-                    if (is_between (mouse.x, coorners[j].x, coorners[j+1].x, tolerance) && is_between (mouse.y, coorners[j].y, coorners[j+1].y, tolerance))
-                    {
-                        if ((coorners[j+1].y - coorners[j].y) <= tolerance) // Horizontal line.
+                    for (int j = 0; j < link_vertices.size()-1; j++){
+                        int next = (j+1)%link_vertices.size();
+                        
+                        if (is_between (mouse_transformed.x, link_vertices[j].x, link_vertices[j+1].x, tolerance) && is_between (mouse_transformed.y, link_vertices[j].y, link_vertices[j+1].y, tolerance))
                         {
-                            addNew = j;
-                        }
-                        
-                        const float M = (coorners[j+1].y - coorners[j].y) / (coorners[j+1].x - coorners[j].x); // Slope
-                        const float C = -(M * coorners[j].x) + coorners[j].y; // Y intercept
-                        
-                        // Checking if (x, y) is on the line passing through the end points.
-                        if(std::fabs (mouse.y - (M * mouse.x + C)) <= tolerance) {
-                            addNew = j;
+                            if ((link_vertices[j+1].y - link_vertices[j].y) <= tolerance) // Horizontal line.
+                            {
+                                addNew = j;
+                            }
+                            
+                            const float M = (link_vertices[j+1].y - link_vertices[j].y) / (link_vertices[j+1].x - link_vertices[j].x); // Slope
+                            const float C = -(M * link_vertices[j].x) + link_vertices[j].y; // Y intercept
+                            
+                            // Checking if (x, y) is on the line passing through the end points.
+                            if(std::fabs (mouse_transformed.y - (M * mouse_transformed.x + C)) <= tolerance) {
+                                addNew = j;
+                            }
                         }
                     }
-                }
-                
-                if (addNew >= 0) {
-                    ofxPatch::setLinkHit(true);
-                    if (outPut[i].path_coorners.size() == 0)
-                        outPut[i].path_coorners.push_back(mouse);
-                    else if (addNew == 0)
-                        outPut[i].path_coorners.insert(outPut[i].path_coorners.begin(), mouse);
-                    else
-                        outPut[i].path_coorners.insert(outPut[i].path_coorners.begin()+addNew, mouse);
+    
+                    if (addNew >= 0) {
+                        ofxPatch::setLinkHit(true);
+                        if (outPut[i].path_coorners.size() == 0)
+                            outPut[i].path_coorners.push_back(ofVec3f(mouse_transformed.x, mouse_transformed.y, 0.0));
+                        else if (addNew == 0)
+                            outPut[i].path_coorners.insert(outPut[i].path_coorners.begin(), ofVec3f(mouse_transformed.x, mouse_transformed.y, 0.0));
+                        else
+                            outPut[i].path_coorners.insert(outPut[i].path_coorners.begin()+addNew, ofVec3f(mouse_transformed.x, mouse_transformed.y, 0.0));
+                    }
                 }
             }
         }
@@ -157,11 +161,12 @@ void patch::_mouseDragged(ofMouseEventArgs &e) {
     if (!gui->getOtherSelected()) {
         ofxPatch::_mouseDragged(e);
         
-        ofVec3f mouse = ofVec3f(e.x, e.y,0);
+        ofVec3f mouse = ofVec3f(e.x, e.y, 0.0);
+        ofVec3f mouse_transformed = mouse*this->getGlobalTransformMatrix();
         
         if (bEditMode){
             if (selectedLink >= 0 and selectedLinkPath >= 0) {
-                outPut[selectedLink].path_coorners[selectedLinkPath] = mouse;
+                outPut[selectedLink].path_coorners[selectedLinkPath] = ofVec3f(mouse_transformed.x, mouse_transformed.y, 0.0);
             }
         }
     }
