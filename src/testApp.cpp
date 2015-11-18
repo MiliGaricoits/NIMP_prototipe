@@ -99,8 +99,13 @@ void testApp::update(){
     }
     
     if (open_flyout){
-        right_menu->setWidth(250);
+        right_menu->setWidth(RIGHT_MENU_LONG_WIDTH);
     }
+    else right_menu->setWidth(RIGHT_MENU_WIDTH);
+        
+    right_menu->getWidget("Zoom In")->getRect()->setY(right_menu->getRect()->getHeight()-30);
+    right_menu->getWidget("Zoom Out")->getRect()->setY(right_menu->getRect()->getHeight()-60);
+    right_menu->getWidget("Inspect")->getRect()->setY(right_menu->getRect()->getHeight()-100);
 }
 
 

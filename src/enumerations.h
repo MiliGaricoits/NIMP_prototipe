@@ -12,6 +12,7 @@
 #define MENU_HEIGHT 50
 #define MENU_TOP_PADDING -17
 #define RIGHT_MENU_WIDTH 35
+#define RIGHT_MENU_LONG_WIDTH 250
 
 enum nodeLinkType
 {
