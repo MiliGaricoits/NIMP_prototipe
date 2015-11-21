@@ -8,6 +8,7 @@
 #include "textInputEvent.h"
 #include "enumerations.h"
 #include "menuItem.h"
+#include "scrollBar.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -29,7 +30,7 @@ public:
     void createNode(textInputEvent &args);
     void menuEvent(ofxUIEventArgs &e);
     
-    composer composer;
+    composer* composer;
     
     bool hagoZoom;
     float scale;
@@ -43,4 +44,11 @@ protected:
     ofxUISuperCanvas* right_menu;
     bool open_flyout;
     ofEasyCam cam;
+    
+    scrollBar* scrollBars;
+    
+private:
+    int COMPOSER_EVENT_PRIORITY = 202;
+    int PATCH_EVENT_PRIORITY = 203;
+    int SCROLL_BAR_EVENT_PRIORITY = 201;
 };
