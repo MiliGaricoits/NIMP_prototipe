@@ -35,14 +35,19 @@ void scrollBar::setup(){
     margin = 20.f;            // Distance between the edge of the screen and the panel frame
     scrollBarWidth = 20.f;
     
+    BEGIN_X = RIGHT_MENU_WIDTH;
+    BEGIN_Y = MENU_HEIGHT + MENU_TOP_PADDING;
+    
     // Now two rectangles, for the scroll bar and his grip placements
     // Coordinates are relative to the panel coordinates, not to the screen coordinates
     // This is a first initialisation, but we don't know many things about these placements at this state
-    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT+MENU_TOP_PADDING, scrollBarWidth, 0);
-    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT+MENU_TOP_PADDING, scrollBarWidth, 0);
+//    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT+MENU_TOP_PADDING, scrollBarWidth, 0);
+//    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT+MENU_TOP_PADDING, scrollBarWidth, 0);
+    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, BEGIN_Y, scrollBarWidth, 0);
+    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, BEGIN_Y, scrollBarWidth, 0);
     
-    hScrollBarRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
-    hGripRectangle = ofRectangle(0, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
+    hScrollBarRectangle = ofRectangle(BEGIN_X, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
+    hGripRectangle = ofRectangle(BEGIN_X, ofGetHeight() - scrollBarWidth, 0, scrollBarWidth);
     
     composer->setDraggingGrip(false); // true when the user is moving the grip
     mouseOverGrip = false; // true when the mouse is over the grip
@@ -182,20 +187,19 @@ void scrollBar::windowResized(ofResizeEventArgs &e){
     this->setup();
 }
 
+
 /****************************** END EVENTS ****************************************/
-
-
 void scrollBar::updateScrollBar(ofVec3f diffVec){
     
     // TODO: con la flechita no puedo ir a los topes de la barra
     if(diffVec.y != 0){
-        if(!(gripRectangle.y < MENU_HEIGHT) && !(gripRectangle.getBottom() > scrollBarRectangle.getBottom())){
+        if(!(gripRectangle.y < BEGIN_Y) && !(gripRectangle.getBottom() > scrollBarRectangle.getBottom())){
             composer->movePatches(diffVec);
         }
         
         // Check if the grip is still in the scroll bar
-        if (gripRectangle.y < MENU_HEIGHT) {
-            gripRectangle.y = 0;
+        if (gripRectangle.y < BEGIN_Y) {
+            gripRectangle.y = BEGIN_Y;
         }
         if (gripRectangle.getBottom() > scrollBarRectangle.getBottom()) {
             gripRectangle.y = scrollBarRectangle.getBottom() - gripRectangle.height;
@@ -205,11 +209,11 @@ void scrollBar::updateScrollBar(ofVec3f diffVec){
     
     // The size of the panel. All the screen except margins
     panelWidth = ofGetWidth() - margin;
-    panelHeight = ofGetHeight() - margin - MENU_HEIGHT;
+    panelHeight = ofGetHeight() - margin - BEGIN_Y;
     
     gripRectangle.x = scrollBarRectangle.x;                   // Also adjust the grip x coordinate
-    int lowestCoord = composer->getPatchesLowestCoord() - MENU_HEIGHT;  // La coordenada mas baja de un patch
-    int highestCoord = composer->getPatchesHighestCoord() - MENU_HEIGHT;// La coordenada mas alta de un patch
+    int unTransformedLowest = getUntransformedCoords(0, composer->getPatchesLowestCoord()).y - margin - BEGIN_Y;
+    int unTransformedHighest = getUntransformedCoords(0, composer->getPatchesHighestCoord()).y - margin;
     
     // Muestro la scrollBar
     isScrollBarVisible = true;
@@ -220,13 +224,13 @@ void scrollBar::updateScrollBar(ofVec3f diffVec){
     // al ser ratio, van de 0 a 1, y calculo dependiendo el caso
     float gripSizeRatioLow = 1.f;
     float gripSizeRatioHigh = 1.f;
-    if ( (lowestCoord + SCROLL_TOLERANCE < 0)  && (highestCoord - SCROLL_TOLERANCE > panelHeight) ) {
-        gripSizeRatioHigh = (float)panelHeight / (panelHeight - (float)lowestCoord);
-        gripSizeRatioLow = (float)panelHeight / ( (float)highestCoord );
-    } else if ( lowestCoord + SCROLL_TOLERANCE < 0 ){
-        gripSizeRatioHigh = (float)panelHeight / (panelHeight - (float)lowestCoord);
-    } else if ( highestCoord - SCROLL_TOLERANCE > panelHeight ) {
-        gripSizeRatioLow = (float)panelHeight / ( (float)highestCoord );
+    if ( (unTransformedLowest + SCROLL_TOLERANCE < 0)  && (unTransformedHighest - SCROLL_TOLERANCE > panelHeight) ) {
+        gripSizeRatioHigh = (float)panelHeight / (panelHeight - (float)unTransformedLowest);
+        gripSizeRatioLow = (float)panelHeight / ( (float)unTransformedHighest );
+    } else if ( unTransformedLowest + SCROLL_TOLERANCE < 0 ){
+        gripSizeRatioHigh = (float)panelHeight / (panelHeight - (float)unTransformedLowest);
+    } else if ( unTransformedHighest - SCROLL_TOLERANCE > panelHeight ) {
+        gripSizeRatioLow = (float)panelHeight / ( (float)unTransformedHighest );
     }
     
     
@@ -234,7 +238,7 @@ void scrollBar::updateScrollBar(ofVec3f diffVec){
     gripRectangle.height = panelHeight * gripSizeRatioLow * gripSizeRatioHigh;
     
     // La 'y' del grip esta en la scrollbar por la relacion de lo que queda por arriba de la pantalla
-    gripRectangle.y = (1-gripSizeRatioHigh)*scrollBarRectangle.height + MENU_HEIGHT;
+    gripRectangle.y = BEGIN_Y + (1-gripSizeRatioHigh)*scrollBarRectangle.height;
     
     // Si las alturas del grip y del scroll son iguales, es porque tengo todo a la vista
     // hago que la resta sea menor a 2 para dejar un margen, si no, queda a veces la barra cuando no es necesario
@@ -248,13 +252,13 @@ void scrollBar::updateHScrollBar(ofVec3f diffVec){
     
     // TODO: con la flechita no puedo ir a los topes de la barra
     if(diffVec.x != 0){
-        if(!(hGripRectangle.x < 0) && !(hGripRectangle.getRight() > hScrollBarRectangle.getRight())){
+        if(!(hGripRectangle.x < BEGIN_X) && !(hGripRectangle.getRight() > hScrollBarRectangle.getRight())){
             composer->movePatches(diffVec);
         }
         
-        //      Check if the grip is still in the scroll bar
-        if (hGripRectangle.x < 0) {
-            hGripRectangle.x = 0;
+        // Check if the grip is still in the scroll bar
+        if (hGripRectangle.x < BEGIN_X) {
+            hGripRectangle.x = BEGIN_X;
         }
         if (hGripRectangle.getRight() > hScrollBarRectangle.getRight()) {
             hGripRectangle.x = hScrollBarRectangle.getRight() - hGripRectangle.width;
@@ -263,45 +267,48 @@ void scrollBar::updateHScrollBar(ofVec3f diffVec){
     
     
     // The size of the panel. All the screen except margins
-    panelWidth = ofGetWidth() - margin;
+    panelWidth = ofGetWidth() - margin - BEGIN_X;
     panelHeight = ofGetHeight() - margin;
     
-    hGripRectangle.y = hScrollBarRectangle.y; // Also adjust the grip x coordinate
-    int leftMostCoord = composer->getPatchesLeftMostCoord();  // La coordenada mas baja de un patch
-    int rightMostCoord = composer->getPatchesRightMostCoord(); // La coordenada mas alta de un patch
+    // La altura del scroll bar = a la altura de la pantalla
+    hScrollBarRectangle.width = panelWidth;
     
-    cout << "leftMost: " << leftMostCoord << endl;
-    cout << "rightMost: " << rightMostCoord << endl;
+    hGripRectangle.y = hScrollBarRectangle.y; // Also adjust the grip x coordinate
+    int unTransformedLeft = getUntransformedCoords(composer->getPatchesLeftMostCoord(),0).x - margin - BEGIN_X;
+    int unTransformedRight = getUntransformedCoords(composer->getPatchesRightMostCoord(),0).x - margin;
     
     // Muestro la scrollBar
     isHScrollBarVisible = true;
-    // La altura del scroll bar = a la altura de la pantalla
-    hScrollBarRectangle.width = panelWidth;
     
     // estos ratios son la proporcion de lo que hay que dibujar que esta por encima y por debajo de lo que se muestra
     // al ser ratio, van de 0 a 1, y calculo dependiendo el caso
     float gripSizeRatioLeft = 1.f;
     float gripSizeRatioRight = 1.f;
-    if ( (leftMostCoord + SCROLL_TOLERANCE < 0)  && (rightMostCoord - SCROLL_TOLERANCE > panelWidth) ) {
-        gripSizeRatioRight = (float)panelWidth / (panelWidth - (float)leftMostCoord);
-        gripSizeRatioLeft = (float)panelWidth / ( (float)rightMostCoord );
-    } else if ( leftMostCoord + SCROLL_TOLERANCE < 0 ){
-        gripSizeRatioRight = (float)panelWidth / (panelWidth - (float)leftMostCoord);
-    } else if ( rightMostCoord - SCROLL_TOLERANCE > panelWidth ) {
-        gripSizeRatioLeft = (float)panelWidth / ( (float)rightMostCoord );
+    if ( (unTransformedLeft + SCROLL_TOLERANCE < 0)  && (unTransformedRight - SCROLL_TOLERANCE > panelWidth) ) {
+        gripSizeRatioRight = (float)panelWidth / (panelWidth - (float)unTransformedLeft);
+        gripSizeRatioLeft = (float)panelWidth / ( (float)unTransformedRight );
+    } else if ( unTransformedLeft + SCROLL_TOLERANCE < 0 ){
+        gripSizeRatioRight = (float)panelWidth / (panelWidth - (float)unTransformedLeft);
+    } else if ( unTransformedRight - SCROLL_TOLERANCE > panelWidth ) {
+        gripSizeRatioLeft = (float)panelWidth / ( (float)unTransformedRight );
     }
     
     
     // La altura del grip es el panel por los ratios fuera de la pantalla
     hGripRectangle.width = panelWidth * gripSizeRatioLeft * gripSizeRatioRight;
     
-    
     // La 'x' del grip esta en la scrollbar por la relacion de lo que queda por la izquierda de la pantalla
-    hGripRectangle.x = (1-gripSizeRatioRight)*hScrollBarRectangle.width;
+    hGripRectangle.x = BEGIN_X + (1-gripSizeRatioRight)*hScrollBarRectangle.width;
     
     // Si las alturas del grip y del scroll son iguales, es porque tengo todo a la vista
     // hago que la resta sea menor a 2 para dejar un margen, si no, queda a veces la barra cuando no es necesario
     if( (hScrollBarRectangle.width - hGripRectangle.width) < 2 ){
         isHScrollBarVisible = false;
     }
+}
+
+ofVec4f scrollBar::getUntransformedCoords(int x, int y){
+    ofMatrix4x4 inverseTransformMatrix = composer->getGlobalTransformMatrix().getInverse();
+    ofVec4f aux2 = ofVec4f(x,y,0,0);
+    return aux2*inverseTransformMatrix;
 }

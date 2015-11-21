@@ -29,7 +29,6 @@ public:
     
     map<int,patch*> getPatches();
     
-    
 private:
     // Events
     void    _mouseMoved(ofMouseEventArgs &e);

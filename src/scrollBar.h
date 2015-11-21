@@ -58,10 +58,16 @@ private:
     ofRectangle hGripRectangle;
     int mousePreviousX;
     
+    // CONSTANTS
     float KEY_SCROLL_SENSITIVITY = 10.f;
     int SCROLL_TOLERANCE = 10;
+    float GRIP_TOLERANCE = .002f;
+    int BEGIN_X;
+    int BEGIN_Y;
     
     composer* composer;
+    
+    ofVec4f getUntransformedCoords(int x, int y);
 };
 
 

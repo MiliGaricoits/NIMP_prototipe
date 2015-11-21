@@ -101,7 +101,6 @@ map<int,patch*> composer::getPatches() {
     return patches;
 }
 
-
 /************************************** EMPIEZA SNIPPETS *********************************/
 void ofxComposer::loadSnippet(string snippetName) {
     ofxXmlSettings XML;

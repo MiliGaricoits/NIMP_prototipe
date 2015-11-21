@@ -53,15 +53,15 @@ void testApp::setup(){
     
     //*** RIGHT MENU ***//
     
-//    right_menu = new ofxUISuperCanvas("menu", 0, MENU_HEIGHT + MENU_TOP_PADDING, RIGHT_MENU_WIDTH, ofGetHeight() - (MENU_HEIGHT + MENU_TOP_PADDING));
-//    right_menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
-//    right_menu->setColorBack(ofxUIColor(140, 140, 140,255));
-//    
-//    new menuItem(right_menu, "MultiImageButton", "Zoom In", "assets/zoom_in.png", false, 5, right_menu->getRect()->getHeight()-30);
-//    new menuItem(right_menu, "MultiImageButton", "Zoom Out", "assets/zoom_out.png", false, 5, right_menu->getRect()->getHeight()-60);
-//    new menuItem(right_menu, "MultiImageToggle", "Inspect", "assets/open_flyout.png", false, 5, right_menu->getRect()->getHeight()-100);
-//    
-//    ofAddListener(right_menu->newGUIEvent,this,&testApp::menuEvent);
+    right_menu = new ofxUISuperCanvas("menu", 0, MENU_HEIGHT + MENU_TOP_PADDING, RIGHT_MENU_WIDTH, ofGetHeight() - (MENU_HEIGHT + MENU_TOP_PADDING));
+    right_menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
+    right_menu->setColorBack(ofxUIColor(140, 140, 140,255));
+    
+    new menuItem(right_menu, "MultiImageButton", "Zoom In", "assets/zoom_in.png", false, 5, right_menu->getRect()->getHeight()-30);
+    new menuItem(right_menu, "MultiImageButton", "Zoom Out", "assets/zoom_out.png", false, 5, right_menu->getRect()->getHeight()-60);
+    new menuItem(right_menu, "MultiImageToggle", "Inspect", "assets/open_flyout.png", false, 5, right_menu->getRect()->getHeight()-100);
+    
+    ofAddListener(right_menu->newGUIEvent,this,&testApp::menuEvent);
     
     
     //*** MAIN CANVAS ***//
@@ -102,21 +102,21 @@ void testApp::update(){
         widgetsToDelete.clear();
     }
     
-//    if (open_flyout){
-//        right_menu->setWidth(RIGHT_MENU_LONG_WIDTH);
-//    }
-//    else right_menu->setWidth(RIGHT_MENU_WIDTH);
+    if (open_flyout){
+        right_menu->setWidth(RIGHT_MENU_LONG_WIDTH);
+    }
+    else right_menu->setWidth(RIGHT_MENU_WIDTH);
     
-//    right_menu->getWidget("Zoom In")->getRect()->setY(right_menu->getRect()->getHeight()-30);
-//    right_menu->getWidget("Zoom Out")->getRect()->setY(right_menu->getRect()->getHeight()-60);
-//    right_menu->getWidget("Inspect")->getRect()->setY(right_menu->getRect()->getHeight()-100);
+    right_menu->getWidget("Zoom In")->getRect()->setY(right_menu->getRect()->getHeight()-30);
+    right_menu->getWidget("Zoom Out")->getRect()->setY(right_menu->getRect()->getHeight()-60);
+    right_menu->getWidget("Inspect")->getRect()->setY(right_menu->getRect()->getHeight()-100);
 }
 
 
 void testApp::draw(){
     
     menu->setWidth(ofGetWidth());
-//    right_menu->setHeight(ofGetHeight() - (MENU_HEIGHT + MENU_TOP_PADDING));
+    right_menu->setHeight(ofGetHeight() - (MENU_HEIGHT + MENU_TOP_PADDING));
     
     ofBackground(180, 180, 180);
     ofSetColor(156, 156, 156);
@@ -133,6 +133,7 @@ void testApp::draw(){
     //ofTranslate(-ofGetWidth()/2, -ofGetHeight()/2);
     composer->customDraw();
     cam.end();
+
     scrollBars->draw();
 }
 
