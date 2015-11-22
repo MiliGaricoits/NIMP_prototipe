@@ -38,14 +38,15 @@ composer::composer(int composerEventPriority, int patchEventPriority) : ofxCompo
 
 void composer::update(){
     this->ofxComposer::update();
+    
 }
 
 void composer::customDraw(){
-    ofPushMatrix();
+//    ofPushMatrix();
     ofPushStyle();
         this->ofxComposer::customDraw();
     ofPopStyle();
-    ofPopMatrix();
+//    ofPopMatrix();
 }
 
 /* ================================================ */
@@ -62,6 +63,9 @@ void composer::_mouseReleased(ofMouseEventArgs &e){
 
 void composer::_mousePressed(ofMouseEventArgs &e){
     ofxComposer::_mousePressed(e);
+    for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
+        cout << "id: " << it->second->getId() << endl;
+    }
 }
 
 void composer::_mouseMoved(ofMouseEventArgs &e){
@@ -69,12 +73,12 @@ void composer::_mouseMoved(ofMouseEventArgs &e){
 }
 
 void composer::_keyPressed(ofKeyEventArgs &e){
-//    if (e.key == 'j') {
-//        loadSnippet("snippet.xml");
-//    }
-//    if (e.key == 'k') {
-//        saveSnippet("snippetSave.xml");
-//    }
+    if (e.key == 'j') {
+        loadSnippet("snippetSave.xml");
+    }
+    if (e.key == 'k') {
+        saveSnippet("snippetSave.xml");
+    }
     
     ofxComposer::_keyPressed(e);
 }
@@ -106,6 +110,7 @@ void ofxComposer::loadSnippet(string snippetName) {
     ofxXmlSettings XML;
     
     int previousPatchesSize = patches.size();
+//    patches.
     deactivateAllPatches();
     
     if (XML.loadFile(snippetName)){
@@ -196,7 +201,7 @@ bool ofxComposer::saveSnippet(string snippetName) {
     
     
     map<int,int> idMap;// = new map<int, int>;
-    int idAux = 0;
+    int idAux = 1;
     for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
         if(it->second->bActive) {
             idMap[it->second->getId()] = idAux;
