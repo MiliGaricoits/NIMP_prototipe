@@ -10,15 +10,26 @@
 #include <GLUT/glut.h>
 
 patch::patch() : ofxPatch() {
+//    
+//    selectedLink = -1;
+//    selectedLinkPath = -1;
+//
+//    ofAddListener(ofEvents().mousePressed, this, &patch::_mousePressed);
+//    ofAddListener(ofEvents().mouseDragged, this, &patch::_mouseDragged);
+//    ofAddListener(ofEvents().mouseReleased, this, &patch::_mouseReleased);
+//    ofAddListener(ofEvents().keyPressed, this, &patch::_keyPressed);
+}
+
+patch::patch(int eventPriority) : ofxPatch() {
     
     selectedLink = -1;
     selectedLinkPath = -1;
     bInspector = false;
 
-    ofAddListener(ofEvents().mousePressed, this, &patch::_mousePressed);
-    ofAddListener(ofEvents().mouseDragged, this, &patch::_mouseDragged);
-    ofAddListener(ofEvents().mouseReleased, this, &patch::_mouseReleased);
-    ofAddListener(ofEvents().keyPressed, this, &patch::_keyPressed);
+    ofAddListener(ofEvents().mousePressed, this, &patch::_mousePressed, eventPriority);
+    ofAddListener(ofEvents().mouseDragged, this, &patch::_mouseDragged, eventPriority);
+    ofAddListener(ofEvents().mouseReleased, this, &patch::_mouseReleased, eventPriority);
+    ofAddListener(ofEvents().keyPressed, this, &patch::_keyPressed, eventPriority);
     
     title->addButton('i', &bInspector, TOGGLE_BUTTON);
 }

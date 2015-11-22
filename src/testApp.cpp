@@ -71,23 +71,28 @@ void testApp::setup(){
     gui->setDraggable(false);
     gui->setOtherSelected(false);
     
-    composer.setMainCanvas(gui);
-    composer.load("config.xml");
-    composer.setLinkType(PATH_LINKS);
+    composer = new composer::composer(COMPOSER_EVENT_PRIORITY, PATCH_EVENT_PRIORITY);
+    composer->setMainCanvas(gui);
+    composer->load(PATCH_EVENT_PRIORITY, "config.xml");
+    composer->setLinkType(PATH_LINKS);
     
-    // nico ScrollBar setup
-    composer.setupScrollBar();
-    composer.setParent(cam);
-    map<int,patch*> patches = composer.getPatches();
+    // cam setup
+    composer->setParent(cam);
+    map<int,patch*> patches = composer->getPatches();
     for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
         it->second->setParent(cam);
     }
+    
+    // scroll bars setup
+    this->scrollBars = new scrollBar(this->composer, SCROLL_BAR_EVENT_PRIORITY);
+    scrollBars->setup();
 }
 
 //-------------------------------------------------------------- LOOP
 void testApp::update() {
     
     composer.update();
+    
     ofSetWindowTitle( ofToString( ofGetFrameRate()));
     
     if (widgetsToDelete.size() > 0) {
@@ -103,7 +108,7 @@ void testApp::update() {
         right_menu->setWidth(RIGHT_MENU_LONG_WIDTH);
     }
     else right_menu->setWidth(RIGHT_MENU_WIDTH);
-        
+    
     right_menu->getWidget("Zoom In")->getRect()->setY(right_menu->getRect()->getHeight()-30);
     right_menu->getWidget("Zoom Out")->getRect()->setY(right_menu->getRect()->getHeight()-60);
     right_menu->getWidget("Inspect")->getRect()->setY(right_menu->getRect()->getHeight()-100);
@@ -128,8 +133,10 @@ void testApp::draw(){
     //cam.lookAt(*gui);
     cam.begin();
     //ofTranslate(-ofGetWidth()/2, -ofGetHeight()/2);
-    composer.customDraw();
+    composer->customDraw();
     cam.end();
+
+    scrollBars->draw();
 }
 
 
@@ -167,7 +174,7 @@ void testApp::keyReleased(int key){
 }
 
 void testApp::mouseMoved(int x, int y ){
-//    map<int,patch*> p = composer.getPatches();
+//    map<int,patch*> p = composer->getPatches();
 //    //    cout << "x: " << x << endl;
 //    //    cout << "y: " << y << endl;
 //    for(map<int,patch*>::iterator it = p.begin(); it != p.end(); it++ ){
@@ -212,7 +219,7 @@ void testApp::gotMessage(ofMessage msg){
 void testApp::dragEvent(ofDragInfo dragInfo){
     if( dragInfo.files.size() > 0 ){
 		for(int i = 0; i < dragInfo.files.size(); i++){
-            composer.addPatchFromFile( dragInfo.files[i], dragInfo.position );
+            composer->addPatchFromFile( dragInfo.files[i], dragInfo.position );
 		}
 	}
 }
@@ -240,10 +247,10 @@ void testApp::createNodeInput(float _x, float _y){
 void testApp::createNode(textInputEvent &args){
     
     if (args.type == "ofImage" || args.type == "ofVideoPlayer" || args.type == "ofShader" || args.type == "ofTexture") {
-        composer.addPatchFromFile(args.path, args.point);
+        composer->addPatchFromFile(args.path, args.point);
     }
     else {
-        composer.addPatchWithOutFile(args.type, args.point);
+        composer->addPatchWithOutFile(args.type, args.point);
     }
     
     ofRemoveListener(((textInput*)args.widget)->createNode , this, &testApp::createNode);
@@ -258,19 +265,19 @@ void testApp::menuEvent(ofxUIEventArgs &e)
         ((ofxUIImageToggle*)menu->getWidget("Straight Links"))->setValue(true);
         ((ofxUIImageToggle*)menu->getWidget("Segmented Links"))->setValue(false);
         ((ofxUIImageToggle*)menu->getWidget("Curved Links"))->setValue(false);
-        composer.setLinkType(STRAIGHT_LINKS);
+        composer->setLinkType(STRAIGHT_LINKS);
     }
     else if (name == "Curved Links") {
         ((ofxUIImageToggle*)menu->getWidget("Curved Links"))->setValue(true);
         ((ofxUIImageToggle*)menu->getWidget("Segmented Links"))->setValue(false);
         ((ofxUIImageToggle*)menu->getWidget("Straight Links"))->setValue(false);
-        composer.setLinkType(CURVE_LINKS);
+        composer->setLinkType(CURVE_LINKS);
     }
     else if (name == "Segmented Links") {
         ((ofxUIImageToggle*)menu->getWidget("Segmented Links"))->setValue(true);
         ((ofxUIImageToggle*)menu->getWidget("Curved Links"))->setValue(false);
         ((ofxUIImageToggle*)menu->getWidget("Straight Links"))->setValue(false);
-        composer.setLinkType(PATH_LINKS);
+        composer->setLinkType(PATH_LINKS);
     }
     else if (name == "Create Node") {
         
@@ -288,9 +295,9 @@ void testApp::menuEvent(ofxUIEventArgs &e)
     }
     else if (name == "Edit Mode on/off") {
         
-        if (composer.getEdit())
-            composer.setEdit(false);
-        else composer.setEdit(true);
+        if (composer->getEdit())
+            composer->setEdit(false);
+        else composer->setEdit(true);
     }
     else if (name == "Inspect"){
         if (open_flyout) open_flyout = false;

@@ -18,6 +18,7 @@ class patch : public ofxPatch {
 public:
     
     patch();
+    patch(int eventPriority = OF_EVENT_ORDER_AFTER_APP);
     
     void update();
     void customDraw();
