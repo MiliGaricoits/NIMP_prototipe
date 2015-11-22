@@ -1,24 +1,24 @@
 <surface>
-    <id>0</id>
+    <id>1</id>
     <type>ofVideoGrabber</type>
     <path>0</path>
     <visible>0</visible>
     <texture>
         <point>
-            <x>113.437316895</x>
-            <y>521.009033203</y>
+            <x>219.437316895</x>
+            <y>481.009033203</y>
         </point>
         <point>
-            <x>270.000000000</x>
-            <y>522.000000000</y>
+            <x>376.000000000</x>
+            <y>482.000000000</y>
         </point>
         <point>
-            <x>271.367340088</x>
-            <y>639.436401367</y>
+            <x>377.367340088</x>
+            <y>599.436401367</y>
         </point>
         <point>
-            <x>113.445617676</x>
-            <y>639.436401367</y>
+            <x>219.445617676</x>
+            <y>599.436401367</y>
         </point>
     </texture>
     <mask>
@@ -42,13 +42,13 @@
     <out>
         <active>1</active>
         <dot>
-            <to>1</to>
+            <to>2</to>
             <tex>0</tex>
         </dot>
     </out>
 </surface>
 <surface>
-    <id>1</id>
+    <id>2</id>
     <type>ofShader</type>
     <path>/Users/Patricio/Dropbox/Public/GPU-toolbox/pattern1.fs</path>
     <visible>1</visible>
@@ -57,20 +57,20 @@
     <passes>1</passes>
     <texture>
         <point>
-            <x>444.327209473</x>
-            <y>515.253662109</y>
+            <x>533.327209473</x>
+            <y>461.253692627</y>
         </point>
         <point>
-            <x>613.678466797</x>
-            <y>515.232910156</y>
+            <x>702.678466797</x>
+            <y>461.232879639</y>
         </point>
         <point>
-            <x>613.684326172</x>
-            <y>642.250305176</y>
+            <x>702.684326172</x>
+            <y>588.250305176</y>
         </point>
         <point>
-            <x>444.337768555</x>
-            <y>642.250976562</y>
+            <x>533.337768555</x>
+            <y>588.250976562</y>
         </point>
     </texture>
     <mask>
