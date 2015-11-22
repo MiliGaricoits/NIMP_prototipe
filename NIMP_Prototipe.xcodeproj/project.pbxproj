@@ -11,6 +11,7 @@
 		0A086E991BE1960600FF0DBF /* composer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A086E971BE1960600FF0DBF /* composer.cpp */; };
 		0A086E9C1BE5566200FF0DBF /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A086E9A1BE5566200FF0DBF /* patch.cpp */; };
 		0A3801CD1BEE5BCE00395C19 /* menuItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A3801CB1BEE5BCE00395C19 /* menuItem.cpp */; };
+		0A60FD381C014ECF0027FACA /* scrollBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A60FD361C014ECF0027FACA /* scrollBar.cpp */; };
 		0A6CF4391BBDF1830018021D /* nodeVideoInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CF4351BBDF1830018021D /* nodeVideoInterface.cpp */; };
 		0A6CF43A1BBDF1830018021D /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A6CF4371BBDF1830018021D /* testApp.cpp */; };
 		0AEB9C5C1BC04542009BA6DC /* textInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB9C5A1BC04542009BA6DC /* textInput.cpp */; };
@@ -140,6 +141,8 @@
 		0A086E9B1BE5566200FF0DBF /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patch.h; sourceTree = "<group>"; };
 		0A3801CB1BEE5BCE00395C19 /* menuItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menuItem.cpp; sourceTree = "<group>"; };
 		0A3801CC1BEE5BCE00395C19 /* menuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuItem.h; sourceTree = "<group>"; };
+		0A60FD361C014ECF0027FACA /* scrollBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scrollBar.cpp; sourceTree = "<group>"; };
+		0A60FD371C014ECF0027FACA /* scrollBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollBar.h; sourceTree = "<group>"; };
 		0A6CF4331BBDF1830018021D /* button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
 		0A6CF4341BBDF1830018021D /* enumVideoState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enumVideoState.h; sourceTree = "<group>"; };
 		0A6CF4351BBDF1830018021D /* nodeVideoInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nodeVideoInterface.cpp; sourceTree = "<group>"; };
@@ -690,6 +693,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				0A60FD361C014ECF0027FACA /* scrollBar.cpp */,
+				0A60FD371C014ECF0027FACA /* scrollBar.h */,
 				0A6CF4331BBDF1830018021D /* button.h */,
 				0A6CF4341BBDF1830018021D /* enumVideoState.h */,
 				0A6CF4351BBDF1830018021D /* nodeVideoInterface.cpp */,
@@ -843,6 +848,7 @@
 				A895C3FC26B3358A680C0F36 /* ofxPatch.cpp in Sources */,
 				60D23838A35EAC1C9E762613 /* ofxShaderObj.cpp in Sources */,
 				382E6CEAAF4C1AEA627BF4B8 /* ofxTitleBar.cpp in Sources */,
+				0A60FD381C014ECF0027FACA /* scrollBar.cpp in Sources */,
 				FF393FD80B6AB58FBAA126CC /* ofxEditor.cpp in Sources */,
 				E874FA147A1642EC2BC94C33 /* ofxEditorColorScheme.cpp in Sources */,
 				398F4583766AA26A553E36B9 /* ofxEditorFont.cpp in Sources */,

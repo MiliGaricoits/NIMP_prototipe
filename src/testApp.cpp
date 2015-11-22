@@ -91,7 +91,7 @@ void testApp::setup(){
 //-------------------------------------------------------------- LOOP
 void testApp::update() {
     
-    composer.update();
+    composer->update();
     
     ofSetWindowTitle( ofToString( ofGetFrameRate()));
     
