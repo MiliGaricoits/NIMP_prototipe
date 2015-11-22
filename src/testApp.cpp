@@ -313,5 +313,11 @@ void testApp::menuEvent(ofxUIEventArgs &e)
         scale += 10*SCALE_SENSITIVITY;
         cam.setScale(scale);
     }
+    else if (name == "Save Snippet"){
+        composer->saveSnippet();
+    }
+    else if (name == "Open Snippet"){
+        composer->loadSnippet();
+    }
 }
 
