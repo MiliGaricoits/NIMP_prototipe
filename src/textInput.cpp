@@ -15,11 +15,12 @@ textInput::textInput(string _name, string _textstring, float w, float h, float x
 {
     init(_name, _textstring, w, h, x, y, _size);
     
+    nodes.push_back("base node");
+    nodes.push_back("camera");
     nodes.push_back("image");
     nodes.push_back("shader");
     nodes.push_back("texture");
     nodes.push_back("video");
-    nodes.push_back("camera");
     
     imSelected = false;
 }
@@ -99,7 +100,7 @@ void textInput::guiEvent(ofxUIEventArgs &e){
             
             e.type = "ofVideoGrabber";
         }
-        else if (e.type == "image"){
+        else if ((e.type == "image") || (e.type == "base node")){
             
             e.type = "ofImage";
             
@@ -216,9 +217,9 @@ void textInput::guiEvent(ofxUIEventArgs &e){
                 return;
             }
         }
-        
+    
         ofNotifyEvent(createNode, e , this);
-        
+    
     }
 }
 

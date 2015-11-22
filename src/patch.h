@@ -32,6 +32,8 @@ public:
     void _mouseReleased(ofMouseEventArgs &e);
     void _keyPressed(ofKeyEventArgs &e);
     
+    void guiEvent(ofxUIEventArgs &e);
+    
     ofPolyline getCoorners();
     ofRectangle getBox() { return box; };
     void setLinkType(nodeLinkType type);
@@ -44,12 +46,16 @@ public:
     
 private:
     
-    nodeVideoInterface *videoInterface;
-    nodeLinkType linkType;
-    bool commandKey;
     int selectedLinkPath;
     int selectedLink;
+    nodeLinkType linkType;
+    
+    nodeVideoInterface *videoInterface;
     ofxUISuperCanvas* gui;
+    ofxUICanvas* inspector;
+    bool bInspector;
+    
+    string imageSrc;
 };
 
 #endif /* defined(__NIMP_Prototipe__patch__) */

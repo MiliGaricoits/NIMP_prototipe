@@ -13,11 +13,14 @@ patch::patch() : ofxPatch() {
     
     selectedLink = -1;
     selectedLinkPath = -1;
+    bInspector = false;
 
     ofAddListener(ofEvents().mousePressed, this, &patch::_mousePressed);
     ofAddListener(ofEvents().mouseDragged, this, &patch::_mouseDragged);
     ofAddListener(ofEvents().mouseReleased, this, &patch::_mouseReleased);
     ofAddListener(ofEvents().keyPressed, this, &patch::_keyPressed);
+    
+    title->addButton('i', &bInspector, TOGGLE_BUTTON);
 }
 
 /* ================================================ */
@@ -25,12 +28,36 @@ patch::patch() : ofxPatch() {
 /* ================================================ */
 
 void patch::update() {
+
+    if (imageSrc != "") {
+        delete image;
+        image   = new ofImage();
+        image->loadImage( imageSrc );
+        
+        if (width != image->getWidth() || height != image->getHeight()) {
+            width = image->getWidth();
+            height = image->getHeight();
+            
+            int offSet;
+            if (title != NULL)
+                offSet = 15;
+            textureCorners[0].set(0.0, offSet);
+            textureCorners[1].set(width, offSet);
+            textureCorners[2].set(width, height + offSet);
+            textureCorners[3].set(0.0, height + offSet);
+            
+            move( ofPoint(x,y) );
+            scale(0.5);
+            setPosition(getGlobalPosition()*((ofCamera*)getParent())->getScale());
+        }
+    }
     
     ofxPatch::update();
 
     if (videoPlayer != NULL){
         videoInterface->setVideoFrame(videoPlayer->getPosition());
     }
+    title->setTitle("");
 }
 
 void patch::customDraw() {
@@ -43,7 +70,14 @@ void patch::customDraw() {
         if (type.compare("ofVideoPlayer") == 0)
             videoInterface->draw();
         
-        
+        if (type.compare("ofImage") == 0) {
+            if (bInspector) {
+                inspector->setPosition(textureCorners[1].x+2, textureCorners[1].y);
+                inspector->setVisible(true);
+            }
+            else inspector->setVisible(false);
+        }
+    
         // Draw the links
         //
         for (int i = 0; i < outPut.size(); i++){
@@ -206,6 +240,39 @@ void patch::_playVideo(int &_nId) {
     }
 }
 
+void patch::guiEvent(ofxUIEventArgs &e)
+{
+//	int kind = e.widget->getKind();
+    string name = e.widget->getName();
+    
+    if (name == "Image src btn" && ((ofxUIButton*)e.widget)->getValue()) {
+        
+        ofFileDialogResult openFileResult = ofSystemLoadDialog("Select an image (.jpg, .jpeg, .png or .bmp)");
+        
+        if (openFileResult.bSuccess){
+            
+            ofFile file (openFileResult.getPath());
+            
+            if (file.exists()){
+                
+                string fileExtension = ofToUpper(file.getExtension());
+                
+                //We only want images
+                if (fileExtension == "JPG"  ||
+                    fileExtension == "PNG"  ||
+                    fileExtension == "JPEG" ||
+                    fileExtension == "GIF"  ||
+                    fileExtension == "BMP"  ) {
+                    imageSrc = openFileResult.getPath();
+                    ((ofxUITextInput*)inspector->getWidget("Image src"))->setTextString(imageSrc);
+                }
+                else return;
+            }
+            file.close();
+        }
+    }
+}
+
 
 /* ================================================ */
 /*       GETTERS | SETTERS | OTHER FUNCTIONS        */
@@ -220,6 +287,20 @@ bool patch::loadFile(string _filePath, string _configFile) {
         ofAddListener( videoInterface->_stop , this, &patch::_stopVideo);
         ofAddListener( videoInterface->_play , this, &patch::_playVideo);
     }
+    else if (type == "ofImage") {
+        imageSrc = _filePath;
+        inspector = new ofxUICanvas();
+        inspector->addLabel("INSPECTOR");
+        inspector->addSpacer();
+        inspector->addLabel("Image src:");
+        inspector->addTextInput("Image src", imageSrc);
+        inspector->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
+        inspector->addImageButton("Image src btn", "assets/edit.png", false);
+        inspector->autoSizeToFitWidgets();
+        ofAddListener(inspector->newGUIEvent,this,&patch::guiEvent);
+        //inspector->loadSettings("GUI/guiSettings.xml");
+        inspector->setVisible(false);
+    }
 }
 
 ofPolyline patch::getCoorners() {
@@ -229,7 +310,6 @@ ofPolyline patch::getCoorners() {
 void patch::setLinkType(nodeLinkType type) {
     linkType = type;
 }
-
 
 bool patch::is_between (float x, float bound1, float bound2, float tolerance) {
     // Handles cases when 'bound1' is greater than 'bound2' and when

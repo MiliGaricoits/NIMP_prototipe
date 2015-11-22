@@ -85,7 +85,8 @@ void testApp::setup(){
 }
 
 //-------------------------------------------------------------- LOOP
-void testApp::update(){
+void testApp::update() {
+    
     composer.update();
     ofSetWindowTitle( ofToString( ofGetFrameRate()));
     
@@ -292,7 +293,8 @@ void testApp::menuEvent(ofxUIEventArgs &e)
         else composer.setEdit(true);
     }
     else if (name == "Inspect"){
-        open_flyout = true;
+        if (open_flyout) open_flyout = false;
+        else open_flyout = true;
     }
     else if (name == "Zoom In"){
         //cam.setDistance(cam.getDistance()-50);
