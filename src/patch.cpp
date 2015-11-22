@@ -32,6 +32,7 @@ patch::patch(int eventPriority) : ofxPatch() {
     ofAddListener(ofEvents().keyPressed, this, &patch::_keyPressed, eventPriority);
     
     title->addButton('i', &bInspector, TOGGLE_BUTTON);
+    title->setParent(*this);
 }
 
 /* ================================================ */
@@ -46,20 +47,7 @@ void patch::update() {
         image->loadImage( imageSrc );
         
         if (width != image->getWidth() || height != image->getHeight()) {
-            width = image->getWidth();
-            height = image->getHeight();
-            
-            int offSet;
-            if (title != NULL)
-                offSet = 15;
-            textureCorners[0].set(0.0, offSet);
-            textureCorners[1].set(width, offSet);
-            textureCorners[2].set(width, height + offSet);
-            textureCorners[3].set(0.0, height + offSet);
-            
-            move( ofPoint(x,y) );
-            scale(0.5);
-            setPosition(getGlobalPosition()*((ofCamera*)getParent())->getScale());
+            this->resetSize(image->getWidth(), image->getHeight());
         }
     }
     
@@ -318,8 +306,21 @@ ofPolyline patch::getCoorners() {
     return textureCorners;
 }
 
+float patch::getHeight() {
+    return height;
+}
+
+float patch::getWidth(){
+    return width;
+}
+
 void patch::setLinkType(nodeLinkType type) {
     linkType = type;
+}
+
+void patch::setMainCanvas(ofxUISuperCanvas* _gui) {
+    this->gui = _gui;
+    this->setParent(*this->gui);
 }
 
 bool patch::is_between (float x, float bound1, float bound2, float tolerance) {
@@ -329,9 +330,22 @@ bool patch::is_between (float x, float bound1, float bound2, float tolerance) {
             ((x >= (bound2 - tolerance)) && (x <= (bound1 + tolerance))));
 }
 
-void patch::setMainCanvas(ofxUISuperCanvas* _gui) {
-    this->gui = _gui;
-    this->setParent(*this->gui);
+void patch::resetSize(int _width, int _height) {
+
+    width = _width;
+    height = _height;
+    
+    int offSet;
+    if (title != NULL)
+        offSet = 15;
+    textureCorners[0].set(0.0, offSet);
+    textureCorners[1].set(width, offSet);
+    textureCorners[2].set(width, height + offSet);
+    textureCorners[3].set(0.0, height + offSet);
+    
+    move( ofPoint(x,y) );
+    scale(0.5);
+    setPosition(getGlobalPosition()*((ofCamera*)getParent())->getScale());
 }
 
 // nico snippet

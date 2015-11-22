@@ -37,10 +37,14 @@ public:
     
     ofPolyline getCoorners();
     ofRectangle getBox() { return box; };
-    void setLinkType(nodeLinkType type);
-    bool is_between (float x, float bound1, float bound2, float tolerance);
+    float getHeight();
+    float getWidth();
     
+    void setLinkType(nodeLinkType type);
     void setMainCanvas(ofxUISuperCanvas* gui);
+    
+    bool is_between (float x, float bound1, float bound2, float tolerance);
+    void resetSize(int _width, int _height);
     
     bool loadSnippetPatch(string snippetName, int relativeId, int cantPatchesOriginal);
     bool saveSnippetPatch(string snippetName, map<int, int> idMap, ofxXmlSettings xml);
