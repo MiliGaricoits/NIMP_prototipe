@@ -63,9 +63,6 @@ void composer::_mouseReleased(ofMouseEventArgs &e){
 
 void composer::_mousePressed(ofMouseEventArgs &e){
     ofxComposer::_mousePressed(e);
-    /*for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
-        cout << "id: " << it->second->getId() << endl;
-    }*/
 }
 
 void composer::_mouseMoved(ofMouseEventArgs &e){
@@ -74,10 +71,10 @@ void composer::_mouseMoved(ofMouseEventArgs &e){
 
 void composer::_keyPressed(ofKeyEventArgs &e){
     if (e.key == 'j') {
-        loadSnippet("snippetSave.xml");
+        loadSnippet();
     }
     if (e.key == 'k') {
-        saveSnippet("snippetSave.xml");
+        saveSnippet();
     }
     
     ofxComposer::_keyPressed(e);
@@ -106,11 +103,31 @@ map<int,patch*> composer::getPatches() {
 }
 
 /************************************** EMPIEZA SNIPPETS *********************************/
-void ofxComposer::loadSnippet(string snippetName) {
+void ofxComposer::loadSnippet() {
+    
+    string snippetName = "";
+    
+    ofFileDialogResult openFileResult;
+    openFileResult = ofSystemLoadDialog("Select a snippet (.xml)");
+
+    if (openFileResult.bSuccess){
+        ofFile file (openFileResult.getPath());
+        if (file.exists()){
+            string fileExtension = ofToUpper(file.getExtension());
+            
+            //We only want images
+//            if (fileExtension == "SNI" ||
+//                fileExtension == "XML") {
+            if(fileExtension == "XML"){
+                snippetName = openFileResult.getPath();
+            } else return;
+        }
+        file.close();
+    }
     ofxXmlSettings XML;
     
     int previousPatchesSize = patches.size();
-//    patches.
+    int a = getMaxIdPatch();
     deactivateAllPatches();
     
     if (XML.loadFile(snippetName)){
@@ -183,11 +200,18 @@ void ofxComposer::loadSnippet(string snippetName) {
 }
 
 
-bool ofxComposer::saveSnippet(string snippetName) {
-    bool saveOk = true;
-    
+bool ofxComposer::saveSnippet() {
+    string snippetName = "";
     ofxXmlSettings XML;
     
+    ofFileDialogResult openFileResult;
+    openFileResult = ofSystemSaveDialog("snippet.xml", "Save your Snippet");
+    
+    if(openFileResult.bSuccess){
+        snippetName = openFileResult.getPath();
+    }
+    
+    bool saveOk = true;
     bool a;
     bool b;
     // Delete and create xml file
@@ -218,7 +242,14 @@ bool ofxComposer::saveSnippet(string snippetName) {
 }
 /*****************************************************************************************/
 
-
+int ofxComposer::getMaxIdPatch(){
+    vector<int> v;
+    for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++) {
+        v.push_back(it->first);
+    }
+    
+    return *(std::max_element(v.begin(), v.end()));
+}
 
 
 

@@ -47,9 +47,7 @@ void testApp::setup(){
     menu->addWidget(spacer);
     spacer->setColorFill(ofxUIColor(120, 120, 120, 200));
     new menuItem(menu, "MultiImageToggle", "Edit Mode on/off", "assets/edit_mode.png", false, 365, 20);
-    
     ofAddListener(menu->newGUIEvent,this,&testApp::menuEvent);
-    
     
     //*** RIGHT MENU ***//
     
@@ -312,6 +310,16 @@ void testApp::menuEvent(ofxUIEventArgs &e)
         //cam.setDistance(cam.getDistance()+50);
         scale += 10*SCALE_SENSITIVITY;
         cam.setScale(scale);
+    }
+    else if (name == "Save Snippet"){
+        if(((ofxUIImageToggle*)menu->getWidget("Save Snippet"))->getValue() == 1){
+            composer->saveSnippet();
+        }
+    }
+    else if (name == "Open Snippet"){
+        if(((ofxUIImageToggle*)menu->getWidget("Open Snippet"))->getValue() == 1){
+            composer->loadSnippet();
+        }
     }
 }
 
