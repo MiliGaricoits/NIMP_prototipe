@@ -57,7 +57,7 @@ private:
     
     nodeVideoInterface *videoInterface;
     ofxUISuperCanvas* gui;
-    ofxUICanvas* inspector;
+    ofxUICanvas* inspector = NULL;
     bool bInspector;
     
     string imageSrc;

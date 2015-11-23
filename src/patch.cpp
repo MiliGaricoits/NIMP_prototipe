@@ -122,14 +122,22 @@ void patch::customDraw() {
 
 void patch::_mousePressed(ofMouseEventArgs &e) {
     
+    ofVec3f mouse_transformed = ofVec3f(e.x, e.y, 0.0)*this->getGlobalTransformMatrix();
+    
+    if (bEditMode){
+        
+        // check is mouse is pressing over the inspector
+        if (inspector != NULL and inspector->isVisible() and inspector->isHit(mouse_transformed.x, mouse_transformed.y)) {
+            gui->setOtherSelected(true);
+            return;
+        }
+    }
+    
     ofxPatch::_mousePressed(e);
     
     // Is over link dot ?
-    //
-    ofVec3f mouse = ofVec3f(e.x, e.y, 0.0);
-    ofVec3f mouse_transformed = mouse*this->getGlobalTransformMatrix();
-    
     if (bEditMode){
+        
         bool overDot = false;
         for (int i = 0; i < outPut.size() and !overDot; i++){
             
@@ -207,6 +215,9 @@ void patch::_mouseDragged(ofMouseEventArgs &e) {
 }
 
 void patch::_mouseReleased(ofMouseEventArgs &e){
+    
+    // mouse is not longer pressing the inspector
+    gui->setOtherSelected(false);
     
     ofxPatch::_mouseReleased(e);
     
@@ -293,7 +304,8 @@ bool patch::loadFile(string _filePath, string _configFile) {
         inspector->addLabel("INSPECTOR");
         inspector->addSpacer();
         inspector->addLabel("Image src:");
-        inspector->addTextInput("Image src", imageSrc);
+        ofxUITextInput* ti = inspector->addTextInput("Image src", imageSrc);
+        ti->setDraggable(false);
         inspector->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
         inspector->addImageButton("Image src btn", "assets/edit.png", false);
         inspector->autoSizeToFitWidgets();

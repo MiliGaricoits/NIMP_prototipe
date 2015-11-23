@@ -63,9 +63,9 @@ void composer::_mouseReleased(ofMouseEventArgs &e){
 
 void composer::_mousePressed(ofMouseEventArgs &e){
     ofxComposer::_mousePressed(e);
-    for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
+    /*for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
         cout << "id: " << it->second->getId() << endl;
-    }
+    }*/
 }
 
 void composer::_mouseMoved(ofMouseEventArgs &e){
