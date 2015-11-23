@@ -71,7 +71,8 @@ void patch::customDraw() {
         
         if (type.compare("ofImage") == 0) {
             if (bInspector) {
-                inspector->setPosition(textureCorners[1].x+2, textureCorners[1].y);
+                ofVec3f scale = ((ofCamera*)this->getParent())->getScale();
+                inspector->setPosition(textureCorners[1].x/scale.x+2, textureCorners[1].y/scale.y);
                 inspector->setVisible(true);
             }
             else inspector->setVisible(false);
