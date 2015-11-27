@@ -12,16 +12,18 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "composer.h"
+#include "ofxMultiTouchPad.h"
 
 class scrollBar {
     
 public:
     
     scrollBar();
-    scrollBar(composer* composer, int eventPriority = OF_EVENT_ORDER_AFTER_APP);
+    scrollBar(composer* composer, ofxMultiTouchPad* pad, int eventPriority = OF_EVENT_ORDER_AFTER_APP);
 //    ~scrollBar();
     
     void setup();
+    void update();
     void draw();
     
     // Events
@@ -57,6 +59,13 @@ private:
     ofRectangle hScrollBarRectangle;
     ofRectangle hGripRectangle;
     int mousePreviousX;
+    
+    // touchpad
+    ofxMultiTouchPad* pad;
+    std::vector<ofPoint> touches;
+    bool touchpad_scroll;
+    float touchpad_scroll_x;
+    float touchpad_scroll_y;
     
     // CONSTANTS
     float KEY_SCROLL_SENSITIVITY = 10.f;

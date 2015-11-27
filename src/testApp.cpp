@@ -91,13 +91,14 @@ void testApp::setup(){
     
     //*** SCROLL BAR SETUP ***//
     
-    this->scrollBars = new scrollBar(this->composer, SCROLL_BAR_EVENT_PRIORITY);
+    this->scrollBars = new scrollBar(this->composer, &this->pad, SCROLL_BAR_EVENT_PRIORITY);
     scrollBars->setup();
 }
 
 //-------------------------------------------------------------- LOOP
 void testApp::update() {
     
+    scrollBars->update();
     composer->update();
     
     ofSetWindowTitle( ofToString( ofGetFrameRate()));
@@ -181,19 +182,6 @@ void testApp::keyReleased(int key){
 }
 
 void testApp::mouseMoved(int x, int y ){
-//    map<int,patch*> p = composer->getPatches();
-//    //    cout << "x: " << x << endl;
-//    //    cout << "y: " << y << endl;
-//    for(map<int,patch*>::iterator it = p.begin(); it != p.end(); it++ ){
-//        //        cam.begin();
-//        //        ofTranslate(x,y);
-//        if(it->second->isOver(ofPoint(x,y))) {
-//            cout << "ESTOY ARRIBA! " << endl;
-//        } else {
-//            cout << "ESTOY FUERA DE PATCH" << endl;
-//        }
-//        //        cam.end();
-//    }
 }
 
 void testApp::mouseDragged(int x, int y, int button){
@@ -230,7 +218,6 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 		}
 	}
 }
-
 
 void testApp::createNodeInput(float _x, float _y){
     

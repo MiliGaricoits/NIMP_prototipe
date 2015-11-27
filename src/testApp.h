@@ -49,7 +49,6 @@ protected:
     ofEasyCam cam;
     
     ofxMultiTouchPad pad;
-    std::vector<ofPoint> touches;
     
     scrollBar* scrollBars;
 

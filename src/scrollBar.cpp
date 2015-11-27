@@ -12,8 +12,10 @@
 scrollBar::scrollBar(){
 }
 
-scrollBar::scrollBar(class composer* comp, int eventPriority){
-    this->composer = comp;
+scrollBar::scrollBar(class composer* _composer, ofxMultiTouchPad* _pad, int eventPriority){
+    this->composer = _composer;
+    this->pad = _pad;
+    
     //  Event listeners
     //
     ofAddListener(ofEvents().mouseMoved, this, &scrollBar::mouseMoved, eventPriority);
@@ -21,6 +23,7 @@ scrollBar::scrollBar(class composer* comp, int eventPriority){
     ofAddListener(ofEvents().mouseReleased, this, &scrollBar::mouseReleased, eventPriority);
     ofAddListener(ofEvents().keyPressed, this, &scrollBar::keyPressed, eventPriority);
     ofAddListener(ofEvents().windowResized, this, &scrollBar::windowResized, eventPriority);
+    
     // nico SrollBar
     ofAddListener(ofEvents().mouseDragged, this, &scrollBar::mouseDragged, eventPriority);
 }
@@ -57,6 +60,57 @@ void scrollBar::setup(){
     
     updateScrollBar(ofVec3f(0,0,0));
     updateHScrollBar(ofVec3f(0,0,0));
+}
+
+void scrollBar::update(){
+    
+    std::vector<MTouch> mTouches = pad->getTouches();
+    if(mTouches.size() == 2) {
+        ofVec3f diffVec = ofVec3f(0,0,0);
+        
+        if (!touchpad_scroll) {
+            touchpad_scroll = true;
+            touchpad_scroll_x = ((mTouches[0].x + mTouches[1].x))*100 / 2;
+            touchpad_scroll_y = ((mTouches[0].y + mTouches[1].y))*100 / 2;
+        }
+        else {
+            
+            if (isScrollBarVisible /*&& composer->isDraggingGrip()*/) {
+                
+                float new_y = ((mTouches[0].y + mTouches[1].y)*100) / 2;
+                float diff_y = touchpad_scroll_y - new_y;
+                
+                if (-2 < diff_y && diff_y < 2) diff_y = 0;
+            
+                diffVec.y = diff_y;
+            
+                touchpad_scroll_y = new_y;
+                float dy = new_y - touchpad_scroll_y;
+                gripRectangle.y += dy;
+            
+            }
+            if(isHScrollBarVisible /*&& composer->isDraggingHGrip()*/){
+                
+                float new_x = ((mTouches[0].x + mTouches[1].x)*100) / 2;
+                float diff_x = touchpad_scroll_x - new_x;
+                
+                if (-2 < diff_x && diff_x < 2) diff_x = 0;
+                
+                diffVec.x = diff_x;
+                
+                touchpad_scroll_x = new_x;
+                float dx = new_x - touchpad_scroll_x;
+                hGripRectangle.x += dx;
+                
+            }
+        }
+        
+        updateScrollBar(diffVec);
+        updateHScrollBar(diffVec);
+    }
+    else {
+        touchpad_scroll = false;
+    }
 }
 
 void scrollBar::draw(){
