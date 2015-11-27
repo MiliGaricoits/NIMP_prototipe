@@ -4,3 +4,4 @@ ofxGLEditor
 ofxMSAInteractiveObject_nimp
 ofxPulseSensor
 ofxUI_nimp
+ofxMultiTouchPad

@@ -19,7 +19,6 @@ class composer : public ofxComposer
 public:
     
     composer();
-    composer(int composerEventPriority = OF_EVENT_ORDER_AFTER_APP, int patchEventPriority = OF_EVENT_ORDER_AFTER_APP);
     
     bool getEdit();
     void setLinkType (nodeLinkType type);

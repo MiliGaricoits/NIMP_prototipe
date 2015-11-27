@@ -113,6 +113,11 @@ void patch::customDraw() {
             }
         }
     }
+    else {
+        if (bInspector) {
+            inspector->setVisible(false);
+        }
+    }
 }
 
 

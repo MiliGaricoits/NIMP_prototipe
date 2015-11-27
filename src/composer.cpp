@@ -11,25 +11,14 @@
 composer::composer() : ofxComposer() {
     //  Event listeners
     //
-//    ofAddListener(ofEvents().mouseMoved, this, &composer::_mouseMoved);
-//    ofAddListener(ofEvents().mousePressed, this, &composer::_mousePressed);
-//    ofAddListener(ofEvents().mouseReleased, this, &composer::_mouseReleased);
-//    ofAddListener(ofEvents().keyPressed, this, &composer::_keyPressed);
-//    ofAddListener(ofEvents().windowResized, this, &composer::_windowResized);
-//    // nico SrollBar
-//    ofAddListener(ofEvents().mouseDragged, this, &composer::_mouseDragged);
-}
-
-composer::composer(int composerEventPriority, int patchEventPriority) : ofxComposer(patchEventPriority) {
-    //  Event listeners
-    //
-    ofAddListener(ofEvents().mouseMoved, this, &composer::_mouseMoved, composerEventPriority);
-    ofAddListener(ofEvents().mousePressed, this, &composer::_mousePressed, composerEventPriority);
-    ofAddListener(ofEvents().mouseReleased, this, &composer::_mouseReleased, composerEventPriority);
-    ofAddListener(ofEvents().keyPressed, this, &composer::_keyPressed, composerEventPriority);
-    ofAddListener(ofEvents().windowResized, this, &composer::_windowResized, composerEventPriority);
+    ofAddListener(ofEvents().mouseMoved, this, &composer::_mouseMoved, COMPOSER_EVENT_PRIORITY);
+    ofAddListener(ofEvents().mousePressed, this, &composer::_mousePressed, COMPOSER_EVENT_PRIORITY);
+    ofAddListener(ofEvents().mouseReleased, this, &composer::_mouseReleased, COMPOSER_EVENT_PRIORITY);
+    ofAddListener(ofEvents().keyPressed, this, &composer::_keyPressed, COMPOSER_EVENT_PRIORITY);
+    ofAddListener(ofEvents().windowResized, this, &composer::_windowResized, COMPOSER_EVENT_PRIORITY);
+    
     // nico SrollBar
-    ofAddListener(ofEvents().mouseDragged, this, &composer::_mouseDragged, composerEventPriority);
+    ofAddListener(ofEvents().mouseDragged, this, &composer::_mouseDragged, COMPOSER_EVENT_PRIORITY);
 }
 
 /* ================================================ */
@@ -37,16 +26,15 @@ composer::composer(int composerEventPriority, int patchEventPriority) : ofxCompo
 /* ================================================ */
 
 void composer::update(){
-    this->ofxComposer::update();
     
+    this->ofxComposer::update();
 }
 
 void composer::customDraw(){
-//    ofPushMatrix();
+    
     ofPushStyle();
         this->ofxComposer::customDraw();
     ofPopStyle();
-//    ofPopMatrix();
 }
 
 /* ================================================ */

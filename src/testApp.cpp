@@ -8,6 +8,11 @@ void testApp::setup(){
     
     open_flyout = false;
     
+    //*** TRACKPAD SETUP ***//
+    
+    pad = ofxMultiTouchPad();
+    
+    
     //*** CAMERA SETUP ***//
     
     cam.setDistance(600);
@@ -16,16 +21,15 @@ void testApp::setup(){
     cam.setVFlip(true);
     scale = 1.f;
     
+    
     //*** TOP MENU ***//
     
     menu = new ofxUISuperCanvas("menu", 0, MENU_TOP_PADDING, ofGetWidth(), MENU_HEIGHT);
     menu->getCanvasTitle()->ofxUIWidget::setVisible(false);
     menu->setColorBack(ofxUIColor(140, 140, 140,255));
-    //menu->setGlobalButtonDimension(25);
     ofxUISpacer* spacer;
     
     new menuItem(menu, "MultiImageButton", "New Patcher", "assets/new_file.png", false, 35, 20);
-    //menu->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
     new menuItem(menu, "MultiImageButton", "Open Patcher", "assets/open_file.png", false, 65, 20);
     new menuItem(menu, "MultiImageButton", "Save Patcher", "assets/save_file.png", false, 95, 20);
     spacer = new ofxUISpacer(130, 20, 1,25);
@@ -49,6 +53,7 @@ void testApp::setup(){
     new menuItem(menu, "MultiImageToggle", "Edit Mode on/off", "assets/edit_mode.png", false, 365, 20);
     ofAddListener(menu->newGUIEvent,this,&testApp::menuEvent);
     
+    
     //*** RIGHT MENU ***//
     
     right_menu = new ofxUISuperCanvas("menu", 0, MENU_HEIGHT + MENU_TOP_PADDING, RIGHT_MENU_WIDTH, ofGetHeight() - (MENU_HEIGHT + MENU_TOP_PADDING));
@@ -69,19 +74,23 @@ void testApp::setup(){
     gui->setDraggable(false);
     gui->setOtherSelected(false);
     
-    composer = new composer::composer(COMPOSER_EVENT_PRIORITY, PATCH_EVENT_PRIORITY);
+    
+    //*** COMPOSER AND PATCHES SETUP ***//
+    
+    composer = new composer::composer();
     composer->setMainCanvas(gui);
-    composer->load(PATCH_EVENT_PRIORITY, "config.xml");
+    composer->load("config.xml");
     composer->setLinkType(PATH_LINKS);
     
-    // cam setup
     composer->setParent(cam);
     map<int,patch*> patches = composer->getPatches();
     for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
         it->second->setParent(cam);
     }
     
-    // scroll bars setup
+    
+    //*** SCROLL BAR SETUP ***//
+    
     this->scrollBars = new scrollBar(this->composer, SCROLL_BAR_EVENT_PRIORITY);
     scrollBars->setup();
 }

@@ -9,6 +9,7 @@
 #include "enumerations.h"
 #include "menuItem.h"
 #include "scrollBar.h"
+#include "ofxMultiTouchPad.h"
 
 class testApp : public ofBaseApp{
 public:
@@ -34,21 +35,22 @@ public:
     
     bool hagoZoom;
     float scale;
-    float SCALE_SENSITIVITY = 0.001f;
     
 protected:
     vector<ofxUIWidget*> widgetsToDelete;
     textInput* newNodeInput;
+    
     ofxUISuperCanvas* gui;
     ofxUISuperCanvas* menu;
     ofxUISuperCanvas* right_menu;
+    
     bool open_flyout;
+    
     ofEasyCam cam;
     
-    scrollBar* scrollBars;
+    ofxMultiTouchPad pad;
+    std::vector<ofPoint> touches;
     
-private:
-    int COMPOSER_EVENT_PRIORITY = 202;
-    int PATCH_EVENT_PRIORITY = 203;
-    int SCROLL_BAR_EVENT_PRIORITY = 201;
+    scrollBar* scrollBars;
+
 };
