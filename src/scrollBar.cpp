@@ -64,6 +64,7 @@ void scrollBar::setup(){
 
 void scrollBar::update(){
     
+    //** touchpad scroll **//
     std::vector<MTouch> mTouches = pad->getTouches();
     if(mTouches.size() == 2) {
         ofVec3f diffVec = ofVec3f(0,0,0);
@@ -78,9 +79,9 @@ void scrollBar::update(){
             if (isScrollBarVisible /*&& composer->isDraggingGrip()*/) {
                 
                 float new_y = ((mTouches[0].y + mTouches[1].y)*100) / 2;
-                float diff_y = touchpad_scroll_y - new_y;
+                float diff_y = (touchpad_scroll_y - new_y)*1.1;
                 
-                if (-2 < diff_y && diff_y < 2) diff_y = 0;
+                if (-3 < diff_y && diff_y < 3) diff_y = 0;
             
                 diffVec.y = diff_y;
             
@@ -92,9 +93,9 @@ void scrollBar::update(){
             if(isHScrollBarVisible /*&& composer->isDraggingHGrip()*/){
                 
                 float new_x = ((mTouches[0].x + mTouches[1].x)*100) / 2;
-                float diff_x = touchpad_scroll_x - new_x;
+                float diff_x = (touchpad_scroll_x - new_x)*1.2;
                 
-                if (-2 < diff_x && diff_x < 2) diff_x = 0;
+                if (-4 < diff_x && diff_x < 4) diff_x = 0;
                 
                 diffVec.x = diff_x;
                 
@@ -111,6 +112,7 @@ void scrollBar::update(){
     else {
         touchpad_scroll = false;
     }
+    //** **//
 }
 
 void scrollBar::draw(){

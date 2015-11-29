@@ -98,6 +98,16 @@ void testApp::setup(){
 //-------------------------------------------------------------- LOOP
 void testApp::update() {
     
+    
+    if (zoom_in) {
+        scale -= 10*SCALE_SENSITIVITY;
+        cam.setScale(scale);
+    }
+    else if (zoom_out) {
+        scale += 10*SCALE_SENSITIVITY;
+        cam.setScale(scale);
+    }
+    
     scrollBars->update();
     composer->update();
     
@@ -202,6 +212,8 @@ void testApp::mousePressed(int x, int y, int button){
 
 void testApp::mouseReleased(int x, int y, int button){
     hagoZoom = false;
+    zoom_in = false;
+    zoom_out = false;
 }
 
 void testApp::windowResized(int w, int h){
@@ -254,6 +266,9 @@ void testApp::createNode(textInputEvent &args){
 
 void testApp::menuEvent(ofxUIEventArgs &e)
 {
+    zoom_in = false;
+    zoom_out = false;
+    
     string name = e.getName();
     if (name == "Straight Links") {
         ((ofxUIImageToggle*)menu->getWidget("Straight Links"))->setValue(true);
@@ -298,22 +313,28 @@ void testApp::menuEvent(ofxUIEventArgs &e)
         else open_flyout = true;
     }
     else if (name == "Zoom In"){
-        //cam.setDistance(cam.getDistance()-50);
-        scale -= 10*SCALE_SENSITIVITY;
-        cam.setScale(scale);
+        
+        if(((ofxUIMultiImageButton*)e.widget)->getValue() == 1){
+            zoom_in = true;
+            scale -= 10*SCALE_SENSITIVITY;
+            cam.setScale(scale);
+        }
     }
     else if (name == "Zoom Out"){
-        //cam.setDistance(cam.getDistance()+50);
-        scale += 10*SCALE_SENSITIVITY;
-        cam.setScale(scale);
+        
+        if(((ofxUIMultiImageButton*)e.widget)->getValue() == 1){
+            zoom_out = true;
+            scale += 10*SCALE_SENSITIVITY;
+            cam.setScale(scale);
+        }
     }
     else if (name == "Save Snippet"){
-        if(((ofxUIImageToggle*)menu->getWidget("Save Snippet"))->getValue() == 1){
+        if(((ofxUIMultiImageButton*)e.widget)->getValue() == 1){
             composer->saveSnippet();
         }
     }
     else if (name == "Open Snippet"){
-        if(((ofxUIImageToggle*)menu->getWidget("Open Snippet"))->getValue() == 1){
+        if(((ofxUIMultiImageButton*)e.widget)->getValue() == 1){
             composer->loadSnippet();
         }
     }

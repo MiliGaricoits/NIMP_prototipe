@@ -44,12 +44,15 @@ protected:
     ofxUISuperCanvas* menu;
     ofxUISuperCanvas* right_menu;
     
-    bool open_flyout;
-    
     ofEasyCam cam;
     
     ofxMultiTouchPad pad;
     
     scrollBar* scrollBars;
+    
+private:
+    
+    bool open_flyout;
+    bool zoom_in, zoom_out;
 
 };
