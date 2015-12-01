@@ -44,8 +44,6 @@ void scrollBar::setup(){
     // Now two rectangles, for the scroll bar and his grip placements
     // Coordinates are relative to the panel coordinates, not to the screen coordinates
     // This is a first initialisation, but we don't know many things about these placements at this state
-//    scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT+MENU_TOP_PADDING, scrollBarWidth, 0);
-//    gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, MENU_HEIGHT+MENU_TOP_PADDING, scrollBarWidth, 0);
     scrollBarRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, BEGIN_Y, scrollBarWidth, 0);
     gripRectangle = ofRectangle(ofGetWidth() - scrollBarWidth, BEGIN_Y, scrollBarWidth, 0);
     
@@ -87,7 +85,7 @@ void scrollBar::update(){
             
                 touchpad_scroll_y = new_y;
                 float dy = new_y - touchpad_scroll_y;
-                gripRectangle.y += dy;
+                gripRectangle.y -= diffVec.y;
             
             }
             if(isHScrollBarVisible /*&& composer->isDraggingHGrip()*/){
@@ -101,7 +99,7 @@ void scrollBar::update(){
                 
                 touchpad_scroll_x = new_x;
                 float dx = new_x - touchpad_scroll_x;
-                hGripRectangle.x += dx;
+                hGripRectangle.x -= diffVec.x;
                 
             }
         }
