@@ -19,6 +19,7 @@
 #define SCROLL_BAR_EVENT_PRIORITY 201
 
 #define SCALE_SENSITIVITY 0.001f
+#define ZOOM_DIFF .5f
 
 enum nodeLinkType
 {

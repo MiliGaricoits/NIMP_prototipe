@@ -35,10 +35,10 @@ public:
     void    windowResized(ofResizeEventArgs &e);
     void    mouseDragged(ofMouseEventArgs &e);
     
-private:
     void updateScrollBar(ofVec3f diffVec);
     void updateHScrollBar(ofVec3f diffVec);
     
+private:
     /* Display parameters for the panel */
     float margin;
     float scrollBarWidth;
