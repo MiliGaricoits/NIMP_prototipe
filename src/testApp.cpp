@@ -77,7 +77,7 @@ void testApp::setup(){
     
     //*** COMPOSER AND PATCHES SETUP ***//
     
-    composer = new composer::composer(COMPOSER_EVENT_PRIORITY);
+    composer = new composer::composer();
     composer->setMainCanvas(gui);
     composer->load("config.xml");
     composer->setLinkType(PATH_LINKS);

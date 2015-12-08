@@ -9,28 +9,16 @@
 #include "composer.h"
 
 composer::composer() : ofxComposer() {
-    //  Event listeners
-//    //
-//    ofAddListener(ofEvents().mouseMoved, this, &composer::_mouseMoved, COMPOSER_EVENT_PRIORITY);
-//    ofAddListener(ofEvents().mousePressed, this, &composer::_mousePressed, COMPOSER_EVENT_PRIORITY);
-//    ofAddListener(ofEvents().mouseReleased, this, &composer::_mouseReleased, COMPOSER_EVENT_PRIORITY);
-//    ofAddListener(ofEvents().keyPressed, this, &composer::_keyPressed, COMPOSER_EVENT_PRIORITY);
-//    ofAddListener(ofEvents().windowResized, this, &composer::_windowResized, COMPOSER_EVENT_PRIORITY);
-//    
-//    // nico SrollBar
-//    ofAddListener(ofEvents().mouseDragged, this, &composer::_mouseDragged, COMPOSER_EVENT_PRIORITY);
-}
-
-composer::composer(int eventPriority) : ofxComposer() {
-    
-    ofAddListener(ofEvents().mouseMoved, this, &composer::_mouseMoved, eventPriority);
-    ofAddListener(ofEvents().mousePressed, this, &composer::_mousePressed, eventPriority);
-    ofAddListener(ofEvents().mouseReleased, this, &composer::_mouseReleased, eventPriority);
-    ofAddListener(ofEvents().keyPressed, this, &composer::_keyPressed, eventPriority);
-    ofAddListener(ofEvents().windowResized, this, &composer::_windowResized, eventPriority);
+    // Event listeners
+    //
+    ofAddListener(ofEvents().mouseMoved, this, &composer::_mouseMoved, COMPOSER_EVENT_PRIORITY);
+    ofAddListener(ofEvents().mousePressed, this, &composer::_mousePressed, COMPOSER_EVENT_PRIORITY);
+    ofAddListener(ofEvents().mouseReleased, this, &composer::_mouseReleased, COMPOSER_EVENT_PRIORITY);
+    ofAddListener(ofEvents().keyPressed, this, &composer::_keyPressed, COMPOSER_EVENT_PRIORITY);
+    ofAddListener(ofEvents().windowResized, this, &composer::_windowResized, COMPOSER_EVENT_PRIORITY);
     
     // nico SrollBar
-    ofAddListener(ofEvents().mouseDragged, this, &composer::_mouseDragged, eventPriority);
+    ofAddListener(ofEvents().mouseDragged, this, &composer::_mouseDragged, COMPOSER_EVENT_PRIORITY);
 }
 
 /* ================================================ */
@@ -140,7 +128,7 @@ void ofxComposer::loadSnippet() {
         // Load each surface present on the xml file
         //
         for(int i = 0; i < totalPatchs ; i++){
-            patch *nPatch = new patch(PATCH_EVENT_PRIORITY);
+            patch *nPatch = new patch();
             bool loaded = nPatch->loadSnippetPatch(snippetName, i, previousPatchesSize);
             if (loaded){
                 

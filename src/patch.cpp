@@ -8,28 +8,16 @@
 
 #include "patch.h"
 #include <GLUT/glut.h>
-
 patch::patch() : ofxPatch() {
-//    
-//    selectedLink = -1;
-//    selectedLinkPath = -1;
-//
-//    ofAddListener(ofEvents().mousePressed, this, &patch::_mousePressed);
-//    ofAddListener(ofEvents().mouseDragged, this, &patch::_mouseDragged);
-//    ofAddListener(ofEvents().mouseReleased, this, &patch::_mouseReleased);
-//    ofAddListener(ofEvents().keyPressed, this, &patch::_keyPressed);
-}
-
-patch::patch(int eventPriority) : ofxPatch() {
     
     selectedLink = -1;
     selectedLinkPath = -1;
     bInspector = false;
-
-    ofAddListener(ofEvents().mousePressed, this, &patch::_mousePressed, eventPriority);
-    ofAddListener(ofEvents().mouseDragged, this, &patch::_mouseDragged, eventPriority);
-    ofAddListener(ofEvents().mouseReleased, this, &patch::_mouseReleased, eventPriority);
-    ofAddListener(ofEvents().keyPressed, this, &patch::_keyPressed, eventPriority);
+    
+    ofAddListener(ofEvents().mousePressed, this, &patch::_mousePressed, PATCH_EVENT_PRIORITY);
+    ofAddListener(ofEvents().mouseDragged, this, &patch::_mouseDragged, PATCH_EVENT_PRIORITY);
+    ofAddListener(ofEvents().mouseReleased, this, &patch::_mouseReleased, PATCH_EVENT_PRIORITY);
+    ofAddListener(ofEvents().keyPressed, this, &patch::_keyPressed, PATCH_EVENT_PRIORITY);
     
     title->addButton('i', &bInspector, TOGGLE_BUTTON);
     title->setParent(*this);
@@ -53,9 +41,9 @@ void patch::update() {
     
     ofxPatch::update();
 
-    if (videoPlayer != NULL){
+    /*if (videoPlayer != NULL){
         videoInterface->setVideoFrame(videoPlayer->getPosition());
-    }
+    }*/
     title->setTitle("");
 }
 
@@ -66,8 +54,8 @@ void patch::customDraw() {
     if (bEditMode) {
         
         // Draw video interface
-        if (type.compare("ofVideoPlayer") == 0)
-            videoInterface->draw();
+        /*if (type.compare("ofVideoPlayer") == 0)
+            videoInterface->draw();*/
         
         if (type.compare("ofImage") == 0) {
             if (bInspector) {
@@ -239,7 +227,7 @@ void patch::_keyPressed(ofKeyEventArgs &e){
         cout << 'key ' << e.key << '\n';
 }
 
-void patch::_stopVideo(int &_nId) {
+/*void patch::_stopVideo(int &_nId) {
     videoPlayer->stop();
     videoPlayer->firstFrame();
     videoInterface->setVideoState(VIDEO_STOP);
@@ -254,7 +242,7 @@ void patch::_playVideo(int &_nId) {
         videoPlayer->play();
         videoInterface->setVideoState(VIDEO_PLAY);
     }
-}
+}*/
 
 void patch::guiEvent(ofxUIEventArgs &e)
 {
@@ -298,12 +286,12 @@ bool patch::loadFile(string _filePath, string _configFile) {
     
     ofxPatch::loadFile(_filePath, _configFile);
     
-    if (type == "ofVideoPlayer") {
+    /*if (type == "ofVideoPlayer") {
         videoInterface = new nodeVideoInterface(&box, &nId);
         ofAddListener( videoInterface->_stop , this, &patch::_stopVideo);
         ofAddListener( videoInterface->_play , this, &patch::_playVideo);
     }
-    else if (type == "ofImage") {
+    else*/ if (type == "ofImage") {
         imageSrc = _filePath;
         inspector = new ofxUICanvas();
         inspector->addLabel("INSPECTOR");
