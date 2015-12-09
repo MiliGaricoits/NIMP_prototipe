@@ -77,14 +77,14 @@ void testApp::setup(){
     
     //*** COMPOSER AND PATCHES SETUP ***//
     
-    composer = new composer::composer();
+    composer = new ofxComposer();
     composer->setMainCanvas(gui);
     composer->load("config.xml");
     composer->setLinkType(PATH_LINKS);
     
     composer->setParent(cam);
-    map<int,patch*> patches = composer->getPatches();
-    for(map<int,patch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
+    map<int,ofxPatch*> patches = composer->getPatches();
+    for(map<int,ofxPatch*>::iterator it = patches.begin(); it != patches.end(); it++ ){
         it->second->setParent(cam);
     }
     

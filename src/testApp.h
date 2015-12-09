@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 
-#include "composer.h"
+#include "ofxComposer.h"
 #include "ofxUISuperCanvas.h"
 #include "textInput.h"
 #include "textInputEvent.h"
@@ -31,7 +31,7 @@ public:
     void createNode(textInputEvent &args);
     void menuEvent(ofxUIEventArgs &e);
     
-    composer* composer;
+    ofxComposer* composer;
     
     bool hagoZoom;
     float scale;

@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "ofMain.h"
-#include "composer.h"
+#include "ofxComposer.h"
 #include "ofxMultiTouchPad.h"
 
 class scrollBar {
@@ -19,7 +19,7 @@ class scrollBar {
 public:
     
     scrollBar();
-    scrollBar(composer* composer, ofxMultiTouchPad* pad, int eventPriority = OF_EVENT_ORDER_AFTER_APP);
+    scrollBar(ofxComposer* composer, ofxMultiTouchPad* pad, int eventPriority = OF_EVENT_ORDER_AFTER_APP);
 //    ~scrollBar();
     
     void setup();
@@ -74,7 +74,7 @@ private:
     int BEGIN_X;
     int BEGIN_Y;
     
-    composer* composer;
+    ofxComposer* composer;
     
     ofVec4f getUntransformedCoords(int x, int y);
 };
