@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		00062604515C1A5AD107D190 /* ofxUI2DGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D68246533CF747B2D940A6 /* ofxUI2DGraph.cpp */; };
-		0A49EEA51C17CA2100346EB5 /* ofxBasePatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EE6D1C17CA2100346EB5 /* ofxBasePatch.cpp */; };
-		0A49EEA61C17CA2100346EB5 /* ofxComposer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EE6F1C17CA2100346EB5 /* ofxComposer.cpp */; };
-		0A49EEA71C17CA2100346EB5 /* ofxPatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EE711C17CA2100346EB5 /* ofxPatch.cpp */; };
-		0A49EEA81C17CA2100346EB5 /* ofxShaderObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EE741C17CA2100346EB5 /* ofxShaderObj.cpp */; };
-		0A49EEA91C17CA2100346EB5 /* ofxTitleBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EE761C17CA2100346EB5 /* ofxTitleBar.cpp */; };
+		0A49EEF51C18630400346EB5 /* ofxBasePatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EEBD1C18630400346EB5 /* ofxBasePatch.cpp */; };
+		0A49EEF61C18630400346EB5 /* ofxComposer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EEBF1C18630400346EB5 /* ofxComposer.cpp */; };
+		0A49EEF71C18630400346EB5 /* ofxPatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EEC11C18630400346EB5 /* ofxPatch.cpp */; };
+		0A49EEF81C18630400346EB5 /* ofxShaderObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EEC41C18630400346EB5 /* ofxShaderObj.cpp */; };
+		0A49EEF91C18630400346EB5 /* ofxTitleBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A49EEC61C18630400346EB5 /* ofxTitleBar.cpp */; };
 		0A51B7961C08BC34000AC121 /* MultitouchSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51B7951C08BC34000AC121 /* MultitouchSupport.framework */; };
 		0C9644725B45F9D34DA2879C /* ofxUINumberDialer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 671DE69B6BC7801503C7666E /* ofxUINumberDialer.cpp */; };
 		0E16681A943DAF914FD70069 /* ofxFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4679707807EF2CBCAAEF8BF7 /* ofxFileDialog.cpp */; };
@@ -135,17 +135,17 @@
 		01695A6179C1325AE770E008 /* ofxUIWidgets.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUIWidgets.h; path = ../../../addons/ofxUI_nimp/src/ofxUIWidgets.h; sourceTree = SOURCE_ROOT; };
 		01DCC0911400F9ACF5B65578 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		06C038746094A758EBC07F0C /* ofxUIImageToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIImageToggle.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUIImageToggle.cpp; sourceTree = SOURCE_ROOT; };
-		0A49EE6D1C17CA2100346EB5 /* ofxBasePatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBasePatch.cpp; sourceTree = "<group>"; };
-		0A49EE6E1C17CA2100346EB5 /* ofxBasePatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBasePatch.h; sourceTree = "<group>"; };
-		0A49EE6F1C17CA2100346EB5 /* ofxComposer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxComposer.cpp; sourceTree = "<group>"; };
-		0A49EE701C17CA2100346EB5 /* ofxComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxComposer.h; sourceTree = "<group>"; };
-		0A49EE711C17CA2100346EB5 /* ofxPatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPatch.cpp; sourceTree = "<group>"; };
-		0A49EE721C17CA2100346EB5 /* ofxPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPatch.h; sourceTree = "<group>"; };
-		0A49EE731C17CA2100346EB5 /* ofxPingPong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPingPong.h; sourceTree = "<group>"; };
-		0A49EE741C17CA2100346EB5 /* ofxShaderObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxShaderObj.cpp; sourceTree = "<group>"; };
-		0A49EE751C17CA2100346EB5 /* ofxShaderObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxShaderObj.h; sourceTree = "<group>"; };
-		0A49EE761C17CA2100346EB5 /* ofxTitleBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTitleBar.cpp; sourceTree = "<group>"; };
-		0A49EE771C17CA2100346EB5 /* ofxTitleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTitleBar.h; sourceTree = "<group>"; };
+		0A49EEBD1C18630400346EB5 /* ofxBasePatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBasePatch.cpp; sourceTree = "<group>"; };
+		0A49EEBE1C18630400346EB5 /* ofxBasePatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBasePatch.h; sourceTree = "<group>"; };
+		0A49EEBF1C18630400346EB5 /* ofxComposer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxComposer.cpp; sourceTree = "<group>"; };
+		0A49EEC01C18630400346EB5 /* ofxComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxComposer.h; sourceTree = "<group>"; };
+		0A49EEC11C18630400346EB5 /* ofxPatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPatch.cpp; sourceTree = "<group>"; };
+		0A49EEC21C18630400346EB5 /* ofxPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPatch.h; sourceTree = "<group>"; };
+		0A49EEC31C18630400346EB5 /* ofxPingPong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPingPong.h; sourceTree = "<group>"; };
+		0A49EEC41C18630400346EB5 /* ofxShaderObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxShaderObj.cpp; sourceTree = "<group>"; };
+		0A49EEC51C18630400346EB5 /* ofxShaderObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxShaderObj.h; sourceTree = "<group>"; };
+		0A49EEC61C18630400346EB5 /* ofxTitleBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTitleBar.cpp; sourceTree = "<group>"; };
+		0A49EEC71C18630400346EB5 /* ofxTitleBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTitleBar.h; sourceTree = "<group>"; };
 		0A51B7951C08BC34000AC121 /* MultitouchSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultitouchSupport.framework; path = ../../../../../../../System/Library/PrivateFrameworks/MultitouchSupport.framework; sourceTree = "<group>"; };
 		0BFE1741172F932DD4B6CDB9 /* ofxUIValuePlotter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUIValuePlotter.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUIValuePlotter.cpp; sourceTree = SOURCE_ROOT; };
 		0C23DF1AD7789B449666ED3A /* ofxUICanvas.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUICanvas.cpp; path = ../../../addons/ofxUI_nimp/src/ofxUICanvas.cpp; sourceTree = SOURCE_ROOT; };
@@ -374,29 +374,29 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		0A49EE5A1C17CA2100346EB5 /* ofxNIMPComposer */ = {
+		0A49EEAA1C18630400346EB5 /* ofxComposer_nimp */ = {
 			isa = PBXGroup;
 			children = (
-				0A49EE6C1C17CA2100346EB5 /* src */,
+				0A49EEBC1C18630400346EB5 /* src */,
 			);
-			name = ofxNIMPComposer;
-			path = ../../../addons/ofxNIMPComposer;
+			name = ofxComposer_nimp;
+			path = ../../../addons/ofxComposer_nimp;
 			sourceTree = "<group>";
 		};
-		0A49EE6C1C17CA2100346EB5 /* src */ = {
+		0A49EEBC1C18630400346EB5 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				0A49EE6D1C17CA2100346EB5 /* ofxBasePatch.cpp */,
-				0A49EE6E1C17CA2100346EB5 /* ofxBasePatch.h */,
-				0A49EE6F1C17CA2100346EB5 /* ofxComposer.cpp */,
-				0A49EE701C17CA2100346EB5 /* ofxComposer.h */,
-				0A49EE711C17CA2100346EB5 /* ofxPatch.cpp */,
-				0A49EE721C17CA2100346EB5 /* ofxPatch.h */,
-				0A49EE731C17CA2100346EB5 /* ofxPingPong.h */,
-				0A49EE741C17CA2100346EB5 /* ofxShaderObj.cpp */,
-				0A49EE751C17CA2100346EB5 /* ofxShaderObj.h */,
-				0A49EE761C17CA2100346EB5 /* ofxTitleBar.cpp */,
-				0A49EE771C17CA2100346EB5 /* ofxTitleBar.h */,
+				0A49EEBD1C18630400346EB5 /* ofxBasePatch.cpp */,
+				0A49EEBE1C18630400346EB5 /* ofxBasePatch.h */,
+				0A49EEBF1C18630400346EB5 /* ofxComposer.cpp */,
+				0A49EEC01C18630400346EB5 /* ofxComposer.h */,
+				0A49EEC11C18630400346EB5 /* ofxPatch.cpp */,
+				0A49EEC21C18630400346EB5 /* ofxPatch.h */,
+				0A49EEC31C18630400346EB5 /* ofxPingPong.h */,
+				0A49EEC41C18630400346EB5 /* ofxShaderObj.cpp */,
+				0A49EEC51C18630400346EB5 /* ofxShaderObj.h */,
+				0A49EEC61C18630400346EB5 /* ofxTitleBar.cpp */,
+				0A49EEC71C18630400346EB5 /* ofxTitleBar.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -623,12 +623,12 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				0A49EE5A1C17CA2100346EB5 /* ofxNIMPComposer */,
+				EB960E3FE43852EF44AD4C02 /* ofxUI_nimp */,
+				166FC87CC76DB0C9A824C6F8 /* ofxMSAInteractiveObject_nimp */,
+				0A49EEAA1C18630400346EB5 /* ofxComposer_nimp */,
 				1F4FB5C423662B96ADFDCC0B /* ofxXmlSettings */,
 				9CF97C9C767B62FAD6F26EFC /* ofxGLEditor */,
-				166FC87CC76DB0C9A824C6F8 /* ofxMSAInteractiveObject_nimp */,
 				AE1BC27CAB7A1E6BD5EAEC74 /* ofxPulseSensor */,
-				EB960E3FE43852EF44AD4C02 /* ofxUI_nimp */,
 				0B520A8F9CBD72DD1ACC7E64 /* ofxMultiTouchPad */,
 			);
 			name = addons;
@@ -857,14 +857,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
-				0A49EEA61C17CA2100346EB5 /* ofxComposer.cpp in Sources */,
+				0A49EEF61C18630400346EB5 /* ofxComposer.cpp in Sources */,
 				F809201D6BFA8D403B96B0CA /* menuItem.cpp in Sources */,
-				0A49EEA51C17CA2100346EB5 /* ofxBasePatch.cpp in Sources */,
+				0A49EEF51C18630400346EB5 /* ofxBasePatch.cpp in Sources */,
 				E05BD419075B22F051492868 /* nodeVideoInterface.cpp in Sources */,
 				BBC4C1A4C3DBD1573D3EBCE0 /* scrollBar.cpp in Sources */,
 				29D734F0DDECC8C5978185D7 /* testApp.cpp in Sources */,
 				3654F120E6C1BE5AB7062F04 /* textInput.cpp in Sources */,
-				0A49EEA71C17CA2100346EB5 /* ofxPatch.cpp in Sources */,
+				0A49EEF71C18630400346EB5 /* ofxPatch.cpp in Sources */,
 				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
@@ -872,7 +872,7 @@
 				FF393FD80B6AB58FBAA126CC /* ofxEditor.cpp in Sources */,
 				E874FA147A1642EC2BC94C33 /* ofxEditorColorScheme.cpp in Sources */,
 				398F4583766AA26A553E36B9 /* ofxEditorFont.cpp in Sources */,
-				0A49EEA91C17CA2100346EB5 /* ofxTitleBar.cpp in Sources */,
+				0A49EEF91C18630400346EB5 /* ofxTitleBar.cpp in Sources */,
 				95CCD8CC3489307961DCA2C2 /* ofxEditorSettings.cpp in Sources */,
 				689A2E396D4CE7B26BFC500D /* ofxEditorSyntax.cpp in Sources */,
 				0E16681A943DAF914FD70069 /* ofxFileDialog.cpp in Sources */,
@@ -894,7 +894,7 @@
 				8F037CBD03700EE04BA57892 /* ofxUIEventArgs.cpp in Sources */,
 				49EA4E9831BDE12C195FC115 /* ofxUIFPS.cpp in Sources */,
 				EB3BAAB9C726E5133CE4B531 /* ofxUIFPSSlider.cpp in Sources */,
-				0A49EEA81C17CA2100346EB5 /* ofxShaderObj.cpp in Sources */,
+				0A49EEF81C18630400346EB5 /* ofxShaderObj.cpp in Sources */,
 				BE3F992C9BB28D0153716FD8 /* ofxUIImage.cpp in Sources */,
 				80BB47813935E0D81599C662 /* ofxUIImageButton.cpp in Sources */,
 				53322E5087839C46C0F62CC1 /* ofxUIImageSampler.cpp in Sources */,

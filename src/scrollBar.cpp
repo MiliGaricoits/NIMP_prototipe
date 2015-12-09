@@ -24,7 +24,6 @@ scrollBar::scrollBar(class ofxComposer* _composer, ofxMultiTouchPad* _pad, int e
     ofAddListener(ofEvents().keyPressed, this, &scrollBar::keyPressed, eventPriority);
     ofAddListener(ofEvents().windowResized, this, &scrollBar::windowResized, eventPriority);
     
-    // nico SrollBar
     ofAddListener(ofEvents().mouseDragged, this, &scrollBar::mouseDragged, eventPriority);
 }
 
